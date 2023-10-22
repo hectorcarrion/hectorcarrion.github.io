@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <circle id="path-1" cx="150" cy="150" r="150"></circle>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="652440235faf118e55ff30ae_logo_visia">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#FFFFFF" xlink:href="#path-1"></use>
+            <g mask="url(#mask-2)">
+                <g transform="translate(64.000000, 47.000000)">
+                    <g id="Group" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon id="Path" fill="#2A9D8F" fill-rule="nonzero" points="114.105467 135.68208 170.37048 103.315224 46.9713924 32.473019 46.9713924 0 171 71.1917289 171 135.379922 114.105467 168.114267"></polygon>
+                        <polygon id="Path" fill="#2A9D8F" fill-rule="nonzero" points="56.8945335 70.3179202 0.629520267 102.684776 124.028608 173.526981 124.028608 206 0 134.808271 0 70.6200783 56.8945335 37.8857333"></polygon>
+                    </g>
+                    <circle id="Oval" fill="#2D2D2D" fill-rule="nonzero" cx="85.5" cy="101.5" r="31.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

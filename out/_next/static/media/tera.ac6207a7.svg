@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <defs>
+        <circle id="path-1" cx="150" cy="150" r="150"></circle>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#38445F" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <circle stroke="#979797" cx="150" cy="150" r="149.5"></circle>
+            <g mask="url(#mask-2)">
+                <g transform="translate(-20.000000, 0.000000)">
+                    <rect id="Rectangle" fill="url(#linearGradient-3)" fill-rule="evenodd" transform="translate(195.000000, 422.000000) scale(1, -1) translate(-195.000000, -422.000000) " x="0" y="0" width="390" height="844"></rect>
+                    <g id="Group" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(239.116334, 146.883723) scale(-1, 1) translate(-239.116334, -146.883723) translate(195.232668, 103.000000)">
+                        <path d="M50,0 C65.0795675,0 78.5999894,6.67549623 87.7673317,17.2325548 C78.9920447,9.6124491 67.5346699,5 55,5 C27.3857625,5 5,27.3857625 5,55 C5,67.5346699 9.6124491,78.9920447 17.2326683,87.7674452 C6.67549623,78.5999894 0,65.0795675 0,50 C0,22.3857625 22.3857625,0 50,0 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                    </g>
+                    <text id="Tera-AI" fill="none" font-family="Avenir-Medium, Avenir" font-size="64" font-weight="400">
+                        <tspan x="57.624" y="175" fill="#FFFFFF">Tera AI</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,12 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Héctor Carrión',
+  date: '2023-10-01',
+  externalLink: "https://link.springer.com/chapter/10.1007/978-3-031-43990-2_26",
+  title: 'FEDD - Fair, Efficient, and Diverse Diffusion-based Lesion Segmentation and Malignancy Classification, MICCAI',
+  description:
+    'Skin diseases affect millions of people worldwide, across all ethnicities. Increasing diagnosis accessibility requires fair and accurate segmentation and classification of dermatology images. However, the scarcity of annotated medical images, especially for rare diseases and un- derrepresented skin tones, poses a challenge to the development of fair and accurate models. In this study, we introduce a Fair, Efficient, and Diverse Diffusion-based framework for skin lesion segmentation and ma- lignancy classification. FEDD leverages semantically meaningful feature embeddings learned through a denoising diffusion probabilistic backbone and processes them via linear probes to achieve state-of-the-art perfor- mance on Diverse Dermatology Images (DDI). We achieve an improve- ment in intersection over union of 0.18, 0.13, 0.06, and 0.07 while using only 5%, 10%, 15%, and 20% labeled samples, respectively. Additionally, FEDD trained on 10% of DDI demonstrates malignancy classification ac- curacy of 81%, 14% higher compared to the state-of-the-art. We showcase high efficiency in data-constrained scenarios while providing fair perfor- mance for diverse skin tones and rare malignancy conditions. Our newly annotated DDI segmentation masks and training code can be found on https://github.com/hectorcarrion/fedd',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />

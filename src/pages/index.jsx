@@ -117,7 +117,7 @@ function Resume() {
       },
     },
     {
-      company: 'Tera.ai',
+      company: 'Tera AI',
       title: 'Lead Research Scientist',
       logo: logoTera,
       start: 'June 2024',

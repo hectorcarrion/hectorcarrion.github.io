@@ -14,6 +14,7 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import logoUCSC from '@/images/logos/ucsc.svg'
+import logoTera from '@/images/logos/tera.svg'
 import logoApple from '@/images/logos/apple.svg'
 import logoGoogle from '@/images/logos/google.svg'
 import logoX from '@/images/logos/x.svg'

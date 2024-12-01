@@ -120,7 +120,7 @@ function Resume() {
       company: 'Tera AI',
       title: 'Lead Research Scientist',
       logo: logoTera,
-      start: 'June 2024',
+      start: 'Jun 2024',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),

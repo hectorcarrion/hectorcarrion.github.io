@@ -115,16 +115,16 @@ function Resume() {
         dateTime: new Date().getFullYear(),
       },
     },
-    // {
-    //   company: 'binit.ai',
-    //   title: 'CV Advisor',
-    //   logo: logoBinit,
-    //   start: 'Apr 2022',
-    //   end: {
-    //     label: 'Present',
-    //     dateTime: new Date().getFullYear(),
-    //   },
-    // },
+    {
+      company: 'Tera.ai',
+      title: 'Lead Research Scientist',
+      logo: logoTera,
+      start: 'June 2024',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear(),
+      },
+    },
     {
       company: 'Google',
       title: 'Student Researcher (PhD)',

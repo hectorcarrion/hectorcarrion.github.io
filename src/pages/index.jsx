@@ -255,7 +255,7 @@ export default function Home({ articles }) {
           CS PhD at UCSC, Advisor
           @ <a href="https://tera.earth" target="_blank" className="hover:underline" rel="noopener noreferrer">tera.earth</a>
           &nbsp;& <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">visia.ai</a>
-          &nbsp;- I drive multi-modal, self-supervised AI reserach for real-world positive impact 🌱
+          &nbsp;- I lead multi-modal, self-supervised AI reserach for real-world positive impact 🌱
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

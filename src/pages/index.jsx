@@ -252,7 +252,7 @@ export default function Home({ articles }) {
             Héctor Carrión - AI Researcher, Designer, Writer, Naturalist 🐝
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          CS PhD at UCSC, Advisor
+          CS PhD @ UCSC, Advisor
           @ <a href="https://tera.earth" target="_blank" className="hover:underline" rel="noopener noreferrer">tera.earth</a>
           &nbsp;& <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">visia.ai</a>
           &nbsp;<p>I lead multi-modal, self-supervised AI reserach for real-world positive impact 🌱</p>

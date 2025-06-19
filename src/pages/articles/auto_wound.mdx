@@ -1,0 +1,12 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Héctor Carrión',
+  date: '2022-03-11',
+  externalLink: "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009852",
+  title: 'Automatic wound detection and size estimation using deep learning algorithms, PLOS',
+  description:
+    'Evaluating and tracking wound size is a fundamental metric for the wound assessment process. Good location and size estimates can enable proper diagnosis and effective treatment. Traditionally, laboratory wound healing studies include a collection of images at uniform time intervals exhibiting the wounded area and the healing process in the test animal, often a mouse. These images are then manually observed to determine key metrics —such as wound size progress— relevant to the study. However, this task is a time-consuming and laborious process. In addition, defining the wound edge could be subjective and can vary from one individual to another even among experts. Furthermore, as our understanding of the healing process grows, so does our need to efficiently and accurately track these key factors for high throughput (e.g., over large-scale and long-term experiments). Thus, in this study, we develop a deep learning-based image analysis pipeline that aims to intake non-uniform wound images and extract relevant information such as the location of interest, wound only image crops, and wound periphery size over-time metrics. In particular, our work focuses on images of wounded laboratory mice that are used widely for translationally relevant wound studies and leverages a commonly used ring-shaped splint present in most images to predict wound size. We apply the method to a dataset that was never meant to be quantified and, thus, presents many visual challenges. Additionally, the data set was not meant for training deep learning models and so is relatively small in size with only 256 images. We compare results to that of expert measurements and demonstrate preservation of information relevant to predicting wound closure despite variability from machine-to-expert and even expert-to-expert. The proposed system resulted in high fidelity results on unseen data with minimal human intervention. Furthermore, the pipeline estimates acceptable wound sizes when less than 50% of the images are missing reference objects.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />

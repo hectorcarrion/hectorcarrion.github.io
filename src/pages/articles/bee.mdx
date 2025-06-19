@@ -1,0 +1,12 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Héctor Carrión',
+  date: '2022-01-19',
+  externalLink: "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009852",
+  title: 'Honeybee Re-identification in Video: New Datasets and Impact of Self-supervision, VISAPP',
+  description:
+    'This paper presents an experimental study of long-term re-identification of honeybees from the appearance of their abdomen in videos. The first contribution is composed of two image datasets of single honeybees ex- tracted from 12 days of video and annotated with information about their identity on long-term and short-term scales. The long-term dataset contains 8,962 images associated to 181 known identities and used to evaluate the long-term re-identification of individuals. The short-term dataset contains 109,654 images associated to 4,949 short-term tracks that provide multiple views of an individual suitable for self-supervised training. A deep convolutional network was trained to map an image of the honeybee’s abdomen to a 128 dimensional fea- ture vector using several approaches. Re-identification was evaluated in test setups that capture different levels of difficulty: from the same hour to a different day. The results show using the short-term self-supervised in- formation for training performed better than the supervised long-term dataset, with best performance achieved by using both. Ablation studies show the impact of the quantity of data used in training as well as the impact of augmentation, which will guide the design of future systems for individual identification.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />

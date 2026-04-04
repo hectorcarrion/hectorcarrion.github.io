@@ -107,16 +107,6 @@ function SocialLink({ icon: Icon, ...props }) {
 function Resume() {
   let resume = [
     {
-      company: 'UC Santa Cruz',
-      title: 'PhD, Graduate Researcher',
-      logo: logoUCSC,
-      start: 'Sep 2021',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
-    },
-    {
       company: 'Tera AI',
       title: 'Lead Research Scientist',
       logo: logoTera,
@@ -124,6 +114,16 @@ function Resume() {
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
+      },
+    },
+    {
+      company: 'UC Santa Cruz',
+      title: 'PhD, Graduate Researcher',
+      logo: logoUCSC,
+      start: 'Sep 2021',
+      end: {
+        label: 'Summer 2026',
+        dateTime: '2026',
       },
     },
     {

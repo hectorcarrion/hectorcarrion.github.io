@@ -252,9 +252,9 @@ export default function Home({ articles }) {
             Héctor Carrión - AI Researcher, Designer, Writer, Naturalist 🐝
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          CS PhD @ UCSC, Advisor
-          @ <a href="https://tera-ai.com" target="_blank" className="hover:underline" rel="noopener noreferrer">tera-ai.com</a>
-          &nbsp;& <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">visia.ai</a>
+          CS PhD Summer 2026 advised by Narges Norouzi @ UC Berkeley, Lead Research Scientist
+          @ <a href="https://tera-ai.com" target="_blank" className="hover:underline" rel="noopener noreferrer">tera-ai.com</a>, Advisor
+          @ <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">visia.ai</a>
           &nbsp;<p>I lead multi-modal, self-supervised AI reserach for real-world positive impact 🌱</p>
           </p>
           <div className="mt-6 flex gap-6">

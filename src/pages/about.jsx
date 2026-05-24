@@ -6,6 +6,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { RESUME_URL } from '@/lib/resume'
 import logoUCSC from '@/images/logos/ucsc.svg'
+import logoTera from '@/images/logos/tera.svg'
 import logoApple from '@/images/logos/apple.svg'
 import logoGoogle from '@/images/logos/google.svg'
 import logoX from '@/images/logos/x.svg'
@@ -73,25 +74,25 @@ function BriefcaseIcon(props) {
 function Resume() {
   let resume = [
     {
-      company: 'UC Santa Cruz',
-      title: 'PhD, Graduate Researcher',
-      logo: logoUCSC,
-      start: 'Sep 2021',
+      company: 'Tera AI',
+      title: 'Lead Research Scientist',
+      logo: logoTera,
+      start: 'Jun 2024',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
       },
     },
-    // {
-    //   company: 'binit.ai',
-    //   title: 'CV Advisor',
-    //   logo: logoBinit,
-    //   start: 'Apr 2022',
-    //   end: {
-    //     label: 'Present',
-    //     dateTime: new Date().getFullYear(),
-    //   },
-    // },
+    {
+      company: 'UC Santa Cruz',
+      title: 'PhD, Graduate Researcher',
+      logo: logoUCSC,
+      start: 'Sep 2021',
+      end: {
+        label: 'Jun 2026',
+        dateTime: '2026-06',
+      },
+    },
     {
       company: 'Google',
       title: 'Student Researcher (PhD)',

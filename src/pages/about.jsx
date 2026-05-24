@@ -4,6 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
+import { RESUME_URL } from '@/lib/resume'
 import logoUCSC from '@/images/logos/ucsc.svg'
 import logoApple from '@/images/logos/apple.svg'
 import logoGoogle from '@/images/logos/google.svg'
@@ -161,7 +162,7 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="https://github.com/hectorcarrion/hectorcarrion.github.io/blob/main/Hector%20Carrion%20Resume%20Apr%202026.pdf?raw=true" variant="secondary" className="group mt-6 w-full">
+      <Button href={RESUME_URL} variant="secondary" className="group mt-6 w-full">
         Download Resume
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>

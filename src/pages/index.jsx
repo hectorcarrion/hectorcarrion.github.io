@@ -7,6 +7,7 @@ import { Photos } from '@/components/Photos'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
+import { RESUME_URL } from '@/lib/resume'
 import {
   TwitterIcon,
   InstagramIcon,
@@ -197,7 +198,7 @@ function Resume() {
         ))}
       </ol>
       {/* gDrive link https://drive.google.com/file/d/1B_CFbrz6A4gvICUIqr5YmxTqYbbVbs3u/view?usp=sharing */}
-      <Button href="https://github.com/hectorcarrion/hectorcarrion.github.io/blob/main/Hector%20Carrion%20Resume%20Apr%202026.pdf?raw=true" variant="secondary" className="group mt-6 w-full">
+      <Button href={RESUME_URL} variant="secondary" className="group mt-6 w-full">
         Download Resume
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -304,3 +305,4 @@ export async function getStaticProps() {
     },
   }
 }
+// touched

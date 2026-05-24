@@ -123,8 +123,8 @@ function Resume() {
       logo: logoUCSC,
       start: 'Sep 2021',
       end: {
-        label: 'Exp. by Jul 2026',
-        dateTime: '2026',
+        label: 'Jun 2026',
+        dateTime: '2026-06',
       },
     },
     {

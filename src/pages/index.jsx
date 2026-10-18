@@ -108,20 +108,26 @@ function SocialLink({ icon: Icon, ...props }) {
 function Resume() {
   let resume = [
     {
-      company: 'Tera AI',
-      title: 'Lead Research Scientist',
-      logo: logoTera,
-      start: 'Jun 2024',
+      company: 'Function Health',
+      title: 'World Model Team Lead',
+      start: 'Sep 2026',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
       },
     },
     {
+      company: 'Tera AI',
+      title: 'Founding Lead Research Scientist',
+      logo: logoTera,
+      start: 'Jun 2024',
+      end: 'Sep 2026',
+    },
+    {
       company: 'UC Santa Cruz',
       title: 'PhD, Graduate Researcher',
       logo: logoUCSC,
-      start: 'Sep 2021',
+      start: 'Jun 2020',
       end: {
         label: 'Jun 2026',
         dateTime: '2026-06',
@@ -167,7 +173,13 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              {role.logo ? (
+                <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              ) : (
+                <span aria-hidden="true" className="text-xl font-semibold text-zinc-800 dark:text-zinc-100">
+                  F
+                </span>
+              )}
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
@@ -244,7 +256,7 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="Hi I'm Héctor, CS PhD at UCSC, Advisor at tera-ai.com and visia.ai."
+          content="Héctor Carrión, World Model Team Lead at Function Health. CS PhD advised by Narges Norouzi at UC Berkeley, ex-Tera AI, ex-Google, and Advisor at Visia AI."
         />
       </Head>
       <Container className="mt-9">
@@ -253,10 +265,14 @@ export default function Home({ articles }) {
             Dr. Héctor Carrión - AI Researcher, Designer, Writer, Naturalist 🐝
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          CS PhD advised by Narges Norouzi @ UC Berkeley, Lead Research Scientist
-          @ <a href="https://tera-ai.com" target="_blank" className="hover:underline" rel="noopener noreferrer">tera-ai.com</a>, Advisor
-          @ <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">visia.ai</a>
-          &nbsp;<p>I lead multi-modal, self-supervised AI reserach for real-world positive impact 🌱</p>
+            World Model Team Lead @ <a href="https://www.functionhealth.com/" target="_blank" className="hover:underline" rel="noopener noreferrer">Function Health</a>
+            {' · '}CS PhD Adv @ Berkeley
+            {' · '}ex-<a href="https://tera-ai.com" target="_blank" className="hover:underline" rel="noopener noreferrer">Tera AI</a>
+            {' · '}ex-<a href="https://www.google.com/" target="_blank" className="hover:underline" rel="noopener noreferrer">Google</a>
+            {' · '}Advisor @ <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">Visia AI</a>
+          </p>
+          <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
+            I lead multi-modal, self-supervised AI research for real-world positive impact 🌱
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

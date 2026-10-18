@@ -49,9 +49,6 @@ export default function Uses() {
             <Tool title="UC Institutional">
               <a href="mailto:hcarrion@ucsc.edu" className="hover:underline">hcarrion@ucsc.edu</a>
             </Tool>
-            <Tool title="Tera AI">
-              <a href="mailto:hector@tera.earth" className="hover:underline">hector@tera.earth</a>
-            </Tool>
             <Tool title="Personal">
               <a href="mailto:hi@hectorcarrion.com" className="hover:underline">hi@hectorcarrion.com</a>
             </Tool>

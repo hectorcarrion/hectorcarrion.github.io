@@ -74,20 +74,26 @@ function BriefcaseIcon(props) {
 function Resume() {
   let resume = [
     {
-      company: 'Tera AI',
-      title: 'Lead Research Scientist',
-      logo: logoTera,
-      start: 'Jun 2024',
+      company: 'Function Health',
+      title: 'World Model Team Lead',
+      start: 'Sep 2026',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear(),
       },
     },
     {
+      company: 'Tera AI',
+      title: 'Founding Lead Research Scientist',
+      logo: logoTera,
+      start: 'Jun 2024',
+      end: 'Sep 2026',
+    },
+    {
       company: 'UC Santa Cruz',
       title: 'PhD, Graduate Researcher',
       logo: logoUCSC,
-      start: 'Sep 2021',
+      start: 'Jun 2020',
       end: {
         label: 'Jun 2026',
         dateTime: '2026-06',
@@ -133,7 +139,13 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              {role.logo ? (
+                <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              ) : (
+                <span aria-hidden="true" className="text-xl font-semibold text-zinc-800 dark:text-zinc-100">
+                  F
+                </span>
+              )}
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
@@ -189,7 +201,7 @@ export default function About() {
         <title>About - Héctor Carrión</title>
         <meta
           name="description"
-          content="I'm Héctor Carrión. I make things that make things better."
+          content="Héctor Carrión, World Model Team Lead at Function Health, developing multimodal health representations to forecast trajectories and guide healthier outcomes."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -212,28 +224,34 @@ export default function About() {
               <p>
                 Access to healthcare, clean water, sustainable agriculture, renewable energy, social
                 equity, equality and justice. These are some of the hard problems I keep front of mind
-                when driving my reserach.
+                when driving my research.
               </p>
               <p>
                 Often young kids relate their first interests to those of their parents.
                 For me, this is very much the case. I remember helping my dad wire his small start-up
                 office to our home network so he could access files on the remote computer. It was a beige,
-                thin, slow DSL cable. We jumped and climbed around the buidling to get the cable
+                thin, slow DSL cable. We jumped and climbed around the building to get the cable
                 from one place to the other. After days of work, we got everything working and
                 my dad was able to work wherever he was.
                 The best part? He spent new-found time playing with me.
               </p>
               <p>
                 This, one of my very first experiences with technology, showed me how it
-                could be leveraged to enrich peoples lives at a very personal level.
-                Since then, I’ve joined this ideal to my reserach as I look to empower humanity, solve
+                could be leveraged to enrich people’s lives at a very personal level.
+                Since then, I’ve joined this ideal to my research as I look to empower humanity, solve
                 critical problems and make the world a better place. This vision, and my love for research,
                 have driven me towards my achievements.
               </p>
               <p>
-                Today, I’m a PhD candidate at UCSC, I’ve published a half-dozen research papers,
-                worked with amazing research teams at Google & Apple and advise a couple successful
-                start-ups. Here, I write casually (when I have the time 🤣) about stuff I do - hopefully inspiring
+                Today, I’m World Model Team Lead at{' '}
+                <a href="https://www.functionhealth.com/" className="hover:underline" target="_blank" rel="noopener noreferrer">Function Health</a>,
+                delivering broadly applicable data-driven representations of multi-modal member health,
+                forecasting trajectories and recommending actions, helping guide members toward healthy outcomes.
+              </p>
+              <p>
+                I hold a CS PhD from UC Santa Cruz, advised by Narges Norouzi at UC Berkeley.
+                Previously, I led research at Tera AI and worked with research teams at Google & Apple.
+                I also advise Visia AI. Here, I write casually (when I have the time 🤣) about stuff I do - hopefully inspiring
                 other boricua latinx kids and showing them that we absolutely <em>can</em>{' '} make a difference.
               </p>
             </div>

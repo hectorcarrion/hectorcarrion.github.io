@@ -3,9 +3,9 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 export const meta = {
   shortTitle: 'DermDepth: Metric 3D Dermatology from a Single Image',
   summary:
-    'Combines synthetic 3D training data with metric depth prediction to recover skin-lesion geometry from one image, without extra views or specialized capture hardware.',
+    'Adapts a monocular 3D model with synthetic D-Synth data and small clinical datasets to recover metric lesion geometry and detailed surface normals from one image.',
   highlight:
-    'Metric scale error reduced from over 16× to under 1.1× on real dermoscopic images.',
+    'Synthetic training reduces SKINL2 depth-scale overestimation from 16.1× to 1.11× while fine-tuning only 0.6% of model parameters.',
   featuredOrder: 2,
   venue: 'MICCAI 2026',
   paperLink: 'https://papers.miccai.org/miccai-2026/paper/5594_paper.pdf',

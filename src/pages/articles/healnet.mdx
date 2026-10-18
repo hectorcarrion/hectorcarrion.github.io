@@ -2,9 +2,9 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
   summary:
-    'Learns wound progression from temporal image sequences without manual stage labels, then discovers healing stages and trains a classifier.',
+    'Learns temporal ordering from mouse-wound image pairs, clusters the resulting features into four healing stages, and trains a classifier without manual stage annotations.',
   highlight:
-    '90.62% healing-stage classification accuracy after self-supervised learning without manual stage labels.',
+    '90.6% test accuracy against cluster-derived healing-stage labels on 32 held-out mouse-wound images.',
   author: 'Héctor Carrión',
   date: '2022-12-16',
   externalLink:

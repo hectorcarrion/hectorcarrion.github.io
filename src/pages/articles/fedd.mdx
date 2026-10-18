@@ -2,9 +2,9 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
   summary:
-    'Uses diffusion-model features for skin-lesion segmentation and malignancy classification, reducing annotation needs while evaluating performance across skin tones.',
+    'Uses a frozen diffusion model’s visual features with lightweight prediction heads to segment skin lesions and classify malignancy from small, skin-tone-balanced labeled datasets.',
   highlight:
-    '81% malignancy classification accuracy using only 10% of DDI labels.',
+    '81% DDI malignancy accuracy from 60 labeled training images, with no diffusion-backbone fine-tuning.',
   codeLink: 'https://github.com/hectorcarrion/fedd',
   author: 'Héctor Carrión',
   date: '2023-10-01',

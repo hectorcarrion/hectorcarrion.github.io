@@ -6,7 +6,7 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import logoBreedie from '@/images/logos/breedie.svg'
 import logoCountie from '@/images/logos/countie.svg'
 import logoVisia from '@/images/logos/visia.svg'
-import logoTera from '@/images/logos/tera.jpeg'
+import logoTera from '@/images/logos/tera.png'
 import logoFunction from '@/images/logos/function.svg'
 import logoVesta from '@/images/logos/vesta.svg'
 
@@ -83,11 +83,7 @@ export default function Projects() {
                 <Image
                   src={project.logo}
                   alt=""
-                  className={
-                    project.logo === logoTera
-                      ? 'h-full w-full rounded-full object-cover'
-                      : 'h-8 w-8'
-                  }
+                  className="h-8 w-8"
                   unoptimized
                 />
               </div>

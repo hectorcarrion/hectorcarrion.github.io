@@ -1,12 +1,13 @@
 import Image from 'next/image'
-import Head from 'next/head'
+import { Seo } from '@/components/Seo'
+import { CONTACT_EMAIL } from '@/lib/site'
 import Link from 'next/link'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { RESUME_URL } from '@/lib/resume'
 import logoUCSC from '@/images/logos/ucsc.svg'
-import logoTera from '@/images/logos/tera.svg'
+import logoTera from '@/images/logos/tera.jpeg'
 import logoFunction from '@/images/logos/function.svg'
 import logoApple from '@/images/logos/apple.svg'
 import logoGoogle from '@/images/logos/google.svg'
@@ -14,13 +15,7 @@ import logoX from '@/images/logos/x.svg'
 import logoUpr from '@/images/logos/upr.svg'
 
 import { Container } from '@/components/Container'
-import {
-  TwitterIcon,
-  InstagramIcon,
-  GitHubIcon,
-  LinkedInIcon,
-} from '@/components/SocialIcons'
-import portraitImage from '@/images/portrait.jpg'
+import portraitImage from '@/images/profile.webp'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
@@ -193,13 +188,10 @@ function MailIcon(props) {
 export default function About() {
   return (
     <>
-      <Head>
-        <title>About - Héctor Carrión</title>
-        <meta
-          name="description"
-          content="Héctor Carrión, World Model Team Lead at Function Health, developing multimodal health representations to forecast trajectories and guide healthier outcomes."
-        />
-      </Head>
+      <Seo
+        title="About - Héctor Carrión"
+        description="Héctor Carrión, World Model Team Lead at Function Health, developing multimodal health representations to forecast trajectories and guide healthier outcomes."
+      />
       <Container className="mt-16 sm:mt-32">
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
           <div className="lg:pl-20">
@@ -252,11 +244,11 @@ export default function About() {
               </p>
             </div>
             <SocialLink
-              href="mailto:hcarrion@ucsc.edu"
+              href={`mailto:${CONTACT_EMAIL}`}
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              hcarrion@ucsc.edu
+              {CONTACT_EMAIL}
             </SocialLink>
           </div>
           <div className="lg:pl-20">

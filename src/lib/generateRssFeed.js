@@ -3,18 +3,19 @@ import { Feed } from 'feed'
 import { mkdir, writeFile } from 'fs/promises'
 
 import { getAllArticles } from './getAllArticles'
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from './site'
 
 export async function generateRssFeed() {
   let articles = await getAllArticles()
-  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  let siteUrl = SITE_URL
   let author = {
-    name: 'Héctor Carrión',
-    email: 'spencer@planetaria.tech',
+    name: SITE_NAME,
+    email: CONTACT_EMAIL,
   }
 
   let feed = new Feed({
     title: author.name,
-    description: 'Your blog description',
+    description: `Research and publications by ${SITE_NAME}.`,
     author,
     id: siteUrl,
     link: siteUrl,
@@ -37,7 +38,7 @@ export async function generateRssFeed() {
       title: article.title,
       id: url,
       link: url,
-      description: article.description,
+      description: article.summary || article.description,
       content: html,
       author: [author],
       contributor: [author],

@@ -1,10 +1,9 @@
 {
-    "redirects": [
-      {
-        "source": "/meet",
-        "destination": "https://calendar.app.google/TTsKKbehEcpy6Gav5",
-        "permanent": true
-      }
-    ]
-  }
-  
+  "redirects": [
+    {
+      "source": "/meet",
+      "destination": "https://calendar.app.google/z7f3fD4UF7ir6hvq6",
+      "permanent": true
+    }
+  ]
+}

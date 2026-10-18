@@ -1,9 +1,10 @@
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
+import { Seo } from '@/components/Seo'
+import { PublicationLinks } from '@/components/PublicationLinks'
 
 function ArrowLeftIcon(props) {
   return (
@@ -27,15 +28,29 @@ export function ArticleLayout({
   let router = useRouter()
 
   if (isRssFeed) {
-    return children
+    return (
+      <>
+        <p>{meta.summary || meta.description}</p>
+        <p>
+          <a href={meta.paperLink || meta.externalLink}>Paper</a>
+        </p>
+        {meta.codeLink && (
+          <p>
+            <a href={meta.codeLink}>Code</a>
+          </p>
+        )}
+        {children}
+      </>
+    )
   }
 
   return (
     <>
-      <Head>
-        <title>{`${meta.title} - Héctor Carrión`}</title>
-        <meta name="description" content={meta.description} />
-      </Head>
+      <Seo
+        title={`${meta.title} - Héctor Carrión`}
+        description={meta.summary || meta.description}
+        type="article"
+      />
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">
@@ -62,7 +77,18 @@ export function ArticleLayout({
                   <span className="ml-3">{formatDate(meta.date)}</span>
                 </time>
               </header>
-              <Prose className="mt-8">{children}</Prose>
+              <PublicationLinks article={meta} />
+              <Prose className="mt-8">
+                {meta.summary && <p>{meta.summary}</p>}
+                {meta.highlight && (
+                  <p>
+                    <strong>{meta.highlight}</strong>
+                  </p>
+                )}
+                <h2>Abstract</h2>
+                <p>{meta.description}</p>
+                {children}
+              </Prose>
             </article>
           </div>
         </div>

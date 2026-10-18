@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import Head from 'next/head'
+import { Seo } from '@/components/Seo'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import logoBreedie from '@/images/logos/breedie.svg'
 import logoCountie from '@/images/logos/countie.svg'
 import logoVisia from '@/images/logos/visia.svg'
-import logoTera from '@/images/logos/tera.svg'
+import logoTera from '@/images/logos/tera.jpeg'
 import logoFunction from '@/images/logos/function.svg'
 import logoVesta from '@/images/logos/vesta.svg'
 
@@ -36,7 +36,7 @@ const projects = [
     name: 'Countie',
     description:
       'Simple iPhone lockscreen countdown widget - made in a single night.',
-    link: { href: 'https://github.com/hectorcarrion/Countie', label: 'Github' },
+    link: { href: 'https://github.com/hectorcarrion/Countie', label: 'GitHub' },
     logo: logoCountie,
   },
   {
@@ -50,7 +50,7 @@ const projects = [
     name: 'Vesta',
     description:
       'Chest XRay COVID-19 detection - automated radiology screening with CNNs.',
-    link: { href: 'https://github.com/hectorcarrion/vesta', label: 'Github' },
+    link: { href: 'https://github.com/hectorcarrion/vesta', label: 'GitHub' },
     logo: logoVesta,
   },
 ]
@@ -69,16 +69,9 @@ function LinkIcon(props) {
 export default function Projects() {
   return (
     <>
-      <Head>
-        <title>Projects - Héctor Carrión</title>
-        <meta
-          name="description"
-          content="Stuff we’ve worked on to put a dent in the universe"
-        />
-      </Head>
+      <Seo title="Projects - Héctor Carrión" description="Research, advisory work, and software projects by Héctor Carrión." />
       <SimpleLayout
-        title="Stuff we’ve worked on to put a dent in the universe ☀️"
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute!"
+        title="Projects"
       >
         <ul
           role="list"

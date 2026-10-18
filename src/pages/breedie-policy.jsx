@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import { Seo } from '@/components/Seo'
 
 import { Prose } from '@/components/Prose'
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -6,13 +6,7 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 export default function BreediePolicy() {
   return (
     <>
-      <Head>
-        <title>Privacy Policy - Breedie</title>
-        <meta
-          name="description"
-          content="Privacy policy for Breedie and other apps by Héctor Carrión."
-        />
-      </Head>
+      <Seo title="Privacy Policy - Breedie" description="Privacy policy for Breedie and other apps by Héctor Carrión." />
       <SimpleLayout
         title="Privacy Policy"
         intro="Breedie and my other apps run entirely on your device. They do not collect, store, or share your personal data."

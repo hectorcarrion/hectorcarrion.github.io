@@ -1,8 +1,8 @@
-import Head from 'next/head'
-
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
+import { Seo } from '@/components/Seo'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { BOOKING_URL, CONTACT_EMAIL } from '@/lib/site'
 
 function ToolsSection({ children, ...props }) {
   return (
@@ -25,40 +25,37 @@ function Tool({ title, href, children }) {
   )
 }
 
-export default function Uses() {
+export default function Contact() {
   return (
     <>
-      <Head>
-        <title>Uses - Héctor Carrión</title>
-        <meta
-          name="description"
-          content="Contact information."
-        />
-      </Head>
-      <SimpleLayout
-        title="Come say hi 👋🏼!"
-        intro="Feel free to reach out, say hello and talk about world chaning ideas... or puppies!"
-      >
+      <Seo
+        title="Contact - Héctor Carrión"
+        description={`Contact Héctor Carrión at ${CONTACT_EMAIL} or book a meeting.`}
+      />
+      <SimpleLayout title="Come say hi 👋🏼!">
         <div className="space-y-20">
-          <ToolsSection title="Sync">
-            <Tool title=<a href="https://calendar.app.google/z7f3fD4UF7ir6hvq6" target="_blank" className="hover:underline" rel="noopener noreferrer">Book a Meeting</a>>
-              <a href="https://calendar.app.google/z7f3fD4UF7ir6hvq6" target="_blank" className="hover:underline" rel="noopener noreferrer">You can easily schedule a 30 minute 1:1 with me on Google Meet, click above or here</a>.
+          <ToolsSection title="Email">
+            <Tool title="Personal" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
+            </Tool>
+            <Tool title="UC Institutional" href="mailto:hcarrion@ucsc.edu">
+              hcarrion@ucsc.edu
             </Tool>
           </ToolsSection>
-          <ToolsSection title="Email">
-            <Tool title="UC Institutional">
-              <a href="mailto:hcarrion@ucsc.edu" className="hover:underline">hcarrion@ucsc.edu</a>
-            </Tool>
-            <Tool title="Personal">
-              <a href="mailto:hi@hectorcarrion.com" className="hover:underline">hi@hectorcarrion.com</a>
+          <ToolsSection title="Meet">
+            <Tool title="Book a Meeting" href={BOOKING_URL}>
+              Schedule a 30-minute 1:1 on Google Meet.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Social">
-            <Tool title=<a href="https://www.linkedin.com/in/hectorcarrion/" target="_blank" className="hover:underline" rel="noopener noreferrer">LinkedIn</a>>
-              I’m active and generally keep my LinkedIn up-to-date, I usually anounce new papers/projects there first.
+            <Tool
+              title="LinkedIn"
+              href="https://www.linkedin.com/in/hectorcarrion/"
+            >
+              New papers and projects.
             </Tool>
-            <Tool title=<a href="https://github.com/hectorcarrion" target="_blank" className="hover:underline" rel="noopener noreferrer">GitHub</a>>
-              Publishing most of my data and code on GitHub!
+            <Tool title="GitHub" href="https://github.com/hectorcarrion">
+              Research code and datasets.
             </Tool>
           </ToolsSection>
         </div>

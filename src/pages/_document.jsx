@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+import { SITE_URL } from '@/lib/site'
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -39,16 +40,18 @@ export default function Document() {
   return (
     <Html className="h-full antialiased" lang="en">
       <Head>
+        <link rel="icon" href="/favicon.ico?v=2026-10" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
         <link
           rel="alternate"
           type="application/rss+xml"
-          href={`${process.env.NEXT_PUBLIC_SITE_URL}/rss/feed.xml`}
+          href={`${SITE_URL}/rss/feed.xml`}
         />
         <link
           rel="alternate"
           type="application/feed+json"
-          href={`${process.env.NEXT_PUBLIC_SITE_URL}/rss/feed.json`}
+          href={`${SITE_URL}/rss/feed.json`}
         />
       </Head>
       <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">

@@ -7,11 +7,13 @@ import logoBreedie from '@/images/logos/breedie.svg'
 import logoCountie from '@/images/logos/countie.svg'
 import logoVisia from '@/images/logos/visia.svg'
 import logoTera from '@/images/logos/tera.svg'
+import logoFunction from '@/images/logos/function.svg'
 import logoVesta from '@/images/logos/vesta.svg'
 
 const projects = [
   {
     name: 'Function Health',
+    logo: logoFunction,
     description:
       'World Model Team Lead, delivering broadly applicable data-driven representations of multi-modal member health, forecasting trajectories and recommending actions, helping guide members toward healthy outcomes.',
     link: { href: 'https://www.functionhealth.com/', label: 'functionhealth.com' },
@@ -85,18 +87,12 @@ export default function Projects() {
           {projects.map((project) => (
             <Card as="li" key={project.name}>
               <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                {project.logo ? (
-                  <Image
-                    src={project.logo}
-                    alt=""
-                    className="h-8 w-8"
-                    unoptimized
-                  />
-                ) : (
-                  <span aria-hidden="true" className="text-2xl font-semibold text-zinc-800 dark:text-zinc-100">
-                    F
-                  </span>
-                )}
+                <Image
+                  src={project.logo}
+                  alt=""
+                  className="h-8 w-8"
+                  unoptimized
+                />
               </div>
               <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
                 <Card.Link href={project.link.href}>{project.name}</Card.Link>

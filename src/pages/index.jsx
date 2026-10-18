@@ -16,6 +16,7 @@ import {
 } from '@/components/SocialIcons'
 import logoUCSC from '@/images/logos/ucsc.svg'
 import logoTera from '@/images/logos/tera.svg'
+import logoFunction from '@/images/logos/function.svg'
 import logoApple from '@/images/logos/apple.svg'
 import logoGoogle from '@/images/logos/google.svg'
 import logoX from '@/images/logos/x.svg'
@@ -110,6 +111,7 @@ function Resume() {
     {
       company: 'Function Health',
       title: 'World Model Team Lead',
+      logo: logoFunction,
       start: 'Sep 2026',
       end: {
         label: 'Present',
@@ -173,13 +175,7 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              {role.logo ? (
-                <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
-              ) : (
-                <span aria-hidden="true" className="text-xl font-semibold text-zinc-800 dark:text-zinc-100">
-                  F
-                </span>
-              )}
+              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>

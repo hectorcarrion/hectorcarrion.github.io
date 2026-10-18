@@ -83,7 +83,11 @@ export default function Projects() {
                 <Image
                   src={project.logo}
                   alt=""
-                  className="h-8 w-8"
+                  className={
+                    project.logo === logoTera
+                      ? 'h-full w-full rounded-full object-cover'
+                      : 'h-8 w-8'
+                  }
                   unoptimized
                 />
               </div>

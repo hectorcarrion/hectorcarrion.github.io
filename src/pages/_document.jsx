@@ -40,7 +40,7 @@ export default function Document() {
   return (
     <Html className="h-full antialiased" lang="en">
       <Head>
-        <link rel="icon" href="/favicon.ico?v=2026-10" sizes="any" />
+        <link rel="icon" href="/favicon.ico?v=2026-10-round" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
         <link

@@ -28,8 +28,8 @@ export function PublicationCard({ article, titleAs = 'h2' }) {
         {article.summary || article.description}
       </Card.Description>
       {article.highlight && (
-        <p className="relative z-10 mt-3 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-          {article.highlight}
+        <p className="relative z-10 mt-3 text-sm text-zinc-800 dark:text-zinc-200">
+          <strong className="font-semibold">{article.highlight}</strong>
         </p>
       )}
       <PublicationLinks article={article} />

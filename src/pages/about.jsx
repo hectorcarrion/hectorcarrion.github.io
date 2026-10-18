@@ -15,7 +15,7 @@ import logoX from '@/images/logos/x.svg'
 import logoUpr from '@/images/logos/upr.svg'
 
 import { Container } from '@/components/Container'
-import portraitImage from '@/images/profile.webp'
+import portraitImage from '@/images/portrait.webp'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (

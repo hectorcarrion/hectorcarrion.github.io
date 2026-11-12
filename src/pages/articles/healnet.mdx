@@ -1,10 +1,35 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
+  displayTitle: 'HealNet: Self-Supervised Acute Wound Heal-Stage Classification',
   summary:
     'Learns temporal ordering from mouse-wound image pairs, clusters the resulting features into four healing stages, and trains a classifier without manual stage annotations.',
   highlight:
     '90.6% test accuracy against cluster-derived healing-stage labels on 32 held-out mouse-wound images.',
+  year: 2022,
+  venue: 'MICCAI MLMI 2022',
+  isFirstAuthor: true,
+  authors: [
+    'Héctor Carrión',
+    'Mohammad Jafari',
+    'Hsin-Ya Yang',
+    'Roslyn Rivkah Isseroff',
+    'Marco Rolandi',
+    'Marcella Gomez',
+    'Narges Norouzi',
+  ],
+  thumbnail: '/images/publications/healnet.webp',
+  paperLink: 'https://link.springer.com/chapter/10.1007/978-3-031-21014-3_46',
+  arxivLink: 'https://arxiv.org/abs/2206.10536',
+  bibtex: `@inproceedings{carrion2022healnet,
+  title={HealNet - Self-supervised Acute Wound Heal-Stage Classification},
+  author={Carri{\\'o}n, H{\\'e}ctor and Jafari, Mohammad and Yang, Hsin-Ya and Isseroff, Roslyn Rivkah and Rolandi, Marco and Gomez, Marcella and Norouzi, Narges},
+  booktitle={Machine Learning in Medical Imaging (MICCAI MLMI)},
+  pages={441--450},
+  year={2022},
+  publisher={Springer},
+  doi={10.1007/978-3-031-21014-3_46}
+}`,
   author: 'Héctor Carrión',
   date: '2022-12-16',
   externalLink:

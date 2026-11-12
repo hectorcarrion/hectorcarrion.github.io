@@ -1,11 +1,29 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
+  displayTitle:
+    'FEDD: Fair, Efficient, and Diverse Diffusion-Based Lesion Segmentation and Malignancy Classification',
   summary:
     'Uses a frozen diffusion model’s visual features with lightweight prediction heads to segment skin lesions and classify malignancy from small, skin-tone-balanced labeled datasets.',
   highlight:
     '81% DDI malignancy accuracy from 60 labeled training images, with no diffusion-backbone fine-tuning.',
+  year: 2023,
+  venue: 'MICCAI 2023',
+  isFirstAuthor: true,
+  authors: ['Héctor Carrión', 'Narges Norouzi'],
+  thumbnail: '/images/publications/fedd.webp',
+  paperLink: 'https://link.springer.com/chapter/10.1007/978-3-031-43990-2_26',
+  arxivLink: 'https://arxiv.org/abs/2307.11654',
   codeLink: 'https://github.com/hectorcarrion/fedd',
+  bibtex: `@inproceedings{carrion2023fedd,
+  title={FEDD - Fair, Efficient, and Diverse Diffusion-Based Lesion Segmentation and Malignancy Classification},
+  author={Carri{\\'o}n, H{\\'e}ctor and Norouzi, Narges},
+  booktitle={Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+  pages={267--277},
+  year={2023},
+  publisher={Springer},
+  doi={10.1007/978-3-031-43990-2_26}
+}`,
   author: 'Héctor Carrión',
   date: '2023-10-01',
   externalLink:

@@ -1,227 +1,1103 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRef, useState } from 'react'
+import clsx from 'clsx'
 
 import { Seo } from '@/components/Seo'
-import { PublicationCard } from '@/components/PublicationCard'
-import { Photos } from '@/components/Photos'
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
+import { HeroCanvas } from '@/components/HeroCanvas'
+import { ResumeWidget } from '@/components/ResumeWidget'
+import { PublicationsSection } from '@/components/PublicationsSection'
+import {
+  ArrowRightIcon,
+  CalendarIcon,
+  ChevronDownSmallIcon,
+  DownloadFileIcon,
+  ExternalArrowIcon,
+  FileLinesIcon,
+  FlaskIcon,
+  GitHubBrandIcon,
+  GraduationCapIcon,
+  HuggingFaceIcon,
+  LinkedInBrandIcon,
+  LocationPinIcon,
+  MailOutlineIcon,
+  OrbitCubeIcon,
+  RocketOutlineIcon,
+  SparklesStarIcon,
+  TrophyOutlineIcon,
+} from '@/components/Icons'
 import { RESUME_URL } from '@/lib/resume'
 import {
-  GitHubIcon,
-  LinkedInIcon,
-} from '@/components/SocialIcons'
-import logoUCSC from '@/images/logos/ucsc.svg'
-import logoTera from '@/images/logos/tera.png'
-import logoFunction from '@/images/logos/function.svg'
-import logoApple from '@/images/logos/apple.svg'
-import logoGoogle from '@/images/logos/google.svg'
-import logoX from '@/images/logos/x.svg'
-import logoUpr from '@/images/logos/upr.svg'
+  BOOKING_URL,
+  CONTACT_EMAIL,
+  GITHUB_URL,
+  HUGGINGFACE_URL,
+  LINKEDIN_URL,
+} from '@/lib/site'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 
-function BriefcaseIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
+import portraitImage from '@/images/portrait.webp'
+import logoFunction from '@/images/logos/function.svg'
+import logoTera from '@/images/logos/tera.png'
+import logoUCSC from '@/images/logos/ucsc.svg'
+import logoGoogle from '@/images/logos/google.svg'
+import logoX from '@/images/logos/x.svg'
+import logoUpr from '@/images/logos/upr.svg'
+import logoApple from '@/images/logos/apple.svg'
+import logoVisia from '@/images/logos/visia.svg'
+import logoCountie from '@/images/logos/countie.svg'
+import logoBreedie from '@/images/logos/breedie.svg'
+import logoVesta from '@/images/logos/vesta.svg'
 
-function ArrowDownIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
+const NEWS_ITEMS = [
+  {
+    date: 'Sep 2026',
+    dateTime: '2026-09',
+    highlight: true,
+    icon: RocketOutlineIcon,
+    content: (
+      <>
+        Joined{' '}
+        <a
+          href="https://www.functionhealth.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Function Health
+        </a>{' '}
+        in San Francisco as <strong>World Model Team Lead</strong>, directing
+        research on JEPA and autoregressive longitudinal health models.
+      </>
+    ),
+  },
+  {
+    date: 'Sep 2026',
+    dateTime: '2026-09',
+    highlight: true,
+    icon: TrophyOutlineIcon,
+    content: (
+      <>
+        Two first-author papers &mdash;{' '}
+        <a href="#dermdepth">DermDepth</a> (metric 3D dermatology) and{' '}
+        <a href="#cgddi">cgDDI</a> (controllable generative fairness) &mdash;
+        presented at <strong>MICCAI 2026</strong>, with open weights,{' '}
+        <a
+          href="https://huggingface.co/datasets/hcarrion/D-Synth"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          D-Synth
+        </a>
+        ,{' '}
+        <a
+          href="https://huggingface.co/datasets/hcarrion/ControllableGenDDI"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          266k+ synthetic images
+        </a>
+        , and an{' '}
+        <a
+          href="https://huggingface.co/spaces/hcarrion/DermDepth"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          interactive 3D Space
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    date: 'Jun 2026',
+    dateTime: '2026-06',
+    highlight: true,
+    icon: GraduationCapIcon,
+    content: (
+      <>
+        Completed my <strong>Ph.D. in Computer Science</strong> at{' '}
+        <a
+          href="https://www.ucsc.edu/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          UC Santa Cruz
+        </a>
+        , advised by{' '}
+        <a
+          href="https://people.eecs.berkeley.edu/~narges/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Dr. Narges Norouzi
+        </a>{' '}
+        at UC Berkeley!
+      </>
+    ),
+  },
+  {
+    date: 'Jul 2025',
+    dateTime: '2025-07',
+    highlight: false,
+    icon: FileLinesIcon,
+    content: (
+      <>
+        Our collaborative study on{' '}
+        <a
+          href="https://www.nature.com/articles/s42003-025-08423-y"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          portable fluorescent biomarker mapping in healing tissue
+        </a>{' '}
+        was published in <strong>Nature Communications Biology</strong>.
+      </>
+    ),
+  },
+  {
+    date: 'Jun 2025',
+    dateTime: '2025-06',
+    highlight: true,
+    icon: OrbitCubeIcon,
+    content: (
+      <>
+        Released{' '}
+        <a
+          href="https://arxiv.org/abs/2506.11302"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TARDIS STRIDE
+        </a>
+        , our 1B-parameter spatio-temporal world model and street-view autonomy
+        dataset at Tera AI, along with{' '}
+        <a
+          href="https://github.com/tera-ai/tardis"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          training code
+        </a>{' '}
+        and{' '}
+        <a
+          href="https://huggingface.co/datasets/Tera-AI/STRIDE"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          dataset weights
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    date: 'May 2025',
+    dateTime: '2025-05',
+    highlight: false,
+    icon: FileLinesIcon,
+    content: (
+      <>
+        Published{' '}
+        <a
+          href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/admt.202500040"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Remote-Controlled Wireless Bioelectronics for Fluoxetine Therapy
+        </a>{' '}
+        in <strong>Advanced Materials Technologies</strong>, demonstrating
+        closed-loop sensing and actuation in a porcine model.
+      </>
+    ),
+  },
+  {
+    date: 'Sep 2024',
+    dateTime: '2024-09',
+    highlight: false,
+    icon: FileLinesIcon,
+    content: (
+      <>
+        Published{' '}
+        <a
+          href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/admt.202301115"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Programmable Delivery of Fluoxetine via Wearable Bioelectronics
+        </a>{' '}
+        in <strong>Advanced Materials Technologies</strong>.
+      </>
+    ),
+  },
+  {
+    date: 'Jun 2024',
+    dateTime: '2024-06',
+    highlight: true,
+    icon: RocketOutlineIcon,
+    content: (
+      <>
+        Joined{' '}
+        <a
+          href="https://www.tera-ai.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Tera AI
+        </a>{' '}
+        as <strong>Founding Lead Research Scientist</strong> to build
+        foundation world models for spatial reasoning and embodied autonomy.
+      </>
+    ),
+  },
+  {
+    date: 'Oct 2023',
+    dateTime: '2023-10',
+    highlight: true,
+    icon: SparklesStarIcon,
+    content: (
+      <>
+        Presented our first-author paper <a href="#fedd">FEDD</a> on diffusion
+        representation learning for label-efficient dermatology at{' '}
+        <strong>MICCAI 2023</strong>.
+      </>
+    ),
+  },
+  {
+    date: 'Jun 2023',
+    dateTime: '2023-06',
+    highlight: false,
+    icon: FlaskIcon,
+    content: (
+      <>
+        Joined <strong>Google Research</strong> in Mountain View as a Ph.D.
+        Student Researcher working on unified video and image foundation
+        encoders.
+      </>
+    ),
+  },
+]
 
-function SocialLink({ icon: Icon, ...props }) {
-  return (
-    <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Link>
-  )
-}
+const EXPERIENCE_WORK = [
+  {
+    date: 'Sep 2026 – now',
+    role: 'World Model Team Lead',
+    org: 'Function Health',
+    href: 'https://www.functionhealth.com/',
+    location: 'San Francisco, CA',
+    logo: logoFunction,
+    current: true,
+    desc: 'Directing the World Model team and research roadmap on JEPA and autoregressive multimodal representations to forecast longitudinal human health trajectories and personalize interventions.',
+  },
+  {
+    date: '2024 – 2026',
+    role: 'Founding Lead Research Scientist',
+    org: 'Tera AI',
+    href: 'https://www.tera-ai.com/',
+    location: 'San Francisco, CA',
+    logo: logoTera,
+    desc: 'Designed and executed the founding research agenda in spatial reasoning and embodied world models; co-led TARDIS & STRIDE, a unified 1B-parameter spatio-temporal transformer for autonomy.',
+  },
+  {
+    date: 'Summer 2023',
+    role: 'Student Researcher (Ph.D.)',
+    org: 'Google Research',
+    href: 'https://research.google/',
+    location: 'Mountain View, CA',
+    logo: logoGoogle,
+    desc: 'Established foundation-model recipes for unified multimodal video and image pre-training, unlocking >25% higher downstream performance over single-modality encoders.',
+  },
+  {
+    date: '2021 – 2022',
+    role: 'AI Resident (Ph.D.)',
+    org: 'X, The Moonshot Factory (Google [X])',
+    href: 'https://x.company/',
+    location: 'Mountain View, CA',
+    logo: logoX,
+    desc: 'Built simulation, edge-perception, and aerial/ground vision models under novel physical problem domains, exceeding target benchmarks and earning granted Google patents.',
+  },
+  {
+    date: '2020 – 2026',
+    role: 'Graduate Student Researcher',
+    org: 'UC Santa Cruz & UC Berkeley',
+    href: 'https://www.ucsc.edu/',
+    location: 'Santa Cruz, CA',
+    logo: logoUCSC,
+    desc: 'Developed metric 3D reconstruction (DermDepth), controllable diffusion priors (cgDDI, FEDD), and self-supervised temporal stage discovery (HealNet) for label-constrained biological systems.',
+  },
+]
 
-function Resume() {
-  let resume = [
-    {
-      company: 'Function Health',
-      title: 'World Model Team Lead',
-      logo: logoFunction,
-      start: 'Sep 2026',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear(),
-      },
-    },
-    {
-      company: 'Tera AI',
-      title: 'Founding Lead Research Scientist',
-      logo: logoTera,
-      start: 'Jun 2024',
-      end: 'Sep 2026',
-    },
-    {
-      company: 'UC Santa Cruz',
-      title: 'PhD, Graduate Researcher',
-      logo: logoUCSC,
-      start: 'Jun 2020',
-      end: {
-        label: 'Jun 2026',
-        dateTime: '2026-06',
-      },
-    },
-    {
-      company: 'Google',
-      title: 'Student Researcher (PhD)',
-      logo: logoGoogle,
-      start: 'Jun 2023',
-      end: 'Sep 2023',
-    },
-    {
-      company: 'Google [X]',
-      title: 'AI Resident (PhD)',
-      logo: logoX,
-      start: 'Jun 2021',
-      end: 'Sep 2022',
-    },
-    {
-      company: 'University of Puerto Rico',
-      title: 'BSc, Research Assistant',
-      logo: logoUpr,
-      start: 'Aug 2017',
-      end: 'May 2021',
-    },
-    {
-      company: 'Apple Developer Academy',
-      title: 'Full Stack Engineer',
-      logo: logoApple,
-      start: 'Sep 2018',
-      end: 'Jun 2019',
-    },
-  ]
+const EXPERIENCE_EDU = [
+  {
+    date: '2020 – 2026',
+    role: 'Ph.D. in Computer Science',
+    org: 'University of California, Santa Cruz',
+    location: 'Santa Cruz & Berkeley, CA',
+    logo: logoUCSC,
+    desc: 'Advised by Dr. Narges Norouzi (UC Berkeley). 3.92 GPA. Focus on self-supervised temporal dynamics, metric 3D vision, generative priors, and fair medical AI.',
+  },
+  {
+    date: '2017 – 2021',
+    role: 'B.Sc. in Computer Science',
+    org: 'University of Puerto Rico, Río Piedras',
+    location: 'San Juan, PR',
+    logo: logoUpr,
+    desc: 'Undergraduate Research Assistant with Dr. Rémi Mégret on self-supervised multi-day video re-identification. 3.75 GPA.',
+  },
+  {
+    date: '2018 – 2019',
+    role: 'Software Engineering & Design',
+    org: 'Apple Developer Academy, Univ. of Naples Federico II',
+    location: 'Naples, Italy',
+    logo: logoApple,
+    desc: 'Full-stack native iOS engineering, human-centered product design, and on-device CoreML systems.',
+  },
+]
 
-  return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work & School</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <li key={roleIndex} className="flex gap-4">
-            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
-            </div>
-            <dl className="flex flex-auto flex-wrap gap-x-2">
-              <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.company}
-              </dd>
-              <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-                {role.title}
-              </dd>
-              <dt className="sr-only">Date</dt>
-              <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
-                }`}
-              >
-                <time dateTime={role.start.dateTime ?? role.start}>
-                  {role.start.label ?? role.start}
-                </time>{' '}
-                <span aria-hidden="true">—</span>{' '}
-                <time dateTime={role.end.dateTime ?? role.end}>
-                  {role.end.label ?? role.end}
-                </time>
-              </dd>
-            </dl>
-          </li>
-        ))}
-      </ol>
-      <Button href={RESUME_URL} variant="secondary" className="group mt-6 w-full">
-        Download Resume
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
-    </div>
-  )
-}
+const PROJECTS = [
+  {
+    name: 'Function Health World Models',
+    tag: 'Health Forecasting',
+    logo: logoFunction,
+    href: 'https://www.functionhealth.com/',
+    linkLabel: 'functionhealth.com',
+    desc: 'Longitudinal JEPA and autoregressive representations over multimodal labs, wearables, and clinical history to forecast health trajectories and guide preventive action.',
+  },
+  {
+    name: 'Tera AI · TARDIS & STRIDE',
+    tag: 'Embodied Autonomy',
+    logo: logoTera,
+    href: 'https://github.com/tera-ai/tardis',
+    linkLabel: 'github.com/tera-ai/tardis',
+    desc: 'Open-source 1B-parameter spatio-temporal transformer and 360° road-network graph uniting controllable view synthesis, georeferencing, and action prediction.',
+  },
+  {
+    name: 'Visia AI',
+    tag: 'Technical Advisor',
+    logo: logoVisia,
+    href: 'https://www.visia.ai/',
+    linkLabel: 'visia.ai',
+    desc: 'Advising on industrial computer vision for inbound material visibility, automated hazard detection, and circular-economy recyclability.',
+  },
+  {
+    name: 'DermDepth & D-Synth',
+    tag: 'Open Weights & Space',
+    logo: logoUCSC,
+    href: 'https://huggingface.co/spaces/hcarrion/DermDepth',
+    linkLabel: 'Hugging Face Space',
+    desc: 'Browser-ready monocular metric 3D skin reconstruction model and synthetic 3D dataset recovering millimeter lesion geometry from a single photo.',
+  },
+  {
+    name: 'Breedie',
+    tag: 'iOS · On-Device ML',
+    logo: logoBreedie,
+    href: 'https://apps.apple.com/th/app/breedie/id1492837097',
+    linkLabel: 'App Store',
+    desc: 'Privacy-first on-device CoreML dog breed-mix identification app built to support shelter adoption with love4satos.org.',
+  },
+  {
+    name: 'Countie & Vesta',
+    tag: 'Open Source',
+    logo: logoCountie,
+    secondLogo: logoVesta,
+    href: 'https://github.com/hectorcarrion/Countie',
+    linkLabel: 'github.com/hectorcarrion',
+    desc: 'Minimalist iOS Lock Screen countdown widgets (Countie) and open-source automated chest X-ray screening pipelines (Vesta).',
+  },
+]
 
 export default function Home({ articles }) {
+  const heroRef = useRef(null)
+  const portraitRef = useRef(null)
+  const ledeRef = useRef(null)
+  const [newsExpanded, setNewsExpanded] = useState(false)
+
+  const visibleNews = newsExpanded ? NEWS_ITEMS : NEWS_ITEMS.slice(0, 6)
+
   return (
     <>
       <Seo />
-      <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Dr. Héctor Carrión - AI Researcher, Designer, Writer, Naturalist 🐝
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            World Model Team Lead @ <a href="https://www.functionhealth.com/" target="_blank" className="hover:underline" rel="noopener noreferrer">Function Health</a>
-            {' · '}CS PhD Adv @ Berkeley
-            {' · '}ex-<a href="https://tera-ai.com" target="_blank" className="hover:underline" rel="noopener noreferrer">Tera AI</a>
-            {' · '}ex-<a href="https://www.google.com/" target="_blank" className="hover:underline" rel="noopener noreferrer">Google</a>
-            {' · '}Advisor @ <a href="https://visia.ai" target="_blank" className="hover:underline" rel="noopener noreferrer">Visia AI</a>
-          </p>
-          <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-            I lead multi-modal, self-supervised AI research for real-world positive impact 🌱
-          </p>
-          <div className="mt-6 flex gap-6">
-            <SocialLink
-              href="https://www.linkedin.com/in/hectorcarrion/"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
-            <SocialLink
-              href="https://github.com/hectorcarrion"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
+
+      {/* ===================== Hero ===================== */}
+      <section className="hero" id="top" ref={heroRef}>
+        <div className="hero-glow" aria-hidden="true" />
+        <div className="hero-spotlight" aria-hidden="true" />
+        <HeroCanvas
+          heroRef={heroRef}
+          portraitRef={portraitRef}
+          ledeRef={ledeRef}
+        />
+
+        <div className="site-container hero-grid">
+          <div className="hero-text">
+            <a className="status-badge" href="#experience">
+              <span className="status-dot" aria-hidden="true" />
+              <span>World Model Team Lead @ Function Health</span>
+              <ArrowRightIcon className="h-3.5 w-3.5" />
+            </a>
+
+            <h1 className="hero-name">
+              <span className="word">
+                <span>Dr. Héctor</span>
+              </span>{' '}
+              <span className="word">
+                <span className="hero-name-accent">Carrión</span>
+              </span>
+            </h1>
+
+            <p className="hero-role">
+              World Model Team Lead at{' '}
+              <a
+                href="https://www.functionhealth.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Function Health
+              </a>{' '}
+              &middot; CS Ph.D. (
+              <a
+                href="https://www.ucsc.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                UC Santa Cruz
+              </a>{' '}
+              /{' '}
+              <a
+                href="https://www.berkeley.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                UC Berkeley
+              </a>
+              ) &middot; ex-
+              <a
+                href="https://www.tera-ai.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Tera AI
+              </a>{' '}
+              &amp;{' '}
+              <a
+                href="https://research.google/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Google
+              </a>
+            </p>
+
+            <p className="hero-lede" ref={ledeRef}>
+              I build <em>multimodal world models</em> that learn how physical
+              and biological systems evolve across space, time, and
+              interventions &mdash; from embodied 3D environments to
+              longitudinal human health.
+            </p>
+
+            <div className="hero-cta">
+              <a
+                className="btn-pill btn-pill-primary"
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DownloadFileIcon className="h-[18px] w-[18px]" />
+                <span>Download CV</span>
+              </a>
+              <a
+                className="btn-pill btn-pill-ghost"
+                href={`mailto:${CONTACT_EMAIL}`}
+              >
+                <MailOutlineIcon className="h-[18px] w-[18px]" />
+                <span>Get in touch</span>
+              </a>
+              <a
+                className="btn-pill btn-pill-ghost"
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <CalendarIcon className="h-[18px] w-[18px]" />
+                <span>Book a 1:1</span>
+              </a>
+            </div>
+
+            <ul className="hero-social" aria-label="Profiles">
+              <li>
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  data-tip="GitHub"
+                >
+                  <GitHubBrandIcon className="h-[19px] w-[19px]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={HUGGINGFACE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Hugging Face"
+                  data-tip="Hugging Face"
+                >
+                  <HuggingFaceIcon className="h-[19px] w-[19px]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  data-tip="LinkedIn"
+                >
+                  <LinkedInBrandIcon className="h-[19px] w-[19px]" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  aria-label="Email"
+                  data-tip="Email"
+                >
+                  <MailOutlineIcon className="h-[19px] w-[19px]" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="hero-portrait">
+            <div className="portrait-ring" ref={portraitRef}>
+              <Image
+                src={portraitImage}
+                width={640}
+                height={640}
+                alt="Portrait of Dr. Héctor Carrión with the Golden Gate Bridge in the background"
+                priority
+              />
+              <span className="portrait-glare" aria-hidden="true" />
+            </div>
+            <span className="portrait-chip chip-top">
+              <OrbitCubeIcon className="h-3.5 w-3.5" />
+              <span>World modeling</span>
+            </span>
+            <span className="portrait-chip chip-bottom">
+              <LocationPinIcon className="h-3.5 w-3.5" />
+              <span>San Francisco, CA</span>
+            </span>
           </div>
         </div>
-      </Container>
-      <Photos />
-      <Container className="mt-12 md:mt-14">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-7">
-            <h2 className="text-2xl font-semibold dark:text-zinc-100">Selected Research</h2>
-            {articles.map((article) => (
-              <PublicationCard key={article.slug} article={article} titleAs="h3" />
+      </section>
+
+      {/* ===================== 01 About + Signature Resume Widget ===================== */}
+      <section className="site-section" id="about">
+        <div className="site-container">
+          <header className="section-head">
+            <span className="section-index">01</span>
+            <h2 className="section-title">About</h2>
+          </header>
+
+          <div className="about-grid">
+            <div className="about-text">
+              <p>
+                I am <strong>World Model Team Lead</strong> at{' '}
+                <a
+                  href="https://www.functionhealth.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Function Health
+                </a>
+                , where I direct research on{' '}
+                <em>JEPA and autoregressive world models</em> over longitudinal,
+                multimodal member health data &mdash; learning structured
+                representations of human physiology to forecast health
+                trajectories and recommend actionable interventions.
+              </p>
+
+              <p>
+                Across my career, a single scientific question has connected my
+                work in embodied autonomy and biomedicine:{' '}
+                <em>
+                  how can models learn latent state dynamics across space, time,
+                  and interventions when dense labels are scarce?
+                </em>{' '}
+                Before Function Health, I was{' '}
+                <strong>Founding Lead Research Scientist</strong> at{' '}
+                <a
+                  href="https://www.tera-ai.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tera AI
+                </a>
+                , co-leading <a href="#tardis-stride">TARDIS &amp; STRIDE</a>{' '}
+                (with Pietro Perona and Jitendra Malik) &mdash; a billion-parameter
+                spatio-temporal world model unifying panoramic observation
+                synthesis, georeferencing, and action prediction &mdash; and
+                trained multimodal video-image and simulation systems at{' '}
+                <a
+                  href="https://research.google/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Research
+                </a>{' '}
+                and{' '}
+                <a
+                  href="https://x.company/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  X (Google [X])
+                </a>
+                .
+              </p>
+
+              <p>
+                I completed my Computer Science Ph.D. at{' '}
+                <a
+                  href="https://www.ucsc.edu/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  UC Santa Cruz
+                </a>
+                , advised by{' '}
+                <a
+                  href="https://people.eecs.berkeley.edu/~narges/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Dr. Narges Norouzi
+                </a>{' '}
+                at UC Berkeley. My doctoral work developed core building blocks
+                for biological and clinical world modeling: recovering metric 3D
+                geometry from single 2D observations (
+                <a href="#dermdepth">DermDepth</a>), learning self-supervised
+                temporal state progression without manual stage labels (
+                <a href="#healnet">HealNet</a>), synthesizing diverse generative
+                state priors (<a href="#cgddi">cgDDI</a>,{' '}
+                <a href="#fedd">FEDD</a>), and partnering on closed-loop
+                bioelectronic actuators that steer tissue repair in vivo.
+              </p>
+
+              <p>
+                Growing up in Puerto Rico, one of my earliest memories with
+                technology was helping my dad run a thin beige DSL cable across
+                his small startup office so he could work remotely &mdash; and
+                spend that reclaimed time with family. That conviction that
+                rigorous engineering should measurably improve people&rsquo;s
+                lives still guides my research, alongside advising{' '}
+                <a
+                  href="https://www.visia.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visia AI
+                </a>{' '}
+                and mentoring up-and-coming researchers.
+              </p>
+
+              <div className="side-card mt-7">
+                <h3 className="side-title">Research focus</h3>
+                <ul className="chips">
+                  <li>World models (JEPA &amp; autoregressive)</li>
+                  <li>Spatio-temporal dynamics</li>
+                  <li>Self-supervised learning</li>
+                  <li>Multimodal foundation models</li>
+                  <li>Metric 3D &amp; generative priors</li>
+                  <li>Longitudinal health forecasting</li>
+                  <li>Algorithmic fairness</li>
+                </ul>
+              </div>
+            </div>
+
+            <aside className="about-side">
+              <ResumeWidget />
+
+              <div className="side-card">
+                <h3 className="side-title">At a glance</h3>
+                <dl className="facts">
+                  <div>
+                    <dt>Current</dt>
+                    <dd>World Model Team Lead &middot; Function Health</dd>
+                  </div>
+                  <div>
+                    <dt>Ph.D.</dt>
+                    <dd>UC Santa Cruz &middot; Adv. N. Norouzi (Berkeley)</dd>
+                  </div>
+                  <div>
+                    <dt>Advisory</dt>
+                    <dd>
+                      <a
+                        href="https://www.visia.ai/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visia AI
+                      </a>{' '}
+                      (2021&ndash;present)
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Contact</dt>
+                    <dd>
+                      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== 02 News ===================== */}
+      <section className="site-section" id="news">
+        <div className="site-container">
+          <header className="section-head">
+            <span className="section-index">02</span>
+            <h2 className="section-title">News</h2>
+          </header>
+
+          <ol className="news-list">
+            {visibleNews.map((item, idx) => {
+              const Icon = item.icon
+              return (
+                <li
+                  key={`${item.dateTime}-${idx}`}
+                  className={clsx(
+                    'news-item',
+                    item.highlight && 'is-highlight'
+                  )}
+                >
+                  <time className="news-date" dateTime={item.dateTime}>
+                    {item.date}
+                  </time>
+                  <span className="news-icon" aria-hidden="true">
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <p>{item.content}</p>
+                </li>
+              )
+            })}
+          </ol>
+
+          {NEWS_ITEMS.length > 6 && (
+            <button
+              type="button"
+              className="text-btn"
+              aria-expanded={newsExpanded}
+              onClick={() => setNewsExpanded((v) => !v)}
+            >
+              <span>
+                {newsExpanded
+                  ? 'Show less'
+                  : `Show all news (${NEWS_ITEMS.length})`}
+              </span>
+              <ChevronDownSmallIcon
+                className={clsx(
+                  'h-3.5 w-3.5 transition-transform',
+                  newsExpanded && 'rotate-180'
+                )}
+              />
+            </button>
+          )}
+        </div>
+      </section>
+
+      {/* ===================== 03 Publications ===================== */}
+      <PublicationsSection articles={articles} />
+
+      {/* ===================== 04 Experience ===================== */}
+      <section className="site-section" id="experience">
+        <div className="site-container">
+          <header className="section-head">
+            <span className="section-index">04</span>
+            <h2 className="section-title">Experience</h2>
+          </header>
+
+          <div className="exp-grid">
+            <div className="exp-col">
+              <h3 className="exp-col-title">
+                <FlaskIcon className="h-4 w-4" />
+                <span>Research &amp; industry leadership</span>
+              </h3>
+              <ol className="exp-list">
+                {EXPERIENCE_WORK.map((item) => (
+                  <li
+                    key={`${item.org}-${item.date}`}
+                    className={clsx('exp-item', item.current && 'is-current')}
+                  >
+                    <div className="exp-logo">
+                      <Image
+                        src={item.logo}
+                        alt={`${item.org} logo`}
+                        className="h-6 w-6 object-contain"
+                        unoptimized
+                      />
+                    </div>
+                    <div>
+                      <span className="exp-date">{item.date}</span>
+                      <h4 className="exp-role">{item.role}</h4>
+                      <p className="exp-org">
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.org}
+                        </a>{' '}
+                        &middot; {item.location}
+                      </p>
+                      <p className="exp-desc">{item.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="exp-col">
+              <h3 className="exp-col-title">
+                <GraduationCapIcon className="h-4 w-4" />
+                <span>Education</span>
+              </h3>
+              <ol className="exp-list">
+                {EXPERIENCE_EDU.map((item) => (
+                  <li key={item.role} className="exp-item">
+                    <div className="exp-logo">
+                      <Image
+                        src={item.logo}
+                        alt={`${item.org} logo`}
+                        className="h-6 w-6 object-contain"
+                        unoptimized
+                      />
+                    </div>
+                    <div>
+                      <span className="exp-date">{item.date}</span>
+                      <h4 className="exp-role">{item.role}</h4>
+                      <p className="exp-org">
+                        {item.org} &middot; {item.location}
+                      </p>
+                      <p className="exp-desc">{item.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================== 05 Projects & Ventures ===================== */}
+      <section className="site-section" id="projects">
+        <div className="site-container">
+          <header className="section-head">
+            <span className="section-index">05</span>
+            <h2 className="section-title">Systems, ventures &amp; apps</h2>
+          </header>
+
+          <div className="card-grid">
+            {PROJECTS.map((project) => (
+              <article key={project.name} className="info-card flex flex-col">
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <div className="resume-logo-badge">
+                      <Image
+                        src={project.logo}
+                        alt=""
+                        className="h-7 w-7 object-contain"
+                        unoptimized
+                      />
+                    </div>
+                    {project.secondLogo && (
+                      <div className="resume-logo-badge">
+                        <Image
+                          src={project.secondLogo}
+                          alt=""
+                          className="h-7 w-7 object-contain"
+                          unoptimized
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <span className="badge badge-preprint">{project.tag}</span>
+                </div>
+
+                <h3 className="pub-title" style={{ fontSize: '1.02rem' }}>
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {project.name}
+                  </a>
+                </h3>
+
+                <p className="exp-desc mt-2 flex-1">{project.desc}</p>
+
+                <div className="mt-5 pt-3 border-t border-[var(--border)]">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--accent)] hover:underline"
+                  >
+                    <span>{project.linkLabel}</span>
+                    <ExternalArrowIcon className="h-3 w-3" />
+                  </a>
+                </div>
+              </article>
             ))}
-            <Link href="/articles" className="mt-2 text-sm font-semibold text-teal-600 hover:underline dark:text-teal-400">
-              All publications & preprints <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Resume />
           </div>
         </div>
-      </Container>
+      </section>
+
+      {/* ===================== 06 Honors, Patents & Advisory ===================== */}
+      <section className="site-section" id="honors">
+        <div className="site-container">
+          <header className="section-head">
+            <span className="section-index">06</span>
+            <h2 className="section-title">Honors, patents &amp; service</h2>
+          </header>
+
+          <div className="card-grid">
+            <article className="info-card">
+              <h3 className="info-title">
+                <span className="info-icon">
+                  <TrophyOutlineIcon className="h-[18px] w-[18px]" />
+                </span>
+                <span>Honors &amp; fellowships</span>
+              </h3>
+              <ul className="info-list">
+                <li>
+                  <span className="info-year">Award</span>
+                  <span>MICCAI STAR Student Travel &amp; Research Award</span>
+                </li>
+                <li>
+                  <span className="info-year">Fellow</span>
+                  <span>Google&ndash;CAHSI Doctoral Research Fellowship</span>
+                </li>
+                <li>
+                  <span className="info-year">Patent</span>
+                  <span>Google Patent Award (X, The Moonshot Factory)</span>
+                </li>
+                <li>
+                  <span className="info-year">Award</span>
+                  <span>SIDIM Outstanding Research Award</span>
+                </li>
+                <li>
+                  <span className="info-year">Fellow</span>
+                  <span>NIH Big Data to Knowledge (BD2K) Fellowship</span>
+                </li>
+              </ul>
+            </article>
+
+            <article className="info-card">
+              <h3 className="info-title">
+                <span className="info-icon">
+                  <OrbitCubeIcon className="h-[18px] w-[18px]" />
+                </span>
+                <span>Open models &amp; datasets</span>
+              </h3>
+              <ul className="info-list">
+                <li>
+                  <span className="info-year">2026</span>
+                  <span>
+                    <a
+                      href="https://huggingface.co/datasets/hcarrion/D-Synth"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
+                    >
+                      D-Synth &amp; DermDepth
+                    </a>{' '}
+                    &mdash; synthetic 3D dermatology dataset, weights &amp; Space
+                  </span>
+                </li>
+                <li>
+                  <span className="info-year">2026</span>
+                  <span>
+                    <a
+                      href="https://huggingface.co/datasets/hcarrion/ControllableGenDDI"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
+                    >
+                      ControllableGenDDI
+                    </a>{' '}
+                    &mdash; 266,136 skin-tone-balanced synthetic clinical images
+                  </span>
+                </li>
+                <li>
+                  <span className="info-year">2025</span>
+                  <span>
+                    <a
+                      href="https://huggingface.co/datasets/Tera-AI/STRIDE"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
+                    >
+                      TARDIS &amp; STRIDE
+                    </a>{' '}
+                    &mdash; 1B spatio-temporal world model &amp; street-view graph
+                  </span>
+                </li>
+                <li>
+                  <span className="info-year">2023</span>
+                  <span>
+                    <a
+                      href="https://github.com/hectorcarrion/fedd"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
+                    >
+                      FEDD DDI Masks
+                    </a>{' '}
+                    &mdash; expert-reviewed lesion segmentation masks
+                  </span>
+                </li>
+              </ul>
+            </article>
+
+            <article className="info-card">
+              <h3 className="info-title">
+                <span className="info-icon">
+                  <GraduationCapIcon className="h-[18px] w-[18px]" />
+                </span>
+                <span>Advisory, teaching &amp; stack</span>
+              </h3>
+              <ul className="info-list">
+                <li>
+                  <span className="info-year">2021+</span>
+                  <span>Technical Advisor, Visia AI</span>
+                </li>
+                <li>
+                  <span className="info-year">UCSC</span>
+                  <span>Machine Learning Tutor &amp; Research Mentor (2020&ndash;2022)</span>
+                </li>
+                <li>
+                  <span className="info-year">Langs</span>
+                  <span>English (native) &middot; Spanish (native)</span>
+                </li>
+              </ul>
+              <p className="info-subtitle">Core technical stack</p>
+              <ul className="chips">
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>PyTorch</li>
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>JAX / EasyLM</li>
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>Python</li>
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>C++</li>
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>Swift</li>
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>JEPA</li>
+                <li style={{ padding: '4px 10px', fontSize: '0.78rem' }}>Diffusion</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
@@ -233,10 +1109,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      articles: (await getAllArticles())
-        .filter((article) => article.featuredOrder)
-        .sort((a, b) => a.featuredOrder - b.featuredOrder)
-        .map(({ component, ...meta }) => meta),
+      articles: (await getAllArticles()).map(({ component, ...meta }) => meta),
     },
   }
 }

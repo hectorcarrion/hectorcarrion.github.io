@@ -1,12 +1,57 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site'
+import {
+  GITHUB_URL,
+  HUGGINGFACE_URL,
+  LINKEDIN_URL,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_URL,
+} from '@/lib/site'
+
+const PERSON_JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Dr. Héctor Carrión',
+  url: `${SITE_URL}/`,
+  image: `${SITE_URL}/profile.png`,
+  jobTitle: 'World Model Team Lead',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Function Health',
+    url: 'https://www.functionhealth.com/',
+  },
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of California, Santa Cruz',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of California, Berkeley',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'University of Puerto Rico, Río Piedras',
+    },
+  ],
+  knowsAbout: [
+    'World Models',
+    'Spatio-Temporal Representation Learning',
+    'Self-Supervised Learning',
+    'Multimodal Foundation Models',
+    '3D Computer Vision',
+    'Generative AI',
+    'Longitudinal Health Forecasting',
+  ],
+  sameAs: [GITHUB_URL, HUGGINGFACE_URL, LINKEDIN_URL],
+}
 
 export function Seo({
-  title = `${SITE_NAME} - AI Researcher`,
+  title = `Dr. ${SITE_NAME} · World Models & Multimodal AI`,
   description = SITE_DESCRIPTION,
-  type = 'website',
+  type = 'profile',
 }) {
   let { asPath } = useRouter()
   let pathname = asPath.split(/[?#]/)[0]
@@ -47,6 +92,11 @@ export function Seo({
         name="twitter:image:alt"
         content={`${SITE_NAME} - World Model Team Lead at Function Health`}
         key="twitter:image:alt"
+      />
+      <script
+        key="person-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD) }}
       />
     </Head>
   )

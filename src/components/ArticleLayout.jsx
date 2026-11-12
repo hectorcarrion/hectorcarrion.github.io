@@ -1,38 +1,20 @@
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
-import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
 import { Seo } from '@/components/Seo'
 import { PublicationLinks } from '@/components/PublicationLinks'
+import { SparklesStarIcon } from '@/components/Icons'
 
-function ArrowLeftIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
-  previousPathname,
-}) {
-  let router = useRouter()
-
+export function ArticleLayout({ children, meta, isRssFeed = false }) {
   if (isRssFeed) {
     return (
       <>
         <p>{meta.summary || meta.description}</p>
         <p>
-          <a href={meta.paperLink || meta.externalLink}>Paper</a>
+          <a href={meta.paperLink || meta.arxivLink || meta.externalLink}>
+            Paper
+          </a>
         </p>
         {meta.codeLink && (
           <p>
@@ -44,55 +26,120 @@ export function ArticleLayout({
     )
   }
 
+  const displayTitle = meta.displayTitle || meta.title
+
   return (
     <>
       <Seo
-        title={`${meta.title} - Héctor Carrión`}
+        title={`${displayTitle} · Dr. Héctor Carrión`}
         description={meta.summary || meta.description}
         type="article"
       />
-      <Container className="mt-16 lg:mt-32">
-        <div className="xl:relative">
-          <div className="mx-auto max-w-2xl">
-            {previousPathname && (
-              <button
-                type="button"
-                onClick={() => router.back()}
-                aria-label="Go back to articles"
-                className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0"
-              >
-                <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
-              </button>
-            )}
-            <article>
-              <header className="flex flex-col">
-                <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                  {meta.title}
-                </h1>
+      <div className="site-container pt-28 pb-8">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            href="/#publications"
+            className="pub-link mb-8 inline-flex"
+            aria-label="Back to all publications"
+          >
+            <span aria-hidden="true">&larr;</span>
+            <span>All publications</span>
+          </Link>
+
+          <article>
+            <header>
+              <div className="pub-badges">
+                {meta.venue && (
+                  <span className="badge badge-venue">{meta.venue}</span>
+                )}
+                {meta.badgeNote && (
+                  <span className="badge badge-highlight">
+                    <SparklesStarIcon className="h-3 w-3" />
+                    <span>{meta.badgeNote}</span>
+                  </span>
+                )}
                 <time
                   dateTime={meta.date}
-                  className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
+                  className="text-xs font-medium text-[var(--muted)]"
+                  style={{ fontFamily: 'var(--font-mono)' }}
                 >
-                  <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                  <span className="ml-3">{formatDate(meta.date)}</span>
+                  {formatDate(meta.date)}
                 </time>
-              </header>
+              </div>
+
+              <h1
+                className="mt-3 text-3xl sm:text-5xl"
+                style={{
+                  fontFamily: 'var(--font-serif)',
+                  lineHeight: 1.08,
+                  color: 'var(--text)',
+                }}
+              >
+                {displayTitle}
+              </h1>
+
+              {meta.authors && (
+                <p className="pub-authors mt-4 text-base">
+                  {meta.authors.map((a, idx) => (
+                    <span key={a}>
+                      {/Carri[oó]n/i.test(a) ? (
+                        <span className="pub-author-self">{a}</span>
+                      ) : (
+                        a
+                      )}
+                      {idx < meta.authors.length - 1 ? ', ' : ''}
+                    </span>
+                  ))}
+                </p>
+              )}
+
               <PublicationLinks article={meta} />
-              <Prose className="mt-8">
-                {meta.summary && <p>{meta.summary}</p>}
-                {meta.highlight && (
-                  <p>
-                    <strong>{meta.highlight}</strong>
-                  </p>
-                )}
-                <h2>Abstract</h2>
-                <p>{meta.description}</p>
-                {children}
-              </Prose>
-            </article>
-          </div>
+            </header>
+
+            {meta.thumbnail && (
+              <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-white p-4 shadow-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={meta.thumbnail}
+                  alt=""
+                  className="mx-auto max-h-[380px] w-auto object-contain"
+                />
+              </div>
+            )}
+
+            <div className="side-card mt-8 space-y-4">
+              {meta.summary && (
+                <p className="text-base leading-relaxed text-[var(--text-2)]">
+                  {meta.summary}
+                </p>
+              )}
+              {meta.highlight && (
+                <p className="text-sm font-semibold text-[var(--text)]">
+                  {meta.highlight}
+                </p>
+              )}
+            </div>
+
+            <Prose className="mt-10 max-w-none">
+              <h2>Abstract</h2>
+              <p>{meta.description}</p>
+              {children}
+            </Prose>
+
+            {meta.bibtex && (
+              <div className="mt-10">
+                <h2
+                  className="mb-3 text-2xl"
+                  style={{ fontFamily: 'var(--font-serif)' }}
+                >
+                  BibTeX
+                </h2>
+                <pre className="modal-code">{meta.bibtex}</pre>
+              </div>
+            )}
+          </article>
         </div>
-      </Container>
+      </div>
     </>
   )
 }

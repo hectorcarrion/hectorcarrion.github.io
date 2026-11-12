@@ -34,6 +34,7 @@
 \usepackage{academicons}
 \usepackage{xcolor}
 \usepackage{tikz}
+\usetikzlibrary{svg.path}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
@@ -79,8 +80,18 @@
 % Custom monochrome vector glyphs (Hugging Face 🤗 + Publication Topics)
 % ---------------------------------------------------------------------
 
-% Official monochrome Hugging Face 🤗 vector glyph (in Clay 500)
-\newcommand{\hficon}{\raisebox{-1.3pt}{\includegraphics[height=9.2pt]{hf_icon.pdf}}}
+% Custom flat-outline monochrome Hugging Face 🤗 glyph (pure TiKZ, zero external files needed)
+\newcommand{\hficon}{%
+  \tikz[x=0.42pt,y=-0.42pt,baseline=-8pt,line width=0.8pt,line cap=round,line join=round]{%
+    \draw svg {M5.1 12.4A7.3 7.3 0 1 1 18.9 12.4};
+    \draw svg {M9.6 17a7.3 7.3 0 0 0 4.8 0};
+    \draw svg {M8.3 8.8c.45-.9 1.55-.9 2 0};
+    \draw svg {M13.7 8.8c.45-.9 1.55-.9 2 0};
+    \draw svg {M9.5 11.4c.65 1.45 4.35 1.45 5 0};
+    \filldraw[fill=white] svg {M8.8 16.2V13.6a1.05 1.05 0 0 0-2.05-.3l-.45 1.45-1.65-1.2a1 1 0 0 0-1.35 1.45l1.2 1.25-1.55-.45a.95.95 0 0 0-.6 1.8l2.55 1.25c1.65.8 3.9.15 3.9-1.65Z};
+    \filldraw[fill=white] svg {M15.2 16.2V13.6a1.05 1.05 0 0 1 2.05-.3l.45 1.45 1.65-1.2a1 1 0 0 1 1.35 1.45l-1.2 1.25 1.55-.45a.95.95 0 0 1 .6 1.8l-2.55 1.25c-1.65.8-3.9.15-3.9-1.65Z};
+  }%
+}
 
 % Mini symbol-only topic pills for publications (no text labels)
 \newcommand{\tglyph}[1]{%

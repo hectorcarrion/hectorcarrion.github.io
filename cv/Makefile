@@ -10,7 +10,7 @@ all: ../public/assets/$(NAME).pdf
 	mkdir -p ../public/assets
 	cp $< $@
 
-build/$(NAME).pdf: $(NAME).tex hf_icon.pdf
+build/$(NAME).pdf: $(NAME).tex
 	mkdir -p build
 	@if command -v tectonic >/dev/null 2>&1; then \
 		tectonic $(NAME).tex -o build; \

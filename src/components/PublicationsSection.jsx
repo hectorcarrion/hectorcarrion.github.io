@@ -380,10 +380,7 @@ export function PublicationsSection({ articles }) {
     <section className="site-section" id="publications">
       <div className="site-container">
         <header className="section-head section-head--split">
-          <div className="section-head-main">
-            <span className="section-index">03</span>
-            <h2 className="section-title">Publications</h2>
-          </div>
+          <h2 className="section-title">Publications</h2>
 
           <div
             className="pub-filter"

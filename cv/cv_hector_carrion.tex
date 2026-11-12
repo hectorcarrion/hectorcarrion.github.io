@@ -11,13 +11,13 @@
 \documentclass[10pt,letterpaper]{article}
 
 % ---------------------------------------------------------------------
-% Page layout, fonts and colours (Function Health editorial palette)
+% Page layout, fonts and colours (Function official Notion palette)
 % ---------------------------------------------------------------------
-\usepackage[letterpaper,top=1.2cm,bottom=1.38cm,left=1.65cm,right=1.65cm,footskip=0.68cm]{geometry}
+\usepackage[letterpaper,top=1.22cm,bottom=1.4cm,left=1.65cm,right=1.65cm,footskip=0.68cm]{geometry}
 \usepackage{fontspec}
 \usepackage{CrimsonPro}   % display serif for the name and section titles (\rmfamily)
 
-% Body text in Inter, matching the website's font. Contextual alternates are switched off
+% Body text in Inter (FT Base fallback). Contextual alternates switched off
 % so punctuation (+, -, parentheses) stays intact in the PDF text layer for copy-paste & ATS.
 \setsansfont{Inter}[
     Extension      = .otf,
@@ -33,6 +33,7 @@
 \usepackage{fontawesome5}
 \usepackage{academicons}
 \usepackage{xcolor}
+\usepackage{tikz}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
@@ -43,17 +44,16 @@
 % Decorative icons get an empty ActualText so they stay out of copy-paste and ATS text
 \newcommand{\icon}[1]{\BeginAccSupp{method=escape,ActualText={}}#1\EndAccSupp{}}
 
-% Function Health brand palette
-\definecolor{accent}{HTML}{B05A36}      % Function terracotta
-\definecolor{accentink}{HTML}{934424}   % Deep terracotta for badge text
-\definecolor{accentsoft}{HTML}{F6E9DC}  % Function orange-10p tint
-\definecolor{ink}{HTML}{2A2B2F}         % Function midnight
-\definecolor{body}{HTML}{4A4B50}        % Warm charcoal body
-\definecolor{muted}{HTML}{737373}       % Function light-gray
-\definecolor{rulegray}{HTML}{D1C9BF}    % Function dark-cream rule
-\definecolor{forest}{HTML}{13411F}      % Function dark-green
-\definecolor{forestsoft}{HTML}{F1F3E5}  % Function green-10p tint
-\definecolor{chip}{HTML}{F5EEE1}        % Function cream chip
+% Official Function Health Notion Colors
+\definecolor{accent}{HTML}{B05A36}      % Clay 500 (brand accent)
+\definecolor{accentink}{HTML}{8C4325}   % Deep Clay for AA badge contrast
+\definecolor{accentsoft}{HTML}{F6EBE3}  % Soft Clay tint
+\definecolor{ink}{HTML}{2A2B2F}         % Gray 850 / Midnight
+\definecolor{body}{HTML}{3C3D42}        % Gray 800
+\definecolor{muted}{HTML}{616867}       % Gray 600
+\definecolor{rulegray}{HTML}{E0DCD3}    % Khaki 150
+\definecolor{chip}{HTML}{F4EFE6}        % Khaki 100
+\definecolor{bluegray}{HTML}{6A7784}    % Blue Gray
 
 \hypersetup{
     colorlinks=true,
@@ -62,7 +62,7 @@
     pdftitle={Dr. Hector Carrion - Curriculum Vitae},
     pdfauthor={Dr. Hector Carrion},
     pdfsubject={Curriculum Vitae},
-    pdfkeywords={world models, spatio-temporal learning, generative AI, self-supervised learning, multimodal AI, 3D vision, medical AI}
+    pdfkeywords={world models, JEPA, 3D vision, diffusion models, self-supervised learning, medical AI, autonomy}
 }
 
 \setlength{\parindent}{0pt}
@@ -76,6 +76,85 @@
 \fancyfoot[R]{\footnotesize\color{muted}\thepage\,/\,\pageref*{LastPage}}
 
 % ---------------------------------------------------------------------
+% Custom monochrome vector glyphs (Hugging Face 🤗 + Publication Topics)
+% ---------------------------------------------------------------------
+
+% Official monochrome Hugging Face 🤗 vector glyph (in Clay 500)
+\newcommand{\hficon}{\raisebox{-1.3pt}{\includegraphics[height=9.2pt]{hf_icon.pdf}}}
+
+% Mini symbol-only topic pills for publications (no text labels)
+\newcommand{\tglyph}[1]{%
+  \icon{%
+    \tikz[baseline=-2.2pt]{%
+      \node[draw=rulegray,fill=chip,rounded corners=1.8pt,inner xsep=2.5pt,inner ysep=1.8pt,minimum height=9.6pt,minimum width=11pt]
+        {\color{ink}#1};%
+    }%
+  }%
+}
+
+% 1. World Model (wireframe meridian globe)
+\newcommand{\gWorld}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.58pt]{%
+    \draw (0,0) circle (4.3);
+    \draw (-4.3,0) -- (4.3,0);
+    \draw (0,0) ellipse (2.0 and 4.3);
+  }%
+}}
+
+% 2. 3D Vision (isometric cube)
+\newcommand{\gThreeD}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.58pt,line join=round]{%
+    \draw (0,4.5) -- (3.9,2.25) -- (3.9,-2.25) -- (0,-4.5) -- (-3.9,-2.25) -- (-3.9,2.25) -- cycle;
+    \draw (-3.9,2.25) -- (0,0) -- (3.9,2.25);
+    \draw (0,0) -- (0,-4.5);
+  }%
+}}
+
+% 3. Diffusion / Generative Priors (4-point sparkle + denoising dots)
+\newcommand{\gDiff}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.58pt,line join=round]{%
+    \draw (0,4.4) -- (1.1,1.1) -- (4.4,0) -- (1.1,-1.1) -- (0,-4.4) -- (-1.1,-1.1) -- (-4.4,0) -- (-1.1,1.1) -- cycle;
+    \fill (3.1,3.1) circle (0.7);
+    \fill (-3.1,-2.9) circle (0.65);
+  }%
+}}
+
+% 4. Medical AI / Longitudinal Physiology (ECG pulse waveform)
+\newcommand{\gMed}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.62pt,line cap=round,line join=round]{%
+    \draw (-4.5,0) -- (-2.1,0) -- (-1.1,3.6) -- (0.3,-3.7) -- (1.5,1.9) -- (2.5,0) -- (4.5,0);
+  }%
+}}
+
+% 5. Self-Supervised / JEPA Temporal Dynamics (linked latent nodes)
+\newcommand{\gSSL}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.58pt,line cap=round]{%
+    \draw (-3.1,-1.6) -- (0,2.3) -- (3.1,-1.6);
+    \draw (-3.1,-1.6) -- (3.1,-1.6);
+    \filldraw[fill=white] (-3.1,-1.6) circle (1.3);
+    \filldraw[fill=white] (0,2.3) circle (1.3);
+    \fill (3.1,-1.6) circle (1.35);
+  }%
+}}
+
+% 6. Embodied Autonomy / Self-Driving (vehicle silhouette + wheels + LiDAR wave)
+\newcommand{\gAuto}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.56pt,line cap=round,line join=round]{%
+    \draw (-4.2,-2.2) -- (-4.2,-0.3) -- (-2.7,1.4) -- (1.8,1.4) -- (3.5,-0.3) -- (4.2,-0.6) -- (4.2,-2.2) -- cycle;
+    \filldraw[fill=white] (-2.2,-2.4) circle (1.15);
+    \filldraw[fill=white] (2.2,-2.4) circle (1.15);
+    \draw (-1.8,2.9) arc (130:50:2.8);
+  }%
+}}
+
+% 7. Bioelectronics / Closed-Loop Actuation (electrode bolt)
+\newcommand{\gBio}{\tglyph{%
+  \tikz[x=0.76pt,y=0.76pt,line width=0.58pt,line cap=round,line join=round]{%
+    \draw (0.6,4.3) -- (-2.3,0.3) -- (0.5,0.3) -- (-0.6,-4.3) -- (2.3,-0.3) -- (-0.5,-0.3) -- cycle;
+  }%
+}}
+
+% ---------------------------------------------------------------------
 % Layout helpers
 % ---------------------------------------------------------------------
 \newlength{\datecol}  \setlength{\datecol}{2.6cm}
@@ -85,11 +164,11 @@
 % Section title in the display serif, followed by a hairline
 \newcounter{cvsection}
 \newcommand{\cvsection}[1]{%
-    \par\addvspace{9.2pt}%
+    \par\addvspace{9.5pt}%
     \stepcounter{cvsection}\pdfbookmark[1]{#1}{cvsection.\thecvsection}%
     \noindent{\rmfamily\fontsize{14.5}{16.5}\selectfont\color{ink}#1}%
     \hspace{8pt}{\color{rulegray}\leaders\hrule height 3.8pt depth -3.2pt\hfill}%
-    \par\nopagebreak\vspace{1.5pt}\nopagebreak}
+    \par\nopagebreak\vspace{1.6pt}\nopagebreak}
 
 % Right-aligned text closing a paragraph; moves to its own line when it does not fit
 \newcommand{\flushend}[1]{%
@@ -104,7 +183,7 @@
 
 % \entry{dates}{title}{rightnote}{details}
 \newcommand{\entry}[4]{%
-    \par\addvspace{3.7pt}\noindent
+    \par\addvspace{3.8pt}\noindent
     \leftcol{\small\color{muted}#1}%
     \begin{minipage}[t]{\bodycol}\leavevmode
         \textcolor{ink}{#2}\flushend{#3}%
@@ -115,26 +194,23 @@
 \newcommand{\where}[1]{\textcolor{body}{, #1}}
 
 \newenvironment{bullets}{%
-    \begin{itemize}[leftmargin=10pt, labelsep=5pt, itemsep=1pt, topsep=1pt, parsep=0pt, partopsep=0pt,
+    \begin{itemize}[leftmargin=10pt, labelsep=5pt, itemsep=1.05pt, topsep=1pt, parsep=0pt, partopsep=0pt,
                     label={\color{accent}\raisebox{0.25ex}{\tiny\textbullet}}]}
     {\end{itemize}}
 
 % Venue badges for publications
 \newcommand{\badge}[3]{{\setlength{\fboxsep}{2.2pt}\colorbox{#1}{\scriptsize\bfseries\color{#2}#3}}}
 \newcommand{\venue}[1]{\badge{accentsoft}{accentink}{#1}}
-\newcommand{\altvenue}[1]{{\setlength{\fboxsep}{1.7pt}\setlength{\fboxrule}{0.5pt}%
-    \fcolorbox{accent!45}{white}{\scriptsize\bfseries\color{accentink}#1}}}
 \newcommand{\chip}[1]{\badge{chip}{body}{#1}}
-\newcommand{\equalbadge}{\badge{forestsoft}{forest}{\icon{\faStar}\,Co-First}}
 
-% \pub{badges}{title}{authors}{details and links}
-\newcommand{\pub}[4]{%
-    \par\addvspace{4.1pt}\noindent
-    \leftcol{#1}%
+% \pub{badges}{glyphs}{title}{authors}{details and links}
+\newcommand{\pub}[5]{%
+    \par\addvspace{4.2pt}\noindent
+    \leftcol{#1\par\vspace{2.2pt}#2}%
     \begin{minipage}[t]{\bodycol}\raggedright\leavevmode
-        \textcolor{ink}{\bfseries #2}\par\vspace{0.6pt}
-        {\small #3}\par\vspace{0.6pt}
-        {\small #4}
+        \textcolor{ink}{\bfseries #3}\par\vspace{0.6pt}
+        {\small #4}\par\vspace{0.6pt}
+        {\small #5}
     \end{minipage}\par}
 
 \newcommand{\me}{\textbf{\color{ink}H.~Carrión}}
@@ -144,7 +220,7 @@
 
 % \row{label}{content}
 \newcommand{\row}[2]{%
-    \par\addvspace{2.3pt}\noindent
+    \par\addvspace{2.4pt}\noindent
     \leftcol{\small\color{muted}#1}%
     \begin{minipage}[t]{\bodycol}\leavevmode\small#2\end{minipage}\par}
 
@@ -159,19 +235,19 @@
 \begin{document}
 
 % ---------------------------------------------------------------------
-% Header
+% Header (non-italicized surname in Clay 500; custom 🤗 glyph; no location)
 % ---------------------------------------------------------------------
 \begin{minipage}[b]{0.60\textwidth}
-    {\rmfamily\fontsize{35}{36}\selectfont\color{ink}Dr.\ Héctor \textit{\color{accent}Carrión}}\par\vspace{7pt}
-    {\large\color{ink}World Model Team Lead \textperiodcentered\ Spatio-Temporal \& Multimodal AI}\par\vspace{2pt}
-    {\small\color{muted}Function Health \textperiodcentered\ Ph.D.\ in Computer Science, UC Santa Cruz / UC Berkeley}
+    {\rmfamily\fontsize{35}{36}\selectfont\color{ink}Dr.\ Héctor \textcolor{accent}{Carrión}}\par\vspace{7pt}
+    {\large\color{ink}World Model Team Lead \textperiodcentered\ Multimodal \& Spatio-Temporal AI}\par\vspace{2pt}
+    {\small\color{muted}Function \textperiodcentered\ Ph.D.\ in Computer Science, UC Santa Cruz / UC Berkeley}
 \end{minipage}\hfill
 \begin{minipage}[b]{0.38\textwidth}
     \raggedleft\small\linespread{1.22}\selectfont
     \contact{\href{mailto:hi@hectorcarrion.com}{\color{body}hi@hectorcarrion.com}}{\faEnvelope[regular]}\\
     \contact{\href{https://hectorcarrion.com}{\color{body}hectorcarrion.com}}{\faGlobe}\\
     \contact{\href{https://github.com/hectorcarrion}{\color{body}github.com/hectorcarrion}}{\faGithub}\\
-    \contact{\href{https://huggingface.co/hcarrion}{\color{body}huggingface.co/hcarrion}}{\faCube}\\
+    \contact{\href{https://huggingface.co/hcarrion}{\color{body}huggingface.co/hcarrion}}{\hficon}\\
     \contact{\href{https://www.linkedin.com/in/hectorcarrion/}{\color{body}linkedin.com/in/hectorcarrion}}{\faLinkedin}
 \end{minipage}
 
@@ -180,72 +256,66 @@
 \vspace{7pt}
 
 % ---------------------------------------------------------------------
-% Profile
+% Profile (tight, direct, zero fluff)
 % ---------------------------------------------------------------------
-AI research leader with 6+ years of experience building \textbf{\color{ink}world models} and self-supervised multimodal
-representations that capture how physical and biological systems evolve across space, time, and interventions.
-Currently \textbf{\color{ink}World Model Team Lead} at \textbf{\color{ink}Function Health}, directing JEPA and autoregressive
-modeling for longitudinal human health forecasting. Previously \textbf{\color{ink}Founding Lead Research Scientist} at
-\textbf{\color{ink}Tera AI} (1B-parameter spatio-temporal world models) and Ph.D.\ researcher with \textbf{\color{ink}Google Research},
-\textbf{\color{ink}Google X}, and \textbf{\color{ink}UC Santa Cruz / UC Berkeley}. First-author work at \textbf{\color{ink}MICCAI 2026}
-($\times$2), \textbf{\color{ink}MICCAI 2023}, \textbf{\color{ink}MICCAI MLMI 2022}, and \textbf{\color{ink}PLOS Comp.\ Biol.}, plus granted
-\textbf{\color{ink}Google patents} and open-source models and datasets.\par
+AI research lead (6+ YoE) building \textbf{\color{ink}multimodal world models} across longitudinal health, 3D vision, and autonomy.
+Leads the World Model team at \textbf{\color{ink}Function} (JEPA and autoregressive models over longitudinal labs and imaging); previously
+Founding Lead Research Scientist at \textbf{\color{ink}Tera AI} (1B-parameter road world model) and Ph.D.\ researcher at
+\textbf{\color{ink}Google Research}, \textbf{\color{ink}Google X} (granted patents), and \textbf{\color{ink}UC Santa Cruz / UC Berkeley}.
+First-author papers at \textbf{\color{ink}MICCAI} ($\times$4) and \textbf{\color{ink}PLOS Comp.\ Biol.}\par
 
 \vspace{4.5pt}
-{\small\raggedright\textcolor{muted}{Research interests:}\hspace{5pt}%
-\interest{world models (JEPA \& autoregressive)}\isep\interest{spatio-temporal dynamics}\isep
-\interest{self-supervised \& multimodal learning}\isep\interest{metric 3D \& generative priors}\isep
-\interest{longitudinal health forecasting}\par}
+{\small\raggedright\textcolor{muted}{Focus:}\hspace{5pt}%
+\interest{World Models}\isep\interest{JEPA}\isep\interest{3D Vision}\isep\interest{Diffusion}\isep
+\interest{Medical AI}\isep\interest{Embodied Autonomy}\par}
 
 % ---------------------------------------------------------------------
 \cvsection{Research \& Professional Experience}
 % ---------------------------------------------------------------------
 \entry{Sep 2026 -- now}
-      {\org{World Model Team Lead}\where{\href{https://www.functionhealth.com}{\color{body}Function Health}}}
+      {\org{World Model Team Lead}\where{\href{https://www.functionhealth.com}{\color{body}Function}}}
       {}
       {\begin{bullets}
         \item Directing the World Model team and research roadmap on \textbf{JEPA} and \textbf{autoregressive} multimodal
-              architectures to learn longitudinal representations of member biomarkers, clinical history, and health state.
-        \item Partnering with executive leadership and cross-functional teams to own deliverables from pre-training
-              through trajectory forecasting and personalized health interventions.
+              architectures over longitudinal lab tests, imaging, and member health history.
+        \item Owning end-to-end pre-training and trajectory modeling to monitor early indicators and surface actionable member insights.
       \end{bullets}}
 
 \entry{2024 -- 2026}
       {\org{Founding Lead Research Scientist}\where{\href{https://www.tera-ai.com}{\color{body}Tera AI}}}
       {}
       {\begin{bullets}
-        \item Designed and executed the founding research agenda across generative AI, spatial reasoning, and embodied autonomy,
-              aligning foundation-model experiments with rapid iteration cycles, compute budgets, and product milestones.
-        \item Co-led \textbf{TARDIS} and \textbf{STRIDE} (with P.~Perona and J.~Malik): a unified 1B-parameter autoregressive
-              spatio-temporal transformer unifying controllable road-scene synthesis, action prediction, and sequential
-              georeferencing (60\% within 10\,m).
+        \item Set and executed the founding research agenda across spatial reasoning, generative models, and embodied autonomy,
+              managing multi-node compute budgets and iteration schedules.
+        \item Led \textbf{TARDIS} and \textbf{STRIDE} (with P.~Perona and J.~Malik): a 1B-parameter autoregressive
+              spatio-temporal transformer unifying street-view synthesis, action prediction, and sequential georeferencing (60\% within 10\,m).
       \end{bullets}}
 
 \entry{2020 -- 2026}
       {\org{Graduate Student Researcher}\where{UC Santa Cruz \& UC Berkeley}}
       {}
       {\begin{bullets}
-        \item Achieved state-of-the-art performance in label-constrained medical vision ($<$100 labeled samples) via controllable
-              diffusion (\textbf{cgDDI}: 90.9\% DDI accuracy, 86.6\% EOM; \textbf{FEDD}: +18 IoU points) and monocular metric 3D
-              reconstruction (\textbf{DermDepth}: correcting depth scale error from 16.1$\times$ to 1.11$\times$ tuning 0.6\% params).
-        \item Built self-supervised temporal stage discovery (\textbf{HealNet}) and automated biological imaging pipelines across
-              multi-institutional DARPA/NIH bioelectronic wound-healing studies.
+        \item Built label-efficient medical vision models ($<$100 labeled samples) using controllable diffusion (\textbf{cgDDI}:
+              90.9\% DDI accuracy, 86.6\% EOM; \textbf{FEDD}: +18 IoU points) and monocular metric 3D reconstruction
+              (\textbf{DermDepth}: 16.1$\times\!\to\!$1.11$\times$ SKINL2 depth scale ratio tuning 0.6\% of parameters).
+        \item Developed self-supervised temporal stage discovery (\textbf{HealNet}) and automated biomarker imaging pipelines
+              for multi-institutional DARPA/NIH bioelectronic studies.
       \end{bullets}}
 
 \entry{Summer 2023}
       {\org{Student Researcher (Ph.D.)}\where{\href{https://research.google}{\color{body}Google Research}}}
       {}
       {\begin{bullets}
-        \item Established foundation-model recipes for unified multimodal video and image pre-training, unlocking $>$25\% higher
-              downstream performance compared to previously deployed single-modality encoders.
+        \item Trained unified multimodal video-and-image foundation encoders, improving downstream transfer by $>$25\% over
+              deployed single-modality baselines.
       \end{bullets}}
 
 \entry{2021 -- 2022}
       {\org{AI Resident (Ph.D.)}\where{\href{https://x.company}{\color{body}X, The Moonshot Factory (Google X)}}}
       {}
       {\begin{bullets}
-        \item Developed simulation, edge-perception, and aerial/ground computer vision systems under novel moonshot problem
-              domains, exceeding target performance benchmarks and earning granted \textbf{Google patents}.
+        \item Built simulation, edge-perception, and aerial/ground computer vision systems for autonomous platforms, exceeding
+              deployment benchmarks and earning granted \textbf{Google patents}.
       \end{bullets}}
 
 % ---------------------------------------------------------------------
@@ -264,59 +334,70 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 \entry{2018 -- 2019}
       {\org{Software Engineering \& Design}\where{Apple Developer Academy, Univ.\ of Naples Federico II}}
       {}
-      {Full-stack iOS engineering, human-centered interface design, and on-device CoreML applications.}
+      {Full-stack iOS engineering, interface design, and on-device CoreML applications.}
 
 % ---------------------------------------------------------------------
 \cvsection{Publications}
 % ---------------------------------------------------------------------
-% Chronological, newest first.
+% Topic glyphs: Globe = World Model, Cube = 3D Vision, Sparkle = Diffusion,
+%               Pulse = Med AI, Nodes = Self-Supervised/JEPA, Vehicle = Autonomy, Bolt = Bioelectronics
 
 \pub{\venue{MICCAI 2026}}
+    {\gThreeD\,\gMed}
     {DermDepth: Toward Monocular Metric Scale 3D Reconstruction Models for Dermatology}
     {\me, N.~Norouzi}
     {\detail{16.1$\times\!\to\!$1.11$\times$ SKINL2 depth scale with 0.6\% tuned params}\lnk{https://papers.miccai.org/miccai-2026/paper/5594_paper.pdf}{paper}\sep\lnk{https://arxiv.org/abs/2607.13010}{arXiv}\sep\lnk{https://github.com/hectorcarrion/dermdepth}{code}\sep\lnk{https://huggingface.co/datasets/hcarrion/D-Synth}{data}\sep\lnk{https://huggingface.co/hcarrion/DermDepth}{model}\sep\lnk{https://huggingface.co/spaces/hcarrion/DermDepth}{demo}}
 
 \pub{\venue{MICCAI 2026}}
+    {\gDiff\,\gMed}
     {cgDDI: Controllable Generation of Diverse Dermatological Imagery for Fair and Efficient Malignancy Classification}
     {\me, N.~Norouzi}
     {\detail{266K+ synthetic images; 90.9\% DDI accuracy \& 86.6\% EOM}\lnk{https://papers.miccai.org/miccai-2026/paper/1473_paper.pdf}{paper}\sep\lnk{https://arxiv.org/abs/2607.12987}{arXiv}\sep\lnk{https://github.com/hectorcarrion/ControllableGenDDI}{code}\sep\lnk{https://huggingface.co/datasets/hcarrion/ControllableGenDDI}{data}}
 
 \pub{\venue{Comm.\ Biol.\ 2025}}
+    {\gMed\,\gBio}
     {A Modular Fluorescent Camera Unit for Wound Imaging}
     {M.~Tebyani, G.~Keller, W.~S.~Hee, P.~Baniya, \dots, \me, \dots, R.~R.~Isseroff, M.~Rolandi, M.~Teodorescu}
     {\detail{Nature Communications Biology}\lnk{https://www.nature.com/articles/s42003-025-08423-y}{paper}}
 
-\pub{\chip{arXiv 2025}\par\vspace{2.5pt}\equalbadge}
+\pub{\chip{arXiv 2025}}
+    {\gWorld\,\gAuto}
     {TARDIS STRIDE: A Spatio-Temporal Road Image Dataset and World Model for Autonomy}
-    {\me$^{*}$, Y.~Bai$^{*}$, V.~A.~Hernández Castro$^{*}$, K.~Panaganti, A.~Zenith, M.~Trang, T.~Zhang, P.~Perona, J.~Malik}
-    {\detail{$^{*}$Equal contribution; 1B-param world model}\lnk{https://arxiv.org/abs/2506.11302}{arXiv}\sep\lnk{https://www.tera-ai.com/blog/tardis}{project}\sep\lnk{https://github.com/tera-ai/tardis}{code}\sep\lnk{https://huggingface.co/datasets/Tera-AI/STRIDE}{data}}
+    {\me, Y.~Bai, V.~A.~Hernández Castro, K.~Panaganti, A.~Zenith, M.~Trang, T.~Zhang, P.~Perona, J.~Malik}
+    {\detail{1B-param world model; 60\% within 10\,m georeferencing}\lnk{https://arxiv.org/abs/2506.11302}{arXiv}\sep\lnk{https://www.tera-ai.com/blog/tardis}{project}\sep\lnk{https://github.com/tera-ai/tardis}{code}\sep\lnk{https://huggingface.co/datasets/Tera-AI/STRIDE}{data}}
 
-\pub{\venue{Adv.\ Mater.\ Tech.}\par\vspace{2pt}\chip{2025}}
+\pub{\venue{Adv.\ Mater.\ Tech.}}
+    {\gBio\,\gMed}
     {Remote-Controlled Wireless Bioelectronics for Fluoxetine Therapy to Promote Wound Healing in a Porcine Model}
     {H.~Li, N.~Asefifeyzabadi, \dots, \me, N.~Norouzi, M.~Gomez, M.~Zhao, R.~R.~Isseroff, M.~Teodorescu, M.~Rolandi}
-    {\detail{Advanced Materials Technologies}\lnk{https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/admt.202500040}{paper}}
+    {\detail{Advanced Materials Technologies, 2025}\lnk{https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/admt.202500040}{paper}}
 
-\pub{\venue{Adv.\ Mater.\ Tech.}\par\vspace{2pt}\chip{2024}}
+\pub{\venue{Adv.\ Mater.\ Tech.}}
+    {\gBio\,\gMed}
     {Programmable Delivery of Fluoxetine via Wearable Bioelectronics for Wound Healing In Vivo}
     {H.~Li, H.-Y.~Yang, N.~Asefifeyzabadi, \dots, \me, \dots, N.~Norouzi, M.~Gomez, M.~Zhao, M.~Teodorescu, R.~R.~Isseroff, M.~Rolandi}
-    {\detail{Advanced Materials Technologies}\lnk{https://onlinelibrary.wiley.com/doi/epdf/10.1002/admt.202301115}{paper}}
+    {\detail{Advanced Materials Technologies, 2024}\lnk{https://onlinelibrary.wiley.com/doi/epdf/10.1002/admt.202301115}{paper}}
 
 \pub{\venue{MICCAI 2023}}
+    {\gDiff\,\gMed}
     {FEDD: Fair, Efficient, and Diverse Diffusion-Based Lesion Segmentation and Malignancy Classification}
     {\me, N.~Norouzi}
     {\detail{81\% DDI malignancy accuracy from 60 labeled images}\lnk{https://link.springer.com/chapter/10.1007/978-3-031-43990-2_26}{paper}\sep\lnk{https://arxiv.org/abs/2307.11654}{arXiv}\sep\lnk{https://github.com/hectorcarrion/fedd}{code}}
 
 \pub{\venue{MICCAI-W 2022}}
+    {\gSSL\,\gMed}
     {HealNet: Self-Supervised Acute Wound Heal-Stage Classification}
     {\me, M.~Jafari, H.-Y.~Yang, R.~R.~Isseroff, M.~Rolandi, M.~Gomez, N.~Norouzi}
     {\detail{Machine Learning in Medical Imaging (MLMI); 90.6\% stage accuracy}\lnk{https://link.springer.com/chapter/10.1007/978-3-031-21014-3_46}{paper}\sep\lnk{https://arxiv.org/abs/2206.10536}{arXiv}}
 
 \pub{\venue{PLOS CB 2022}}
+    {\gMed}
     {Automatic Wound Detection and Size Estimation Using Deep Learning Algorithms}
     {\me, M.~Jafari, M.~D.~Bagood, H.-Y.~Yang, R.~R.~Isseroff, M.~Gomez}
     {\detail{PLOS Computational Biology}\lnk{https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009852}{paper}\sep\lnk{https://github.com/Gomez-Lab/WoundSizeEstimation}{code}}
 
 \pub{\venue{VISAPP 2022}}
+    {\gSSL}
     {Honeybee Re-Identification in Video: New Datasets and Impact of Self-Supervision}
     {J.~Chan, \me, R.~Mégret, J.~Rivera, T.~Giray}
     {\detail{109K-image self-supervised track dataset}\lnk{https://doi.org/10.5220/0010843100003124}{paper}}
@@ -343,16 +424,19 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 \row{Patents}{\textbf{\color{ink}Google Patent Award} --- Granted perception \& autonomous systems patents at X (Google X)}
 \row{Fellowships}{\textbf{\color{ink}Google--CAHSI Doctoral Fellowship}\hspace{6pt}{\color{rulegray}|}\hspace{6pt}\textbf{\color{ink}NIH BD2K Biomedical Data Science Fellowship}}
 \row{Awards}{\textbf{\color{ink}MICCAI STAR Award}\hspace{6pt}{\color{rulegray}|}\hspace{6pt}\textbf{\color{ink}SIDIM Outstanding Research Award}}
-\row{Advisory}{\textbf{\color{ink}Technical Advisor}, \href{https://www.visia.ai}{Visia AI} (2021--present) --- computer vision for recyclability \& hazard intelligence}
-\row{Mentorship}{\textbf{\color{ink}Machine Learning Tutor}, UC Santa Cruz (2020--2022) --- mentored students in deep learning \& computer vision}
+\row{Advisory}{\textbf{\color{ink}Technical Advisor}, \href{https://www.visia.ai}{Visia AI} (2021--present) --- computer vision for recyclability \& hazard monitoring}
+\row{Mentorship}{\textbf{\color{ink}Machine Learning Tutor}, UC Santa Cruz (2020--2022) --- deep learning \& computer vision}
 
 % ---------------------------------------------------------------------
 \cvsection{Skills \& Languages}
 % ---------------------------------------------------------------------
 \row{Programming}{Python, C++, Swift, JAX, Bash, \LaTeX}
 \row{Deep learning}{PyTorch, JAX/EasyLM, TensorFlow, Keras, JEPA \& autoregressive world models, diffusion, multimodal LLMs}
-\row{Domains}{Longitudinal health forecasting, metric 3D reconstruction, medical imaging, spatial autonomy, fairness}
-\row{Leadership}{Research strategy \& team management, stakeholder alignment, multi-node cluster budgeting, product design}
+\row{Domains}{Longitudinal health modeling, metric 3D vision, medical imaging, spatial autonomy, fairness}
+\row{Leadership}{Research roadmap \& team management, compute budgeting, cross-functional execution, product design}
 \row{Languages}{English (native), Spanish (native)}
+
+\vspace{4pt}
+{\footnotesize\color{muted}Glyph key:\hspace{4pt}\gWorld\ World Model\hspace{6pt}\gThreeD\ 3D Vision\hspace{6pt}\gDiff\ Diffusion\hspace{6pt}\gMed\ Med AI\hspace{6pt}\gSSL\ Self-Supervised / JEPA\hspace{6pt}\gAuto\ Autonomy\hspace{6pt}\gBio\ Bioelectronics}
 
 \end{document}

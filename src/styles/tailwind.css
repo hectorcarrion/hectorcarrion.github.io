@@ -872,13 +872,19 @@ body.modal-open {
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 390px;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-template-areas:
+    'heading heading'
     'text resume'
     'text glance';
   align-items: start;
   column-gap: 44px;
   row-gap: 16px;
+}
+
+.about-heading {
+  grid-area: heading;
+  margin-bottom: 20px;
 }
 
 .about-text {
@@ -1825,9 +1831,15 @@ a.resume-company:hover {
     grid-template-rows: auto;
     grid-template-areas:
       'resume'
+      'heading'
       'text'
       'glance';
-    row-gap: 28px;
+    row-gap: 20px;
+  }
+
+  .about-heading {
+    margin-top: 28px;
+    margin-bottom: 0;
   }
 
   .exp-grid {

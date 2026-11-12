@@ -603,11 +603,11 @@ export default function Home({ articles }) {
       {/* ===================== About + Signature Resume Widget ===================== */}
       <section className="site-section" id="about">
         <div className="site-container">
-          <header className="section-head">
-            <h2 className="section-title">About</h2>
-          </header>
-
           <div className="about-grid">
+            <header className="section-head about-heading">
+              <h2 className="section-title">About</h2>
+            </header>
+
             <div className="about-text">
               <p>
                 I lead the <strong>World Model</strong> team at{' '}

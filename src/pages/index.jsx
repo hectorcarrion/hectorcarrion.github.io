@@ -485,7 +485,7 @@ export default function Home({ articles }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Google
+                Google Research
               </a>
             </p>
 

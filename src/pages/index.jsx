@@ -712,9 +712,11 @@ export default function Home({ articles }) {
               </div>
             </div>
 
-            <aside className="about-side">
+            <aside className="about-resume" aria-label="Work and school">
               <ResumeWidget />
+            </aside>
 
+            <aside className="about-glance" aria-label="At a glance">
               <div className="side-card">
                 <h3 className="side-title">At a glance</h3>
                 <dl className="facts">

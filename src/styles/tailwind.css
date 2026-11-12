@@ -872,8 +872,25 @@ body.modal-open {
 .about-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 390px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'text resume'
+    'text glance';
   align-items: start;
-  gap: 44px;
+  column-gap: 44px;
+  row-gap: 16px;
+}
+
+.about-text {
+  grid-area: text;
+}
+
+.about-resume {
+  grid-area: resume;
+}
+
+.about-glance {
+  grid-area: glance;
 }
 
 .about-text p {
@@ -884,12 +901,6 @@ body.modal-open {
 
 .about-text p + p {
   margin-top: 18px;
-}
-
-.about-side {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
 }
 
 .side-card {
@@ -1809,7 +1820,16 @@ a.resume-company:hover {
     mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.4) 45%, transparent 75%);
   }
 
-  .about-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'resume'
+      'text'
+      'glance';
+    row-gap: 28px;
+  }
+
   .exp-grid {
     grid-template-columns: 1fr;
   }

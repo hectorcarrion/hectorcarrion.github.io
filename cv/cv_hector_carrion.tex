@@ -11,9 +11,9 @@
 \documentclass[10pt,letterpaper]{article}
 
 % ---------------------------------------------------------------------
-% Page layout, fonts and colours
+% Page layout, fonts and colours (Function Health editorial palette)
 % ---------------------------------------------------------------------
-\usepackage[letterpaper,top=1.2cm,bottom=1.4cm,left=1.65cm,right=1.65cm,footskip=0.7cm]{geometry}
+\usepackage[letterpaper,top=1.2cm,bottom=1.38cm,left=1.65cm,right=1.65cm,footskip=0.68cm]{geometry}
 \usepackage{fontspec}
 \usepackage{CrimsonPro}   % display serif for the name and section titles (\rmfamily)
 
@@ -43,15 +43,17 @@
 % Decorative icons get an empty ActualText so they stay out of copy-paste and ATS text
 \newcommand{\icon}[1]{\BeginAccSupp{method=escape,ActualText={}}#1\EndAccSupp{}}
 
-\definecolor{accent}{HTML}{2B50E6}
-\definecolor{accentsoft}{HTML}{ECEFFD}
-\definecolor{ink}{HTML}{15161A}
-\definecolor{body}{HTML}{34363E}
-\definecolor{muted}{HTML}{6B6F7B}
-\definecolor{rulegray}{HTML}{D3D0C7}
-\definecolor{gold}{HTML}{955B00}
-\definecolor{goldsoft}{HTML}{FBEFD5}
-\definecolor{chip}{HTML}{EFEEEB}
+% Function Health brand palette
+\definecolor{accent}{HTML}{B05A36}      % Function terracotta
+\definecolor{accentink}{HTML}{934424}   % Deep terracotta for badge text
+\definecolor{accentsoft}{HTML}{F6E9DC}  % Function orange-10p tint
+\definecolor{ink}{HTML}{2A2B2F}         % Function midnight
+\definecolor{body}{HTML}{4A4B50}        % Warm charcoal body
+\definecolor{muted}{HTML}{737373}       % Function light-gray
+\definecolor{rulegray}{HTML}{D1C9BF}    % Function dark-cream rule
+\definecolor{forest}{HTML}{13411F}      % Function dark-green
+\definecolor{forestsoft}{HTML}{F1F3E5}  % Function green-10p tint
+\definecolor{chip}{HTML}{F5EEE1}        % Function cream chip
 
 \hypersetup{
     colorlinks=true,
@@ -60,7 +62,7 @@
     pdftitle={Dr. Hector Carrion - Curriculum Vitae},
     pdfauthor={Dr. Hector Carrion},
     pdfsubject={Curriculum Vitae},
-    pdfkeywords={world models, generative AI, self-supervised learning, multimodal AI, 3D vision, medical AI, computer vision}
+    pdfkeywords={world models, spatio-temporal learning, generative AI, self-supervised learning, multimodal AI, 3D vision, medical AI}
 }
 
 \setlength{\parindent}{0pt}
@@ -83,7 +85,7 @@
 % Section title in the display serif, followed by a hairline
 \newcounter{cvsection}
 \newcommand{\cvsection}[1]{%
-    \par\addvspace{9.5pt}%
+    \par\addvspace{9.2pt}%
     \stepcounter{cvsection}\pdfbookmark[1]{#1}{cvsection.\thecvsection}%
     \noindent{\rmfamily\fontsize{14.5}{16.5}\selectfont\color{ink}#1}%
     \hspace{8pt}{\color{rulegray}\leaders\hrule height 3.8pt depth -3.2pt\hfill}%
@@ -100,9 +102,9 @@
 \newcommand{\leftcol}[1]{%
     \begin{minipage}[t]{\datecol}\raggedright\leavevmode#1\end{minipage}\hspace{\colgap}}
 
-% \entry{dates}{title}{location}{details}
+% \entry{dates}{title}{rightnote}{details}
 \newcommand{\entry}[4]{%
-    \par\addvspace{3.8pt}\noindent
+    \par\addvspace{3.7pt}\noindent
     \leftcol{\small\color{muted}#1}%
     \begin{minipage}[t]{\bodycol}\leavevmode
         \textcolor{ink}{#2}\flushend{#3}%
@@ -119,15 +121,15 @@
 
 % Venue badges for publications
 \newcommand{\badge}[3]{{\setlength{\fboxsep}{2.2pt}\colorbox{#1}{\scriptsize\bfseries\color{#2}#3}}}
-\newcommand{\venue}[1]{\badge{accentsoft}{accent}{#1}}
+\newcommand{\venue}[1]{\badge{accentsoft}{accentink}{#1}}
 \newcommand{\altvenue}[1]{{\setlength{\fboxsep}{1.7pt}\setlength{\fboxrule}{0.5pt}%
-    \fcolorbox{accent!45}{white}{\scriptsize\bfseries\color{accent}#1}}}
+    \fcolorbox{accent!45}{white}{\scriptsize\bfseries\color{accentink}#1}}}
 \newcommand{\chip}[1]{\badge{chip}{body}{#1}}
-\newcommand{\equalbadge}{\badge{goldsoft}{gold}{\icon{\faStar}\,Co-First}}
+\newcommand{\equalbadge}{\badge{forestsoft}{forest}{\icon{\faStar}\,Co-First}}
 
 % \pub{badges}{title}{authors}{details and links}
 \newcommand{\pub}[4]{%
-    \par\addvspace{4.2pt}\noindent
+    \par\addvspace{4.1pt}\noindent
     \leftcol{#1}%
     \begin{minipage}[t]{\bodycol}\raggedright\leavevmode
         \textcolor{ink}{\bfseries #2}\par\vspace{0.6pt}
@@ -142,7 +144,7 @@
 
 % \row{label}{content}
 \newcommand{\row}[2]{%
-    \par\addvspace{2.4pt}\noindent
+    \par\addvspace{2.3pt}\noindent
     \leftcol{\small\color{muted}#1}%
     \begin{minipage}[t]{\bodycol}\leavevmode\small#2\end{minipage}\par}
 
@@ -165,9 +167,8 @@
     {\small\color{muted}Function Health \textperiodcentered\ Ph.D.\ in Computer Science, UC Santa Cruz / UC Berkeley}
 \end{minipage}\hfill
 \begin{minipage}[b]{0.38\textwidth}
-    \raggedleft\small\linespread{1.2}\selectfont
+    \raggedleft\small\linespread{1.22}\selectfont
     \contact{\href{mailto:hi@hectorcarrion.com}{\color{body}hi@hectorcarrion.com}}{\faEnvelope[regular]}\\
-    \contact{San Francisco, CA}{\faMapMarker*}\\
     \contact{\href{https://hectorcarrion.com}{\color{body}hectorcarrion.com}}{\faGlobe}\\
     \contact{\href{https://github.com/hectorcarrion}{\color{body}github.com/hectorcarrion}}{\faGithub}\\
     \contact{\href{https://huggingface.co/hcarrion}{\color{body}huggingface.co/hcarrion}}{\faCube}\\
@@ -201,7 +202,7 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 % ---------------------------------------------------------------------
 \entry{Sep 2026 -- now}
       {\org{World Model Team Lead}\where{\href{https://www.functionhealth.com}{\color{body}Function Health}}}
-      {San Francisco, CA}
+      {}
       {\begin{bullets}
         \item Directing the World Model team and research roadmap on \textbf{JEPA} and \textbf{autoregressive} multimodal
               architectures to learn longitudinal representations of member biomarkers, clinical history, and health state.
@@ -211,7 +212,7 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 
 \entry{2024 -- 2026}
       {\org{Founding Lead Research Scientist}\where{\href{https://www.tera-ai.com}{\color{body}Tera AI}}}
-      {San Francisco, CA}
+      {}
       {\begin{bullets}
         \item Designed and executed the founding research agenda across generative AI, spatial reasoning, and embodied autonomy,
               aligning foundation-model experiments with rapid iteration cycles, compute budgets, and product milestones.
@@ -222,7 +223,7 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 
 \entry{2020 -- 2026}
       {\org{Graduate Student Researcher}\where{UC Santa Cruz \& UC Berkeley}}
-      {Santa Cruz, CA}
+      {}
       {\begin{bullets}
         \item Achieved state-of-the-art performance in label-constrained medical vision ($<$100 labeled samples) via controllable
               diffusion (\textbf{cgDDI}: 90.9\% DDI accuracy, 86.6\% EOM; \textbf{FEDD}: +18 IoU points) and monocular metric 3D
@@ -233,7 +234,7 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 
 \entry{Summer 2023}
       {\org{Student Researcher (Ph.D.)}\where{\href{https://research.google}{\color{body}Google Research}}}
-      {Mountain View, CA}
+      {}
       {\begin{bullets}
         \item Established foundation-model recipes for unified multimodal video and image pre-training, unlocking $>$25\% higher
               downstream performance compared to previously deployed single-modality encoders.
@@ -241,7 +242,7 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 
 \entry{2021 -- 2022}
       {\org{AI Resident (Ph.D.)}\where{\href{https://x.company}{\color{body}X, The Moonshot Factory (Google X)}}}
-      {Mountain View, CA}
+      {}
       {\begin{bullets}
         \item Developed simulation, edge-perception, and aerial/ground computer vision systems under novel moonshot problem
               domains, exceeding target performance benchmarks and earning granted \textbf{Google patents}.
@@ -252,17 +253,17 @@ modeling for longitudinal human health forecasting. Previously \textbf{\color{in
 % ---------------------------------------------------------------------
 \entry{2020 -- 2026}
       {\org{Ph.D.\ in Computer Science}\where{University of California, Santa Cruz}}
-      {Santa Cruz \& Berkeley, CA}
+      {}
       {Advisor: \href{https://people.eecs.berkeley.edu/~narges/}{Dr.\ Narges Norouzi} (UC Berkeley). GPA: 3.92\,/\,4.00.}
 
 \entry{2017 -- 2021}
       {\org{B.Sc.\ in Computer Science}\where{University of Puerto Rico, Río Piedras}}
-      {San Juan, PR}
+      {}
       {Undergraduate Research PI: Dr.\ Rémi Mégret. GPA: 3.75\,/\,4.00.}
 
 \entry{2018 -- 2019}
       {\org{Software Engineering \& Design}\where{Apple Developer Academy, Univ.\ of Naples Federico II}}
-      {Naples, IT}
+      {}
       {Full-stack iOS engineering, human-centered interface design, and on-device CoreML applications.}
 
 % ---------------------------------------------------------------------

@@ -601,11 +601,10 @@ export default function Home({ articles }) {
         </div>
       </section>
 
-      {/* ===================== 01 About + Signature Resume Widget ===================== */}
+      {/* ===================== About + Signature Resume Widget ===================== */}
       <section className="site-section" id="about">
         <div className="site-container">
           <header className="section-head">
-            <span className="section-index">01</span>
             <h2 className="section-title">About</h2>
           </header>
 
@@ -758,11 +757,10 @@ export default function Home({ articles }) {
         </div>
       </section>
 
-      {/* ===================== 02 News ===================== */}
+      {/* ===================== News ===================== */}
       <section className="site-section" id="news">
         <div className="site-container">
           <header className="section-head">
-            <span className="section-index">02</span>
             <h2 className="section-title">News</h2>
           </header>
 
@@ -812,14 +810,13 @@ export default function Home({ articles }) {
         </div>
       </section>
 
-      {/* ===================== 03 Publications ===================== */}
+      {/* ===================== Publications ===================== */}
       <PublicationsSection articles={articles} />
 
-      {/* ===================== 04 Experience ===================== */}
+      {/* ===================== Experience ===================== */}
       <section className="site-section" id="experience">
         <div className="site-container">
           <header className="section-head">
-            <span className="section-index">04</span>
             <h2 className="section-title">Experience</h2>
           </header>
 
@@ -892,11 +889,10 @@ export default function Home({ articles }) {
         </div>
       </section>
 
-      {/* ===================== 05 Projects & Ventures ===================== */}
+      {/* ===================== Projects & Ventures ===================== */}
       <section className="site-section" id="projects">
         <div className="site-container">
           <header className="section-head">
-            <span className="section-index">05</span>
             <h2 className="section-title">Systems, ventures &amp; apps</h2>
           </header>
 
@@ -956,11 +952,10 @@ export default function Home({ articles }) {
         </div>
       </section>
 
-      {/* ===================== 06 Honors, Patents & Advisory ===================== */}
+      {/* ===================== Honors, Patents & Advisory ===================== */}
       <section className="site-section" id="honors">
         <div className="site-container">
           <header className="section-head">
-            <span className="section-index">06</span>
             <h2 className="section-title">Honors, patents &amp; service</h2>
           </header>
 

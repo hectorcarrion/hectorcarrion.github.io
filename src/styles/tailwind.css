@@ -859,22 +859,6 @@ body.modal-open {
   row-gap: 20px;
 }
 
-.section-head-main {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.section-index {
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(var(--canvas-rgb), 0.35);
-  background: var(--accent-soft);
-  font: 500 0.75rem/1 var(--font-mono);
-  letter-spacing: 0.06em;
-  color: var(--accent-ink);
-}
-
 .section-title {
   font-family: var(--font-serif);
   font-weight: 400;

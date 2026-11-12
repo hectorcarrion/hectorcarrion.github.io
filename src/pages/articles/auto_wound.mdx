@@ -1,11 +1,38 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
+  displayTitle:
+    'Automatic Wound Detection and Size Estimation Using Deep Learning Algorithms',
   summary:
     'Combines wound detection, segmentation, and reference-based sizing to automate mouse-wound measurements, preserving closure trends despite uneven imaging and missing or damaged splints.',
   highlight:
     'Post-processing raises U-Net test Dice from 67.85% to 86.65% for segmenting mouse wounds and splints.',
+  year: 2022,
+  venue: 'PLOS Comp. Biol. 2022',
+  topics: ['med'],
+  isFirstAuthor: true,
+  authors: [
+    'Héctor Carrión',
+    'Mohammad Jafari',
+    'Michelle Dawn Bagood',
+    'Hsin-ya Yang',
+    'Roslyn Rivkah Isseroff',
+    'Marcella Gomez',
+  ],
+  thumbnail: '/images/publications/auto_wound.webp',
+  paperLink:
+    'https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009852',
   codeLink: 'https://github.com/Gomez-Lab/WoundSizeEstimation',
+  bibtex: `@article{carrion2022automatic,
+  title={Automatic wound detection and size estimation using deep learning algorithms},
+  author={Carri{\\'o}n, H{\\'e}ctor and Jafari, Mohammad and Bagood, Michelle Dawn and Yang, Hsin-ya and Isseroff, Roslyn Rivkah and Gomez, Marcella},
+  journal={PLOS Computational Biology},
+  volume={18},
+  number={3},
+  pages={e1009852},
+  year={2022},
+  doi={10.1371/journal.pcbi.1009852}
+}`,
   author: 'Héctor Carrión',
   date: '2022-03-11',
   externalLink:

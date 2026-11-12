@@ -2,22 +2,37 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
   shortTitle: 'DermDepth: Metric 3D Dermatology from a Single Image',
+  displayTitle:
+    'DermDepth: Toward Monocular Metric Scale 3D Reconstruction Models for Dermatology',
   summary:
     'Adapts a monocular 3D model with synthetic D-Synth data and small clinical datasets to recover metric lesion geometry and detailed surface normals from one image.',
   highlight:
     'Synthetic training reduces SKINL2 depth-scale overestimation from 16.1× to 1.11× while fine-tuning only 0.6% of model parameters.',
   featuredOrder: 2,
+  year: 2026,
   venue: 'MICCAI 2026',
+  topics: ['3d', 'med'],
+  isFirstAuthor: true,
+  authors: ['Héctor Carrión', 'Narges Norouzi'],
+  thumbnail: '/images/publications/dermdepth.webp',
   paperLink: 'https://papers.miccai.org/miccai-2026/paper/5594_paper.pdf',
+  arxivLink: 'https://arxiv.org/abs/2607.13010',
   codeLink: 'https://github.com/hectorcarrion/dermdepth',
   dataLink: 'https://huggingface.co/datasets/hcarrion/D-Synth',
+  modelLink: 'https://huggingface.co/hcarrion/DermDepth',
   demoLink: 'https://huggingface.co/spaces/hcarrion/DermDepth',
+  bibtex: `@inproceedings{carrion2026dermdepth,
+  title={DermDepth: Toward Monocular Metric Scale 3D Reconstruction Models for Dermatology},
+  author={Carri{\\'o}n, H{\\'e}ctor and Norouzi, Narges},
+  booktitle={Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+  year={2026}
+}`,
   author: 'Héctor Carrión',
   title:
     'DermDepth: Toward Monocular Metric Scale 3D Reconstruction Models for Dermatology, MICCAI',
   description:
     'Dermatological practice routinely involves measuring and tracking lesion size, morphology and texture, as critical components of wound or skin cancer screening, monitoring and diagnosis. To accomplish this task, practitioners often image the skin surface with commonly available off-the-shelf camera sensors. This has led to an overwhelming research focus on 2D methods while these objectives naturally benefit from 3D information. In this paper, we demonstrate that dense monocular 3D reconstructions, metric scale measurements and rich surface normal texture estimates are achievable for both dermoscopic and macroscopic cases without the need for additional hardware or multiple captures. We present DermDepth, the first single-view metric scale 3D model for the dermatological domain and D-Synth, the first synthetic dermoscopic dataset with pixel-perfect 3D information. Our experiments show training DermDepth on D-Synth corrects metric scale error from over 16× to under 1.1× for real dermoscopic data, while preserving geometric quality and increasing texture richness. Fine-tuning on a small amount of real clinical samples generalizes our method across three real-world benchmarks spanning the few mm to hundred cm range, diverse skin-tones, chronic wound cases and produces measurements broadly consistent with disease size reported in medical literature.',
-  date: '2026-09-27',
+  date: '2026-09-28',
   externalLink: 'https://papers.miccai.org/miccai-2026/paper/5594_paper.pdf',
 }
 

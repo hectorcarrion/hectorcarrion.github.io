@@ -2,15 +2,29 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 
 export const meta = {
   shortTitle: 'cgDDI: Controllable Dermatological Image Generation',
+  displayTitle:
+    'cgDDI: Controllable Generation of Diverse Dermatological Imagery for Fair and Efficient Malignancy Classification',
   summary:
     'Combines healthy-skin inpainting, rare-lesion mapping, and disease-conditioned diffusion to create 266k+ synthetic dermatology images across skin tones and improve malignancy classification.',
   highlight:
     '90.9% DDI malignancy accuracy, with equality of opportunity improving from 69.6% to 86.6% versus PatchAlign after real-data fine-tuning.',
   featuredOrder: 1,
+  year: 2026,
   venue: 'MICCAI 2026',
+  topics: ['diffusion', 'med'],
+  isFirstAuthor: true,
+  authors: ['Héctor Carrión', 'Narges Norouzi'],
+  thumbnail: '/images/publications/cgddi.webp',
   paperLink: 'https://papers.miccai.org/miccai-2026/paper/1473_paper.pdf',
+  arxivLink: 'https://arxiv.org/abs/2607.12987',
   codeLink: 'https://github.com/hectorcarrion/ControllableGenDDI',
   dataLink: 'https://huggingface.co/datasets/hcarrion/ControllableGenDDI',
+  bibtex: `@inproceedings{carrion2026cgddi,
+  title={Controllable Generation of Diverse Dermatological Imagery for Fair and Efficient Malignancy Classification},
+  author={Carri{\\'o}n, H{\\'e}ctor and Norouzi, Narges},
+  booktitle={Medical Image Computing and Computer Assisted Intervention (MICCAI)},
+  year={2026}
+}`,
   author: 'Héctor Carrión',
   title:
     'Controllable Generation of Diverse Dermatological Imagery for Fair and Efficient Malignancy Classification, MICCAI',

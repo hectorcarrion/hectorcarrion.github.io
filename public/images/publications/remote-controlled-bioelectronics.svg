@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" fill="none">
+  <rect width="800" height="440" rx="16" fill="#FFFFFF"/>
+  <!-- Left: Wireless Bioelectronic Device Schematic -->
+  <rect x="28" y="28" width="356" height="384" rx="14" fill="#FEF9EF" stroke="#E0DCD3" stroke-width="1.5"/>
+  <text x="52" y="62" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#616867" letter-spacing="0.08em">WIRELESS BIOELECTRONIC PLATFORM</text>
+
+  <!-- Remote telemetry waves -->
+  <path d="M96 118 C116 98, 144 98, 164 118" stroke="#B05A36" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+  <path d="M106 130 C120 116, 140 116, 154 130" stroke="#B05A36" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+  <circle cx="130" cy="144" r="5" fill="#B05A36"/>
+  <text x="178" y="128" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#2A2B2F">BLE Closed-Loop Control</text>
+  <text x="178" y="145" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#616867">Multi-channel dosing + onboard camera</text>
+
+  <!-- Ring device cross-section -->
+  <rect x="64" y="176" width="284" height="58" rx="12" fill="#F4EFE6" stroke="#B05A36" stroke-width="2"/>
+  <rect x="82" y="190" width="76" height="30" rx="6" fill="#2A2B2F"/>
+  <text x="120" y="209" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF9EF">PCB + BLE</text>
+  <rect x="170" y="190" width="84" height="30" rx="6" fill="#B05A36"/>
+  <text x="212" y="209" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#FEF9EF">Camera Sensor</text>
+  <rect x="266" y="190" width="66" height="30" rx="6" fill="#6A7784"/>
+  <text x="299" y="209" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">Ion Pump</text>
+
+  <!-- Fluoxetine ion delivery arrows -->
+  <line x1="140" y1="238" x2="140" y2="282" stroke="#79BD8B" stroke-width="2.2" stroke-dasharray="4 3"/>
+  <polygon points="135,279 145,279 140,288" fill="#79BD8B"/>
+  <line x1="206" y1="238" x2="206" y2="282" stroke="#B05A36" stroke-width="2.2" stroke-dasharray="4 3"/>
+  <polygon points="201,279 211,279 206,288" fill="#B05A36"/>
+  <line x1="299" y1="238" x2="299" y2="282" stroke="#79BD8B" stroke-width="2.2" stroke-dasharray="4 3"/>
+  <polygon points="294,279 304,279 299,288" fill="#79BD8B"/>
+  <text x="206" y="266" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="600" fill="#3C3D42">Fluoxetine H+ Iontophoresis</text>
+
+  <!-- Porcine wound bed -->
+  <rect x="64" y="294" width="284" height="86" rx="12" fill="#F4EFE6" stroke="#E0DCD3" stroke-width="1.5"/>
+  <path d="M126 294 Q206 336 286 294" fill="#F6EBE3" stroke="#B05A36" stroke-width="2"/>
+  <text x="206" y="352" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#2A2B2F">Porcine Excisional Wound Model</text>
+  <text x="206" y="369" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#616867">Day-3 re-epithelialization &amp; M1/M2 markers</text>
+
+  <!-- Right: Day-3 Quantitative Outcomes -->
+  <rect x="408" y="28" width="364" height="384" rx="14" fill="#FEF9EF" stroke="#E0DCD3" stroke-width="1.5"/>
+  <text x="432" y="62" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#616867" letter-spacing="0.08em">DAY-3 PORCINE OUTCOMES VS. CONTROL</text>
+
+  <!-- Metric Card 1 -->
+  <rect x="432" y="88" width="316" height="132" rx="12" fill="#FFFFFF" stroke="#E0DCD3"/>
+  <text x="452" y="116" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#3C3D42">Re-epithelialization (Early Tissue Repair)</text>
+  <text x="452" y="160" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#B05A36">+37%</text>
+  <rect x="576" y="138" width="148" height="12" rx="6" fill="#F4EFE6"/>
+  <rect x="576" y="138" width="102" height="12" rx="6" fill="#B0B6B5"/>
+  <rect x="576" y="158" width="148" height="12" rx="6" fill="#F6EBE3"/>
+  <rect x="576" y="158" width="140" height="12" rx="6" fill="#B05A36"/>
+  <text x="452" y="198" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#616867">Relative increase vs. standard-care controls</text>
+
+  <!-- Metric Card 2 -->
+  <rect x="432" y="242" width="316" height="142" rx="12" fill="#FFFFFF" stroke="#E0DCD3"/>
+  <text x="452" y="270" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#3C3D42">Macrophage M1 / M2 Ratio</text>
+  <text x="452" y="316" font-family="Georgia, serif" font-size="40" font-weight="700" fill="#2A2B2F">-33%</text>
+  <rect x="576" y="290" width="148" height="12" rx="6" fill="#F4EFE6"/>
+  <rect x="576" y="290" width="136" height="12" rx="6" fill="#B0B6B5"/>
+  <rect x="576" y="310" width="148" height="12" rx="6" fill="#EAF5ED"/>
+  <rect x="576" y="310" width="91" height="12" rx="6" fill="#79BD8B"/>
+  <text x="452" y="356" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#616867">Relative reduction vs. standard-care controls</text>
+</svg>

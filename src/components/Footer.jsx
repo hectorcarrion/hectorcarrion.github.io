@@ -1,39 +1,26 @@
 import Link from 'next/link'
-
-import { Container } from '@/components/Container'
-
-function NavLink({ href, children }) {
-  return (
-    <Link
-      href={href}
-      className="transition hover:text-teal-500 dark:hover:text-teal-400"
-    >
-      {children}
-    </Link>
-  )
-}
+import { ArrowUpIcon } from '@/components/Icons'
 
 export function Footer() {
   return (
-    <footer className="mt-32">
-      <Container.Outer>
-        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
-          <Container.Inner>
-            <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                <NavLink href="/">Home</NavLink>
-                <NavLink href="/about">About</NavLink>
-                <NavLink href="/articles">Research</NavLink>
-                <NavLink href="/projects">Projects</NavLink>
-                <NavLink href="/uses">Contact</NavLink>
-              </div>
-              <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                &copy; {new Date().getFullYear()} Héctor Carrión
-              </p>
-            </div>
-          </Container.Inner>
-        </div>
-      </Container.Outer>
+    <footer className="site-footer">
+      <div className="site-container site-footer-inner">
+        <p>
+          &copy; {new Date().getFullYear()} Dr. Héctor Carrión &middot; Last
+          updated November 2026 &middot;{' '}
+          <Link
+            href="/breedie-policy"
+            className="hover:underline"
+            style={{ color: 'inherit' }}
+          >
+            App Privacy
+          </Link>
+        </p>
+        <a href="#top" className="text-btn" style={{ marginTop: 0 }}>
+          <span>Back to top</span>
+          <ArrowUpIcon className="h-3.5 w-3.5" />
+        </a>
+      </div>
     </footer>
   )
 }

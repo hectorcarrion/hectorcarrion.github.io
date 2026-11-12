@@ -10,7 +10,7 @@ export function PublicationCard({ article, titleAs = 'h2' }) {
       <Card.Title as={titleAs}>
         <Link
           href={`/articles/${article.slug}`}
-          className="hover:text-teal-600 dark:hover:text-teal-400"
+          className="hover:text-[var(--accent)]"
         >
           {article.shortTitle || article.title}
         </Link>

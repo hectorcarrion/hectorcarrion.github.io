@@ -686,11 +686,8 @@ export default function Home({ articles }) {
               </p>
 
               <p>
-                Growing up in Puerto Rico, one of my first memories with
-                technology was helping my dad wire a thin beige DSL cable across
-                his small office so he could work remotely and spend more time
-                at home. That practical focus on building reliable systems that
-                directly help people still shapes how I lead teams, advise{' '}
+                A practical focus on building reliable systems that
+                directly contribute to real-life positive impact shapes how I lead teams, advise{' '}
                 <a
                   href="https://www.visia.ai/"
                   target="_blank"

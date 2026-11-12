@@ -10,12 +10,14 @@ import {
   SITE_URL,
 } from '@/lib/site'
 
+const OG_IMAGE_URL = `${SITE_URL}/og-image.jpg`
+
 const PERSON_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Dr. Héctor Carrión',
   url: `${SITE_URL}/`,
-  image: `${SITE_URL}/profile.png`,
+  image: OG_IMAGE_URL,
   jobTitle: 'World Model Team Lead',
   worksFor: {
     '@type': 'Organization',
@@ -51,12 +53,12 @@ const PERSON_JSON_LD = {
 export function Seo({
   title = `Dr. ${SITE_NAME} · World Models & Multimodal AI`,
   description = SITE_DESCRIPTION,
-  type = 'profile',
+  type = 'website',
 }) {
   let { asPath } = useRouter()
   let pathname = asPath.split(/[?#]/)[0]
   let url = `${SITE_URL}${pathname}`
-  let image = `${SITE_URL}/profile.png`
+  let imageAlt = `${SITE_NAME} · World Model Team Lead at Function`
 
   return (
     <Head>
@@ -72,14 +74,20 @@ export function Seo({
         key="og:description"
       />
       <meta property="og:url" content={url} key="og:url" />
-      <meta property="og:image" content={image} key="og:image" />
+      <meta property="og:image" content={OG_IMAGE_URL} key="og:image" />
+      <meta
+        property="og:image:secure_url"
+        content={OG_IMAGE_URL}
+        key="og:image:secure_url"
+      />
+      <meta
+        property="og:image:type"
+        content="image/jpeg"
+        key="og:image:type"
+      />
       <meta property="og:image:width" content="800" key="og:image:width" />
       <meta property="og:image:height" content="800" key="og:image:height" />
-      <meta
-        property="og:image:alt"
-        content={`${SITE_NAME} - World Model Team Lead at Function`}
-        key="og:image:alt"
-      />
+      <meta property="og:image:alt" content={imageAlt} key="og:image:alt" />
       <meta name="twitter:card" content="summary" key="twitter:card" />
       <meta name="twitter:title" content={title} key="twitter:title" />
       <meta
@@ -87,10 +95,10 @@ export function Seo({
         content={description}
         key="twitter:description"
       />
-      <meta name="twitter:image" content={image} key="twitter:image" />
+      <meta name="twitter:image" content={OG_IMAGE_URL} key="twitter:image" />
       <meta
         name="twitter:image:alt"
-        content={`${SITE_NAME} - World Model Team Lead at Function`}
+        content={imageAlt}
         key="twitter:image:alt"
       />
       <script

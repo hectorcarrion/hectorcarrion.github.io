@@ -1,27 +1,9 @@
-import fs from 'fs'
-import path from 'path'
 import nextMDX from '@next/mdx'
 import remarkGfm from 'remark-gfm'
 import rehypePrism from '@mapbox/rehype-prism'
+import { syncLatestCvPdf } from './scripts/sync-cv.mjs'
 
-const resumeModule = fs.readFileSync(
-  path.join(process.cwd(), 'src/lib/resume.js'),
-  'utf8'
-)
-const filenameMatch = resumeModule.match(
-  /RESUME_FILENAME\s*=\s*['"]([^'"]+)['"]/
-)
-if (filenameMatch) {
-  const rootResumePath = path.join(process.cwd(), filenameMatch[1])
-  const publicResumePath = path.join(
-    process.cwd(),
-    'public/assets/cv_hector_carrion.pdf'
-  )
-  if (fs.existsSync(rootResumePath)) {
-    fs.mkdirSync(path.dirname(publicResumePath), { recursive: true })
-    fs.copyFileSync(rootResumePath, publicResumePath)
-  }
-}
+syncLatestCvPdf()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

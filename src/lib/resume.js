@@ -1,5 +1,5 @@
-// Single source of truth for the CV / resume PDF link.
-// Source lives in cv/cv_hector_carrion.tex (`cd cv && make` builds and copies to public/assets/).
-export const RESUME_FILENAME = 'Hector Carrion Resume Nov 2026.pdf'
-
+// Single source of truth for the CV / resume PDF URL served by the website.
+// On every build (`scripts/sync-cv.mjs`), the newest `.pdf` uploaded to the
+// repo root (or `public/assets/cv_hector_carrion.pdf`) is automatically synced
+// to `public/assets/cv_hector_carrion.pdf` — no code edits required.
 export const RESUME_URL = '/assets/cv_hector_carrion.pdf'

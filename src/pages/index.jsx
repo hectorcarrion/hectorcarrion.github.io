@@ -89,10 +89,10 @@ const NEWS_ITEMS = [
     icon: TrophyOutlineIcon,
     content: (
       <>
-        Two first-author papers &mdash; <a href="#dermdepth">DermDepth</a>{' '}
-        (metric 3D dermatology) and <a href="#cgddi">cgDDI</a> (controllable
-        generative fairness) &mdash; presented at <strong>MICCAI 2026</strong>,
-        with open weights,{' '}
+        Presented two first-author papers at <strong>MICCAI 2026</strong>:{' '}
+        <a href="#dermdepth">DermDepth</a> (metric 3D dermatology) and{' '}
+        <a href="#cgddi">cgDDI</a> (controllable generative fairness), with open
+        weights,{' '}
         <a
           href="https://huggingface.co/datasets/hcarrion/D-Synth"
           target="_blank"
@@ -492,8 +492,7 @@ export default function Home({ articles }) {
             <p className="hero-lede" ref={ledeRef}>
               I build <strong>multimodal world models</strong> that learn how
               physical and biological systems change across space, time, and
-              interventions &mdash; from 3D autonomy to longitudinal human
-              health.
+              interventions, spanning 3D autonomy and longitudinal human health.
             </p>
 
             <div className="hero-cta">
@@ -638,9 +637,9 @@ export default function Home({ articles }) {
                   Tera AI
                 </a>
                 , where I led <a href="#tardis-stride">TARDIS &amp; STRIDE</a>{' '}
-                (with Pietro Perona and Jitendra Malik) &mdash; a 1B-parameter
+                (with Pietro Perona and Jitendra Malik), a 1B-parameter
                 spatio-temporal world model for street-view synthesis,
-                georeferencing, and action prediction &mdash; and built
+                georeferencing, and action prediction. Earlier, I built
                 multimodal video-image encoders and simulation systems at{' '}
                 <a
                   href="https://research.google/"
@@ -690,9 +689,8 @@ export default function Home({ articles }) {
                 Growing up in Puerto Rico, one of my first memories with
                 technology was helping my dad wire a thin beige DSL cable across
                 his small office so he could work remotely and spend more time
-                at home. That practical view &mdash; building systems that hold
-                up in the real world and directly help people &mdash; still
-                shapes how I lead teams, advise{' '}
+                at home. That practical focus on building reliable systems that
+                directly help people still shapes how I lead teams, advise{' '}
                 <a
                   href="https://www.visia.ai/"
                   target="_blank"
@@ -1009,8 +1007,8 @@ export default function Home({ articles }) {
                       className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
                     >
                       D-Synth &amp; DermDepth
-                    </a>{' '}
-                    &mdash; synthetic 3D dermatology dataset, weights &amp; Space
+                    </a>
+                    : synthetic 3D dermatology dataset, weights &amp; Space
                   </span>
                 </li>
                 <li>
@@ -1023,8 +1021,8 @@ export default function Home({ articles }) {
                       className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
                     >
                       ControllableGenDDI
-                    </a>{' '}
-                    &mdash; 266,136 skin-tone-balanced synthetic images
+                    </a>
+                    : 266,136 skin-tone-balanced synthetic images
                   </span>
                 </li>
                 <li>
@@ -1037,8 +1035,8 @@ export default function Home({ articles }) {
                       className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
                     >
                       TARDIS &amp; STRIDE
-                    </a>{' '}
-                    &mdash; 1B spatio-temporal world model &amp; street-view graph
+                    </a>
+                    : 1B spatio-temporal world model &amp; street-view graph
                   </span>
                 </li>
                 <li>
@@ -1051,8 +1049,8 @@ export default function Home({ articles }) {
                       className="font-medium text-[var(--text)] hover:text-[var(--accent)]"
                     >
                       FEDD DDI Masks
-                    </a>{' '}
-                    &mdash; annotated lesion segmentation masks
+                    </a>
+                    : annotated lesion segmentation masks
                   </span>
                 </li>
               </ul>

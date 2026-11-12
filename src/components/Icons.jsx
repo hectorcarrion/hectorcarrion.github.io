@@ -101,14 +101,29 @@ export function LinkedInBrandIcon(props) {
   )
 }
 
+/**
+ * Custom flat-outline monochrome Hugging Face 🤗 glyph
+ * (upward-arched happy eyes, warm smile, and two open-palmed hugging hands)
+ */
 export function HuggingFaceIcon(props) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
-      <circle cx="12" cy="12" r="9" />
-      <circle cx="9" cy="10" r="1" fill="currentColor" stroke="none" />
-      <circle cx="15" cy="10" r="1" fill="currentColor" stroke="none" />
-      <path d="M8.5 14c.8 1.4 2.1 2.2 3.5 2.2s2.7-.8 3.5-2.2" />
-      <path d="M5.5 14.5c-1.2-.2-2 .7-1.6 1.8.4 1 1.8 1.5 3.1 1M18.5 14.5c1.2-.2 2 .7 1.6 1.8-.4 1-1.8 1.5-3.1 1" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M5.1 12.4A7.3 7.3 0 1 1 18.9 12.4" />
+      <path d="M9.6 17a7.3 7.3 0 0 0 4.8 0" />
+      <path d="M8.3 8.8c.45-.9 1.55-.9 2 0" />
+      <path d="M13.7 8.8c.45-.9 1.55-.9 2 0" />
+      <path d="M9.5 11.4c.65 1.45 4.35 1.45 5 0" />
+      <path d="M8.8 16.2V13.6a1.05 1.05 0 0 0-2.05-.3l-.45 1.45-1.65-1.2a1 1 0 0 0-1.35 1.45l1.2 1.25-1.55-.45a.95.95 0 0 0-.6 1.8l2.55 1.25c1.65.8 3.9.15 3.9-1.65Z" />
+      <path d="M15.2 16.2V13.6a1.05 1.05 0 0 1 2.05-.3l.45 1.45 1.65-1.2a1 1 0 0 1 1.35 1.45l-1.2 1.25 1.55-.45a.95.95 0 0 1 .6 1.8l-2.55 1.25c-1.65.8-3.9.15-3.9-1.65Z" />
     </svg>
   )
 }
@@ -120,6 +135,85 @@ export function OrbitCubeIcon(props) {
       <path d="m3.5 6.25 6.5 3.75 6.5-3.75M10 10v7.5" />
     </svg>
   )
+}
+
+/* ===== Topic Glyphs (matching CV TiKZ symbol glyphs) ===== */
+
+export function WorldModelGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <circle cx="10" cy="10" r="7.2" />
+      <path d="M2.8 10h14.4" />
+      <ellipse cx="10" cy="10" rx="3.4" ry="7.2" />
+    </svg>
+  )
+}
+
+export function ThreeDVisionGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="m10 2.4 6.6 3.8v7.6L10 17.6l-6.6-3.8V6.2L10 2.4Z" />
+      <path d="m3.4 6.2 6.6 3.8 6.6-3.8M10 10v7.6" />
+    </svg>
+  )
+}
+
+export function MedAIGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M2.3 10.2h3.6l1.9-5.4 2.5 10.4 2.1-6.8 1.5 1.8h3.8" />
+    </svg>
+  )
+}
+
+export function JepaGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M5.2 13.6 10 5.4l4.8 8.2M5.2 13.6h9.6" />
+      <circle cx="5.2" cy="13.6" r="2.1" fill="var(--surface)" />
+      <circle cx="10" cy="5.4" r="2.1" fill="var(--surface)" />
+      <circle cx="14.8" cy="13.6" r="2.2" fill="currentColor" />
+    </svg>
+  )
+}
+
+export function DiffusionGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M10 2.5 11.9 8.1 17.5 10l-5.6 1.9L10 17.5 8.1 11.9 2.5 10l5.6-1.9L10 2.5Z" />
+      <circle cx="15.3" cy="4.7" r="1.15" fill="currentColor" stroke="none" />
+      <circle cx="4.7" cy="15.2" r="1.05" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+export function AutonomyGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M2.8 13.2v-2.6l2.3-2.7h6.9l2.7 2.7 2.5.5v2.1H2.8Z" />
+      <circle cx="6.2" cy="13.8" r="1.7" fill="var(--surface)" />
+      <circle cx="13.8" cy="13.8" r="1.7" fill="var(--surface)" />
+      <path d="M7.2 5.3a4.6 4.6 0 0 1 5.6 0" />
+    </svg>
+  )
+}
+
+export function BioelectronicsGlyph(props) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>
+      <path d="M11.1 2.6 5.8 10.4h4.1l-.9 7 5.2-7.8h-4.1l1-7Z" />
+    </svg>
+  )
+}
+
+export const TOPIC_GLYPH_META = {
+  world: { label: 'World Model', Icon: WorldModelGlyph },
+  '3d': { label: '3D Vision', Icon: ThreeDVisionGlyph },
+  diffusion: { label: 'Diffusion', Icon: DiffusionGlyph },
+  med: { label: 'Med AI', Icon: MedAIGlyph },
+  jepa: { label: 'Self-Supervised / JEPA', Icon: JepaGlyph },
+  autonomy: { label: 'Autonomy', Icon: AutonomyGlyph },
+  bio: { label: 'Bioelectronics', Icon: BioelectronicsGlyph },
 }
 
 export function LocationPinIcon(props) {

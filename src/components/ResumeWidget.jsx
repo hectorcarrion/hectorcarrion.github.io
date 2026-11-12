@@ -12,7 +12,7 @@ import logoApple from '@/images/logos/apple.svg'
 
 export const WORK_AND_SCHOOL_ROLES = [
   {
-    company: 'Function Health',
+    company: 'Function',
     href: 'https://www.functionhealth.com/',
     title: 'World Model Team Lead',
     logo: logoFunction,
@@ -75,7 +75,7 @@ export function ResumeWidget() {
       <div className="resume-widget-head">
         <h3 className="resume-widget-title">
           <BriefcaseLineIcon className="h-[18px] w-[18px] text-[var(--accent)]" />
-          <span>Work &amp; School</span>
+          <span>Work &amp; school</span>
         </h3>
         <span className="resume-widget-badge">6+ YoE</span>
       </div>
@@ -122,7 +122,7 @@ export function ResumeWidget() {
         className="btn-pill btn-pill-ghost btn-pill-sm mt-5 w-full"
       >
         <DownloadFileIcon className="h-4 w-4" />
-        <span>Download Full CV (PDF)</span>
+        <span>Download full CV (PDF)</span>
       </a>
     </div>
   )

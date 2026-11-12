@@ -30,12 +30,12 @@ export default function Document() {
       <Head>
         <meta
           name="theme-color"
-          content="#fef9ef"
+          content="#FEF9EF"
           media="(prefers-color-scheme: light)"
         />
         <meta
           name="theme-color"
-          content="#16171a"
+          content="#1B1C1F"
           media="(prefers-color-scheme: dark)"
         />
         <link rel="icon" href="/favicon.ico?v=2026-10-round" sizes="any" />
@@ -46,8 +46,9 @@ export default function Document() {
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Function Typography: Financier Display -> Playfair Display (official alternate), FT Base -> Inter, DM Mono */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@300..700&family=Playfair+Display:ital,wght@0,400..600;1,400..500&display=swap"
           rel="stylesheet"
         />
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />

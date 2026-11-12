@@ -4,13 +4,18 @@
 @import 'tailwindcss/utilities';
 
 /* =====================================================================
-   Dr. Héctor Carrión — Function Health Editorial Design System
-   Official Function tokens:
-     --beige: #FEF9EF | --cream: #F5EEE1 | --dark-cream: #D1C9BF
-     --midnight: #2A2B2F | --gray: #515151 | --light-gray: #737373
-     --orange: #B05A36 | --orange-10p: #F6E9DC
-     --light-green: #79BD8B | --medium-green: #4C9A62
-     --dark-green: #13411F | --green-10p: #F1F3E5
+   Dr. Héctor Carrión — Function Design System (Notion Official Palette)
+   Primary Neutrals:
+     Khaki 50 (#FEF9EF) | Khaki 100 (#F4EFE6) | Khaki 150 (#E0DCD3)
+     Gray 800 (#3C3D42) | Gray 850 / Midnight (#2A2B2F)
+   Clay & Grays:
+     Clay 500 (#B05A36) | Clay 400..100 (#B5623E..#C07858)
+     Blue Gray (#6A7784) | Gray 300 (#B0B6B5) | Gray 500 (#838C8B) | Gray 600 (#616867)
+   Product Colors:
+     Green 500 (#79BD8B) | Blue 500 (#488AD5) | Purple 500 (#786BC4)
+     Yellow 500 (#D3B35B) | Red 500 (#C05858)
+   Typography:
+     Financier Display / Playfair Display (headline serif) | FT Base / Inter (body) | DM Mono
    ===================================================================== */
 
 :root {
@@ -18,30 +23,35 @@
 
   --bg: #fef9ef;
   --surface: #ffffff;
-  --surface-2: #f5eee1;
-  --surface-3: #ebe2d2;
+  --surface-2: #f4efe6;
+  --surface-3: #e0dcd3;
   --text: #2a2b2f;
-  --text-2: #515151;
-  --muted: #6e6a63;
-  --border: #e6dfd2;
-  --border-strong: #d1c9bf;
+  --text-2: #3c3d42;
+  --muted: #616867;
+  --border: #e0dcd3;
+  --border-strong: #c8c3b9;
 
   --accent: #b05a36;
-  --accent-2: #8e4122;
-  --accent-ink: #934424;
-  --accent-soft: #f6e9dc;
+  --accent-2: #8c4325;
+  --accent-ink: #8c4325;
+  --accent-soft: #f6ebe3;
 
-  --bio-green: #4c9a62;
-  --bio-green-ink: #13411f;
-  --bio-green-soft: #f1f3e5;
+  --product-green: #79bd8b;
+  --product-green-ink: #2b683d;
+  --product-green-soft: #eaf5ed;
+  --product-blue: #488ad5;
+  --product-purple: #786bc4;
+  --product-yellow: #d3b35b;
+  --blue-gray: #6a7784;
 
-  --gold: #1e5b32;
-  --gold-soft: #f1f3e5;
+  --gold: #2b683d;
+  --gold-soft: #eaf5ed;
 
   --figure-bg: #ffffff;
   --canvas-rgb: 176, 90, 54;
-  --canvas-rgb-2: 76, 154, 98;
-  --canvas-muted-rgb: 110, 106, 99;
+  --canvas-rgb-2: 121, 189, 139;
+  --canvas-blue-rgb: 72, 138, 213;
+  --canvas-muted-rgb: 106, 119, 132;
 
   --shadow-sm: 0 1px 2px rgba(42, 43, 47, 0.05), 0 1px 1px rgba(42, 43, 47, 0.03);
   --shadow-md: 0 10px 28px -14px rgba(42, 43, 47, 0.2);
@@ -51,9 +61,9 @@
   --radius: 16px;
   --radius-lg: 22px;
 
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-sans: 'FT Base', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Financier Display', 'Playfair Display', Georgia, serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SF Pro', Menlo, Consolas, monospace;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --nav-h: 64px;
@@ -63,32 +73,37 @@
 :root.dark {
   color-scheme: dark;
 
-  --bg: #16171a;
-  --surface: #202126;
-  --surface-2: #2a2b2f;
-  --surface-3: #34363c;
+  --bg: #1b1c1f;
+  --surface: #2a2b2f;
+  --surface-2: #34363b;
+  --surface-3: #3c3d42;
   --text: #fef9ef;
-  --text-2: #d1c9bf;
-  --muted: #9a948b;
-  --border: #2e3036;
-  --border-strong: #3f4149;
+  --text-2: #e0dcd3;
+  --muted: #b0b6b5;
+  --border: #3c3d42;
+  --border-strong: #53565c;
 
-  --accent: #de835c;
-  --accent-2: #efb091;
-  --accent-ink: #f4b79a;
-  --accent-soft: rgba(222, 131, 92, 0.16);
+  --accent: #c07858;
+  --accent-2: #e09a7b;
+  --accent-ink: #f0b296;
+  --accent-soft: rgba(192, 120, 88, 0.18);
 
-  --bio-green: #79bd8b;
-  --bio-green-ink: #a3dcb2;
-  --bio-green-soft: rgba(121, 189, 139, 0.15);
+  --product-green: #79bd8b;
+  --product-green-ink: #9bd6aa;
+  --product-green-soft: rgba(121, 189, 139, 0.16);
+  --product-blue: #6aa4e8;
+  --product-purple: #9a8ee0;
+  --product-yellow: #dfc270;
+  --blue-gray: #8fa0b0;
 
-  --gold: #95d5a6;
-  --gold-soft: rgba(121, 189, 139, 0.15);
+  --gold: #9bd6aa;
+  --gold-soft: rgba(121, 189, 139, 0.16);
 
   --figure-bg: #faf6ee;
-  --canvas-rgb: 222, 131, 92;
+  --canvas-rgb: 192, 120, 88;
   --canvas-rgb-2: 121, 189, 139;
-  --canvas-muted-rgb: 168, 162, 152;
+  --canvas-blue-rgb: 106, 164, 232;
+  --canvas-muted-rgb: 176, 182, 181;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
   --shadow-md: 0 12px 30px -14px rgba(0, 0, 0, 0.7);
@@ -182,7 +197,7 @@ body.modal-open {
   height: 2px;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--accent), var(--bio-green));
+  background: linear-gradient(90deg, var(--accent), var(--product-green));
   pointer-events: none;
 }
 
@@ -197,7 +212,7 @@ body.modal-open {
 
 .site-nav.is-scrolled,
 .site-nav.menu-open {
-  background: rgba(254, 249, 239, 0.85);
+  background: rgba(254, 249, 239, 0.86);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
   backdrop-filter: saturate(180%) blur(16px);
   box-shadow: 0 1px 0 var(--border);
@@ -207,7 +222,7 @@ body.modal-open {
 :root[data-theme='dark'] .site-nav.menu-open,
 :root.dark .site-nav.is-scrolled,
 :root.dark .site-nav.menu-open {
-  background: rgba(22, 23, 26, 0.85);
+  background: rgba(27, 28, 31, 0.86);
 }
 
 .site-nav-inner {
@@ -233,24 +248,23 @@ body.modal-open {
   color: var(--text);
 }
 
-.brand-mark {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  letter-spacing: 0.02em;
-  color: #fef9ef;
-  background: linear-gradient(135deg, #b05a36, #8e4122);
-  box-shadow: 0 8px 18px -8px rgba(176, 90, 54, 0.65);
+.brand-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, var(--accent), var(--product-green));
+  box-shadow: 0 6px 16px -6px rgba(176, 90, 54, 0.5);
+  overflow: hidden;
+  flex: none;
 }
 
-:root[data-theme='dark'] .brand-mark,
-:root.dark .brand-mark {
-  color: #16171a;
-  background: linear-gradient(135deg, #de835c, #efb091);
+.brand-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
 }
 
 .brand-name {
@@ -352,7 +366,7 @@ body.modal-open {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: calc(var(--nav-h) + 72px) 0 48px;
+  padding: calc(var(--nav-h) + 68px) 0 54px;
 }
 
 .hero-canvas {
@@ -388,8 +402,8 @@ body.modal-open {
   width: 72%;
   height: 115%;
   pointer-events: none;
-  background: radial-gradient(closest-side at 62% 42%, rgba(var(--canvas-rgb), 0.14), transparent 72%),
-    radial-gradient(closest-side at 80% 72%, rgba(var(--canvas-rgb-2), 0.11), transparent 72%);
+  background: radial-gradient(closest-side at 62% 42%, rgba(var(--canvas-rgb), 0.13), transparent 72%),
+    radial-gradient(closest-side at 80% 72%, rgba(var(--canvas-rgb-2), 0.1), transparent 72%);
   animation: glow-drift 18s ease-in-out infinite alternate;
 }
 
@@ -406,7 +420,7 @@ body.modal-open {
   pointer-events: none;
   background: radial-gradient(
     560px circle at var(--spot-x, 70%) var(--spot-y, 40%),
-    rgba(var(--canvas-rgb), 0.09),
+    rgba(var(--canvas-rgb), 0.08),
     transparent 65%
   );
   opacity: 0;
@@ -431,9 +445,9 @@ body.modal-open {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.68fr);
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
   align-items: center;
-  gap: 54px;
+  gap: 52px;
 }
 
 .status-badge {
@@ -471,7 +485,7 @@ body.modal-open {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--bio-green);
+  background: var(--product-green);
   flex: none;
 }
 
@@ -480,7 +494,7 @@ body.modal-open {
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  background: var(--bio-green);
+  background: var(--product-green);
   opacity: 0.35;
   animation: ping 2.2s var(--ease) infinite;
 }
@@ -501,9 +515,9 @@ body.modal-open {
   margin-top: 22px;
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(3.2rem, 7.2vw, 5.65rem);
-  line-height: 0.96;
-  letter-spacing: -0.015em;
+  font-size: clamp(3rem, 6.4vw, 4.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
   color: var(--text);
 }
 
@@ -511,38 +525,23 @@ body.modal-open {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
-  padding: 0.08em 0.14em 0.14em 0;
-  margin: -0.08em -0.04em -0.14em 0;
+  padding: 0.08em 0.06em 0.14em 0;
+  margin: -0.08em 0 -0.14em 0;
 }
 
 .hero-name .word > span {
   display: inline-block;
 }
 
+/* Non-italicized surname in Function Clay 500 */
 .hero-name-accent {
-  font-style: italic;
-  padding-right: 0.08em;
-  background: linear-gradient(100deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent) 100%);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: text-flow 10s ease-in-out infinite;
-}
-
-@keyframes text-flow {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  font-style: normal;
+  color: var(--accent);
 }
 
 .hero-role {
   margin-top: 18px;
-  font-size: 1.03rem;
+  font-size: 1.02rem;
   line-height: 1.6;
   color: var(--text-2);
 }
@@ -569,17 +568,14 @@ body.modal-open {
 .hero-lede {
   margin-top: 14px;
   max-width: 35em;
-  font-size: 1.13rem;
-  line-height: 1.62;
+  font-size: 1.1rem;
+  line-height: 1.64;
   color: var(--text-2);
 }
 
-.hero-lede em,
-.about-text em {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.22em;
-  line-height: 1;
+.hero-lede strong,
+.about-text strong {
+  font-weight: 600;
   color: var(--text);
 }
 
@@ -590,12 +586,13 @@ body.modal-open {
   gap: 12px;
 }
 
+/* 48px XLarge pill button per Function Oct 29 UI Kit spec */
 .btn-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  height: 46px;
+  height: 48px;
   padding: 0 22px;
   border-radius: 999px;
   border: 1.5px solid transparent;
@@ -607,7 +604,6 @@ body.modal-open {
     background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Function Health signature primary CTA: burnt terracotta (#B05A36) -> midnight (#2A2B2F) */
 .btn-pill-primary {
   position: relative;
   overflow: hidden;
@@ -622,7 +618,7 @@ body.modal-open {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(115deg, transparent 35%, rgba(254, 249, 239, 0.24) 50%, transparent 65%);
+  background: linear-gradient(115deg, transparent 35%, rgba(254, 249, 239, 0.22) 50%, transparent 65%);
   transform: translateX(-120%);
   transition: transform 0.9s var(--ease);
   pointer-events: none;
@@ -641,14 +637,14 @@ body.modal-open {
 
 :root[data-theme='dark'] .btn-pill-primary,
 :root.dark .btn-pill-primary {
-  color: #16171a;
-  background: #de835c;
+  color: #1b1c1f;
+  background: #c07858;
   box-shadow: 0 12px 24px -14px rgba(0, 0, 0, 0.65);
 }
 
 :root[data-theme='dark'] .btn-pill-primary:hover,
 :root.dark .btn-pill-primary:hover {
-  color: #16171a;
+  color: #1b1c1f;
   background: #fef9ef;
 }
 
@@ -722,10 +718,11 @@ body.modal-open {
   transform: translate(-50%, 0);
 }
 
+/* Portrait + 5 Floating Domain Chips */
 .hero-portrait {
   position: relative;
   justify-self: center;
-  width: min(330px, 100%);
+  width: min(320px, 100%);
 }
 
 .portrait-ring {
@@ -736,7 +733,7 @@ body.modal-open {
   background: conic-gradient(
     from var(--ring-angle),
     var(--accent),
-    var(--bio-green),
+    var(--product-green),
     rgba(var(--canvas-rgb-2), 0.14) 45%,
     rgba(var(--canvas-rgb), 0.14) 70%,
     var(--accent)
@@ -782,16 +779,16 @@ body.modal-open {
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 13px;
+  gap: 6px;
+  padding: 6px 11px;
   border-radius: 999px;
-  font: 500 0.75rem/1 var(--font-mono);
+  font: 500 0.72rem/1 var(--font-mono);
   white-space: nowrap;
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   box-shadow: var(--shadow-md);
-  animation: float 7s ease-in-out infinite;
+  animation: float 7.5s ease-in-out infinite;
 }
 
 .portrait-chip svg {
@@ -799,15 +796,39 @@ body.modal-open {
   flex: none;
 }
 
-.chip-top {
-  top: 7%;
-  right: -8%;
+/* 5 balanced tags around the circular portrait */
+.chip-1 {
+  top: 2%;
+  right: -12%;
+  animation-delay: 0s;
 }
 
-.chip-bottom {
-  bottom: 9%;
-  left: -10%;
-  animation-delay: -3.5s;
+.chip-2 {
+  top: 43%;
+  right: -18%;
+  animation-delay: -1.6s;
+}
+
+.chip-3 {
+  bottom: 4%;
+  right: -6%;
+  animation-delay: -3.2s;
+}
+
+.chip-4 {
+  bottom: 12%;
+  left: -13%;
+  animation-delay: -4.8s;
+}
+
+.chip-5 {
+  top: 16%;
+  left: -14%;
+  animation-delay: -6.2s;
+}
+
+.portrait-chips-mobile {
+  display: none;
 }
 
 @keyframes float {
@@ -816,7 +837,7 @@ body.modal-open {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 
@@ -847,7 +868,7 @@ body.modal-open {
 .section-index {
   padding: 5px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(var(--canvas-rgb), 0.36);
+  border: 1px solid rgba(var(--canvas-rgb), 0.35);
   background: var(--accent-soft);
   font: 500 0.75rem/1 var(--font-mono);
   letter-spacing: 0.06em;
@@ -857,9 +878,9 @@ body.modal-open {
 .section-title {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(2.3rem, 4.6vw, 3.2rem);
-  line-height: 1;
-  letter-spacing: -0.01em;
+  font-size: clamp(2.15rem, 4.2vw, 2.95rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
   color: var(--text);
 }
 
@@ -872,8 +893,8 @@ body.modal-open {
 }
 
 .about-text p {
-  font-size: 1.04rem;
-  line-height: 1.8;
+  font-size: 1.02rem;
+  line-height: 1.78;
   color: var(--text-2);
 }
 
@@ -993,6 +1014,7 @@ body.modal-open {
   text-transform: uppercase;
   color: var(--accent-ink);
   background: var(--accent-soft);
+  border: 1px solid rgba(var(--canvas-rgb), 0.25);
   padding: 5px 9px;
   border-radius: 999px;
 }
@@ -1296,18 +1318,70 @@ a.resume-company:hover {
 .badge-venue {
   color: var(--accent-ink);
   background: var(--accent-soft);
+  border: 1px solid rgba(var(--canvas-rgb), 0.24);
 }
 
 .badge-preprint {
   color: var(--text-2);
   background: var(--surface-2);
-  box-shadow: inset 0 0 0 1px var(--border);
+  border: 1px solid var(--border-strong);
 }
 
 .badge-highlight {
   font-weight: 600;
   color: var(--gold);
   background: var(--gold-soft);
+  border: 1px solid rgba(121, 189, 139, 0.35);
+}
+
+/* Symbol-only topic glyph pills on publications */
+.pub-topic-glyphs {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.topic-glyph {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.topic-glyph:hover {
+  color: var(--accent);
+  border-color: rgba(var(--canvas-rgb), 0.45);
+  background: var(--accent-soft);
+}
+
+.topic-glyph::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  padding: 3px 7px;
+  border-radius: 6px;
+  font: 500 0.68rem/1.3 var(--font-mono);
+  white-space: nowrap;
+  color: var(--bg);
+  background: var(--text);
+  opacity: 0;
+  transform: translate(-50%, 3px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 20;
+}
+
+.topic-glyph:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .pub-title {
@@ -1438,7 +1512,7 @@ a.resume-company:hover {
   display: grid;
   place-items: center;
   padding: 20px;
-  background: rgba(22, 23, 26, 0.58);
+  background: rgba(27, 28, 31, 0.58);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   animation: fade-in 0.2s ease;
@@ -1465,7 +1539,7 @@ a.resume-company:hover {
 .modal-head h3 {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 1.75rem;
+  font-size: 1.7rem;
   line-height: 1;
   margin: 0;
 }
@@ -1702,24 +1776,48 @@ a.resume-company:hover {
 @media (max-width: 980px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
   }
 
   .hero-portrait {
     order: -1;
     justify-self: start;
-    width: 205px;
+    width: 100%;
+    max-width: 360px;
   }
 
-  .chip-top {
-    right: -44%;
-    top: 14%;
+  .hero-portrait .portrait-ring {
+    width: 190px;
   }
 
-  .chip-bottom {
-    left: auto;
-    right: -42%;
-    bottom: 18%;
+  .hero-portrait .portrait-chip {
+    display: none;
+  }
+
+  .portrait-chips-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 16px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .portrait-chips-mobile li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font: 500 0.72rem/1 var(--font-mono);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border-strong);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .portrait-chips-mobile li svg {
+    color: var(--accent);
   }
 
   .hero-canvas {
@@ -1796,7 +1894,7 @@ a.resume-company:hover {
   }
 
   .hero {
-    padding: calc(var(--nav-h) + 38px) 0 24px;
+    padding: calc(var(--nav-h) + 36px) 0 24px;
   }
 
   .site-section {
@@ -1840,6 +1938,10 @@ a.resume-company:hover {
   .pub-body {
     padding: 20px;
   }
+
+  .pub-topic-glyphs {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1848,22 +1950,12 @@ a.resume-company:hover {
     padding-inline: 16px;
   }
 
-  .hero-portrait {
+  .hero-portrait .portrait-ring {
     width: 155px;
   }
 
-  .chip-top {
-    right: -76%;
-    top: 18%;
-  }
-
-  .chip-bottom {
-    right: -68%;
-    bottom: 20%;
-  }
-
   .hero-name {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 
   .pub-filter {

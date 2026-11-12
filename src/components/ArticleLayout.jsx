@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
 import { Seo } from '@/components/Seo'
 import { PublicationLinks } from '@/components/PublicationLinks'
-import { SparklesStarIcon } from '@/components/Icons'
+import { SparklesStarIcon, TOPIC_GLYPH_META } from '@/components/Icons'
 
 export function ArticleLayout({ children, meta, isRssFeed = false }) {
   if (isRssFeed) {
@@ -57,6 +57,25 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
                     <SparklesStarIcon className="h-3 w-3" />
                     <span>{meta.badgeNote}</span>
                   </span>
+                )}
+                {meta.topics && meta.topics.length > 0 && (
+                  <div className="inline-flex items-center gap-1.5">
+                    {meta.topics.map((key) => {
+                      const entry = TOPIC_GLYPH_META[key]
+                      if (!entry) return null
+                      const Icon = entry.Icon
+                      return (
+                        <span
+                          key={key}
+                          className="topic-glyph"
+                          data-tip={entry.label}
+                          title={entry.label}
+                        >
+                          <Icon className="h-[14px] w-[14px]" />
+                        </span>
+                      )
+                    })}
+                  </div>
                 )}
                 <time
                   dateTime={meta.date}

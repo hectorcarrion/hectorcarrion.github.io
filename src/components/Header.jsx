@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
@@ -11,6 +12,7 @@ import {
   SunIcon,
   XMarkIcon,
 } from '@/components/Icons'
+import navPortraitImage from '@/images/portrait.webp'
 
 const SECTIONS = [
   { id: 'about', label: 'About' },
@@ -184,7 +186,15 @@ export function Header() {
             className="brand"
             aria-label="Héctor Carrión, back to top"
           >
-            <span className="brand-mark">HC</span>
+            <span className="brand-avatar">
+              <Image
+                src={navPortraitImage}
+                width={72}
+                height={72}
+                alt="Dr. Héctor Carrión"
+                priority
+              />
+            </span>
             <span className="brand-name">Héctor Carrión</span>
           </Link>
 

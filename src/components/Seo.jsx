@@ -19,7 +19,7 @@ const PERSON_JSON_LD = {
   jobTitle: 'World Model Team Lead',
   worksFor: {
     '@type': 'Organization',
-    name: 'Function Health',
+    name: 'Function',
     url: 'https://www.functionhealth.com/',
   },
   alumniOf: [
@@ -38,12 +38,12 @@ const PERSON_JSON_LD = {
   ],
   knowsAbout: [
     'World Models',
-    'Spatio-Temporal Representation Learning',
+    'JEPA',
+    '3D Vision',
+    'Diffusion Models',
+    'Medical AI',
     'Self-Supervised Learning',
-    'Multimodal Foundation Models',
-    '3D Computer Vision',
-    'Generative AI',
-    'Longitudinal Health Forecasting',
+    'Embodied Autonomy',
   ],
   sameAs: [GITHUB_URL, HUGGINGFACE_URL, LINKEDIN_URL],
 }
@@ -77,7 +77,7 @@ export function Seo({
       <meta property="og:image:height" content="800" key="og:image:height" />
       <meta
         property="og:image:alt"
-        content={`${SITE_NAME} - World Model Team Lead at Function Health`}
+        content={`${SITE_NAME} - World Model Team Lead at Function`}
         key="og:image:alt"
       />
       <meta name="twitter:card" content="summary" key="twitter:card" />
@@ -90,7 +90,7 @@ export function Seo({
       <meta name="twitter:image" content={image} key="twitter:image" />
       <meta
         name="twitter:image:alt"
-        content={`${SITE_NAME} - World Model Team Lead at Function Health`}
+        content={`${SITE_NAME} - World Model Team Lead at Function`}
         key="twitter:image:alt"
       />
       <script

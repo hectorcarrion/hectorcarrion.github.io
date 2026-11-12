@@ -2,17 +2,17 @@ import { useEffect, useRef } from 'react'
 
 /**
  * Dual-layer 3D Multimodal World-Modeling Canvas:
- * - Back half of the orbit renders behind the portrait; front half renders in front.
- * - Six unmistakable 3D scientific objects orbit the outer ring (zero camera frustums):
- *     1. 3D Wireframe World Globe (world models & spatial state)
- *     2. 3D Rotating DNA Double Helix (genomics & multi-omic health)
- *     3. Rounded Biomarker / ECG Pulse Capsule (longitudinal physiology)
- *     4. 3D Molecular Bond Ring with Atom Nodes (blood biomarkers & therapeutics)
- *     5. 3D Lorenz / Phase-Space Infinity Attractor (latent dynamics over time)
- *     6. Concentric Biological Cell & Nucleus (cellular & tissue repair dynamics)
- * - Periodically, modalities encode observations into a latent state z_t on the
- *   inner ring and trigger a branched forward horizon rollout (dashed baseline
- *   vs. botanical-green optimal intervention trajectory with future waypoints).
+ * - Back half of the orbit passes behind the portrait; front half passes in front.
+ * - Six crisp, unmistakable physical & biological glyphs orbit the outer ring:
+ *     1. Autonomous LiDAR Ego-Vehicle (self-driving, STRIDE & Google [X])
+ *     2. Articulated 3-DOF Robot Arm + Parallel Gripper (embodied robotics & actions)
+ *     3. 3D Wireframe World Globe (world models & spatial state)
+ *     4. 3D Rotating DNA Double Helix (multi-omic biology)
+ *     5. Physiological ECG Biosignal Capsule (longitudinal health monitoring)
+ *     6. 3D Geodesic Cube-Mesh (metric 3D vision & latent representations)
+ * - Periodically, neighboring glyphs encode observations into a state z_t on the
+ *   inner ring and roll forward branching trajectories (dashed baseline vs.
+ *   Product Green #79BD8B trajectory with future state waypoints).
  */
 export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
   const backRef = useRef(null)
@@ -33,8 +33,8 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
     const FOCAL = 900
     const TILT = 0.54
     const ROLL = -0.1
-    const SPIN = 0.078
-    const MOD_R = 1.34
+    const SPIN = 0.076
+    const MOD_R = 1.36
     const SPREAD = 520
     const cosT = Math.cos(TILT)
     const sinT = Math.sin(TILT)
@@ -49,10 +49,11 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
     let fcx = 0
     let fcy = 0
     let fieldScale = 1
-    let colorA = [176, 90, 54] // Function terracotta
-    let colorB = [76, 154, 98] // Function botanical green
-    let colorM = [110, 106, 99] // Warm muted neutral
-    let strength = 0.94
+    let colorA = [176, 90, 54] // Clay 500
+    let colorB = [121, 189, 139] // Green 500
+    let colorBlue = [72, 138, 213] // Blue 500
+    let colorM = [106, 119, 132] // Blue Gray
+    let strength = 0.95
     let tiltX = 0
     let tiltY = 0
     let targetX = 0
@@ -113,17 +114,17 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
     }
 
     const MODALITY_TYPES = [
-      'globe',    // 3D wireframe world sphere
-      'helix',    // 3D rotating DNA double helix
-      'vital',    // Rounded ECG / biomarker pulse capsule
-      'molecule', // 3D chemical / biomarker bond ring with atom nodes
-      'attractor',// 3D phase-space figure-8 dynamical trajectory
-      'cell',     // Biological cell bilayer + nucleus + receptors
+      'vehicle',  // Autonomous LiDAR ego-vehicle (self-driving)
+      'robotArm', // Articulated 3-DOF robot arm + gripper (robotics)
+      'globe',    // 3D wireframe world sphere (world models)
+      'helix',    // 3D rotating DNA double helix (multi-omics)
+      'vital',    // ECG biosignal waveform capsule (longitudinal health)
+      'cube3d',   // Isometric 3D cube mesh (3D vision & JEPA latents)
     ]
     const modalities = MODALITY_TYPES.map((kind, k) => ({
       kind,
-      a: (k / MODALITY_TYPES.length) * Math.PI * 2 + 0.25,
-      appear: 0.8 + k * 0.12,
+      a: (k / MODALITY_TYPES.length) * Math.PI * 2 + 0.22,
+      appear: 0.75 + k * 0.12,
       flash: 0,
       center: null,
     }))
@@ -144,7 +145,6 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       })
     }
 
-    // Background counterfactual branching curves (smooth Bézier forks, zero sharp triads)
     const rolloutMotifs = [
       { x: -SPREAD * 0.66, y: -SPREAD * 0.32, z: SPREAD * 0.18, s: 1 },
       { x: SPREAD * 0.72, y: SPREAD * 0.28, z: -SPREAD * 0.14, s: -1 },
@@ -164,11 +164,12 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       const style = getComputedStyle(document.documentElement)
       colorA = parseRgb(style.getPropertyValue('--canvas-rgb'), colorA)
       colorB = parseRgb(style.getPropertyValue('--canvas-rgb-2'), colorB)
+      colorBlue = parseRgb(style.getPropertyValue('--canvas-blue-rgb'), colorBlue)
       colorM = parseRgb(style.getPropertyValue('--canvas-muted-rgb'), colorM)
       const isDark =
         document.documentElement.getAttribute('data-theme') === 'dark' ||
         document.documentElement.classList.contains('dark')
-      strength = isDark ? 1 : 0.94
+      strength = isDark ? 1 : 0.95
       ring.forEach((p) => {
         p.color = mix(clamp01(p.tone))
       })
@@ -203,12 +204,12 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
         const radius = portrait.offsetWidth / 2
         ox = pos.x + radius
         oy = pos.y + radius
-        R = radius * 1.38
+        R = radius * 1.4
         if (lede && w > 980) {
           const lp = offsetIn(lede, hero)
           const textEdge = lp.x + lede.offsetWidth
           R = Math.max(
-            radius * 1.15,
+            radius * 1.16,
             Math.min(R, (ox - textEdge - 14) / (MOD_R * 1.08))
           )
           hero.style.setProperty('--text-edge', `${Math.round(textEdge)}px`)
@@ -266,7 +267,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           s: pr.s,
           r: p.r * pr.s * 0.8 * Math.max(0.75, fieldScale),
           a:
-            0.26 *
+            0.25 *
             Math.max(0.15, Math.min(1, pr.s / 1.2)) *
             (0.7 + 0.3 * Math.sin(t * 1.1 + p.phase)),
           x3: p.x,
@@ -285,7 +286,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           if (d < 180) {
             bctx.strokeStyle = rgba(
               colorA,
-              (1 - d / 180) * 0.12 * Math.min(1, (pts[a].s + pts[b].s) / 2)
+              (1 - d / 180) * 0.11 * Math.min(1, (pts[a].s + pts[b].s) / 2)
             )
             bctx.beginPath()
             bctx.moveTo(pts[a].x, pts[a].y)
@@ -304,7 +305,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       }
 
       // Smooth curved horizon-forecast forks in background
-      const motifAlpha = 0.22 + 0.05 * Math.sin(t * 0.6)
+      const motifAlpha = 0.21 + 0.05 * Math.sin(t * 0.6)
       for (let k = 0; k < rolloutMotifs.length; k++) {
         const m = rolloutMotifs[k]
         const p0 = projectField(m.x - 28 * m.s, m.y + 3, m.z)
@@ -316,12 +317,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
         bctx.strokeStyle = rgba(colorA, motifAlpha)
         bctx.beginPath()
         bctx.moveTo(p0.x, p0.y)
-        bctx.quadraticCurveTo(
-          (p0.x + p1.x) / 2,
-          p1.y,
-          p1.x,
-          p1.y
-        )
+        bctx.quadraticCurveTo((p0.x + p1.x) / 2, p1.y, p1.x, p1.y)
         bctx.stroke()
 
         bctx.strokeStyle = rgba(colorB, motifAlpha * 1.2)
@@ -474,19 +470,161 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
         mod.center = center
 
         const depth = clamp01(0.5 + center.z / (2.4 * R * MOD_R))
-        const alpha = (0.34 + 0.48 * depth + 0.36 * mod.flash) * e
+        const alpha = (0.36 + 0.48 * depth + 0.36 * mod.flash) * e
         const ctx = center.z > 0 ? fctx : bctx
-        const sc = 0.132 * R * e
+        const sc = 0.135 * R * e
         const lp = makeLocalProjector(cx, cz, ca, sa, sc)
+        const uPx = sc * center.s
 
         ctx.save()
         ctx.lineCap = 'round'
         ctx.lineJoin = 'round'
 
-        if (mod.kind === 'globe') {
-          // 1. 3D Wireframe World Sphere (World Modeling & Spatial State)
-          const rG = 0.88 * center.s * sc
+        if (mod.kind === 'vehicle') {
+          // 1. Self-Driving Autonomous Ego-Vehicle + Roof LiDAR + Radar Arcs
+          // Oriented upright in screen space with subtle orbit-tangent heading
+          const x0 = center.x
+          const y0 = center.y + uPx * 0.18
+
+          // Chassis silhouette
+          ctx.lineWidth = 1.35
+          ctx.fillStyle = rgba(colorA, (0.08 + 0.18 * mod.flash) * e)
+          ctx.strokeStyle = rgba(colorA, alpha)
+          ctx.beginPath()
+          ctx.moveTo(x0 - uPx * 1.05, y0 + uPx * 0.3)
+          ctx.lineTo(x0 - uPx * 1.05, y0 - uPx * 0.05)
+          ctx.lineTo(x0 - uPx * 0.65, y0 - uPx * 0.48)
+          ctx.lineTo(x0 + uPx * 0.32, y0 - uPx * 0.48)
+          ctx.lineTo(x0 + uPx * 0.78, y0 - uPx * 0.08)
+          ctx.lineTo(x0 + uPx * 1.08, y0 + uPx * 0.02)
+          ctx.lineTo(x0 + uPx * 1.08, y0 + uPx * 0.3)
+          ctx.closePath()
+          ctx.fill()
+          ctx.stroke()
+
+          // Cabin window divider
+          ctx.lineWidth = 0.95
+          ctx.beginPath()
+          ctx.moveTo(x0 - uPx * 0.15, y0 - uPx * 0.46)
+          ctx.lineTo(x0 - uPx * 0.15, y0 - uPx * 0.05)
+          ctx.moveTo(x0 - uPx * 0.7, y0 - uPx * 0.05)
+          ctx.lineTo(x0 + uPx * 0.72, y0 - uPx * 0.05)
+          ctx.stroke()
+
+          // Front & rear wheels
+          ;[-0.62, 0.62].forEach((wx) => {
+            ctx.fillStyle = rgba(colorA, (0.2 + 0.2 * mod.flash) * e)
+            ctx.strokeStyle = rgba(colorA, Math.min(1, alpha * 1.1))
+            ctx.lineWidth = 1.35
+            ctx.beginPath()
+            ctx.arc(x0 + wx * uPx, y0 + uPx * 0.34, uPx * 0.24, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.stroke()
+          })
+
+          // Roof LiDAR turret + animated perception waves
+          const lx = x0 - uPx * 0.14
+          const ly = y0 - uPx * 0.65
           ctx.lineWidth = 1.2
+          ctx.strokeStyle = rgba(colorBlue, Math.min(1, alpha * 1.1))
+          ctx.beginPath()
+          ctx.moveTo(lx, y0 - uPx * 0.48)
+          ctx.lineTo(lx, ly)
+          ctx.stroke()
+          ctx.fillStyle = rgba(colorBlue, Math.min(1, alpha + 0.25))
+          ctx.beginPath()
+          ctx.arc(lx, ly, uPx * 0.12, 0, Math.PI * 2)
+          ctx.fill()
+
+          // Expanding LiDAR / radar perception arcs
+          const pulse = (t * 0.9) % 1
+          ;[0, 0.5].forEach((off) => {
+            const p = (pulse + off) % 1
+            const arcR = uPx * (0.36 + p * 0.68)
+            ctx.lineWidth = 1.1
+            ctx.strokeStyle = rgba(colorB, (1 - p) * alpha * 1.15)
+            ctx.beginPath()
+            ctx.arc(lx, ly, arcR, -Math.PI * 0.82, -Math.PI * 0.18)
+            ctx.stroke()
+          })
+        } else if (mod.kind === 'robotArm') {
+          // 2. Articulated 3-DOF Robot Arm + Parallel Jaw Gripper (Robotics & Embodied Action)
+          const bx = center.x - uPx * 0.35
+          const by = center.y + uPx * 0.72
+
+          // Pedestal base
+          ctx.lineWidth = 1.35
+          ctx.strokeStyle = rgba(colorA, alpha)
+          ctx.fillStyle = rgba(colorA, 0.12 * e)
+          ctx.beginPath()
+          ctx.moveTo(bx - uPx * 0.52, by)
+          ctx.lineTo(bx + uPx * 0.52, by)
+          ctx.lineTo(bx + uPx * 0.34, by - uPx * 0.22)
+          ctx.lineTo(bx - uPx * 0.34, by - uPx * 0.22)
+          ctx.closePath()
+          ctx.fill()
+          ctx.stroke()
+
+          // Animated joint kinematics
+          const q1 = -1.12 + Math.sin(t * 1.15) * 0.18
+          const q2 = 0.85 + Math.cos(t * 1.15) * 0.22
+          const sx = bx
+          const sy = by - uPx * 0.24
+          const ex = sx + Math.cos(q1) * uPx * 0.82
+          const ey = sy + Math.sin(q1) * uPx * 0.82
+          const wx = ex + Math.cos(q1 + q2) * uPx * 0.72
+          const wy = ey + Math.sin(q1 + q2) * uPx * 0.72
+
+          // Arm links
+          ctx.lineWidth = 2.1
+          ctx.strokeStyle = rgba(colorA, alpha)
+          ctx.beginPath()
+          ctx.moveTo(sx, sy)
+          ctx.lineTo(ex, ey)
+          ctx.lineTo(wx, wy)
+          ctx.stroke()
+
+          // Parallel-jaw end-effector gripper
+          const ga = q1 + q2
+          const nx = -Math.sin(ga)
+          const ny = Math.cos(ga)
+          const fx = Math.cos(ga)
+          const fy = Math.sin(ga)
+          const jawOpen = uPx * (0.19 + 0.05 * Math.sin(t * 2.3))
+          const jawLen = uPx * 0.32
+
+          ctx.lineWidth = 1.35
+          ctx.strokeStyle = rgba(colorB, Math.min(1, alpha * 1.15))
+          ctx.beginPath()
+          ctx.moveTo(wx + nx * jawOpen, wy + ny * jawOpen)
+          ctx.lineTo(wx - nx * jawOpen, wy - ny * jawOpen)
+          ctx.moveTo(wx + nx * jawOpen, wy + ny * jawOpen)
+          ctx.lineTo(
+            wx + nx * jawOpen + fx * jawLen,
+            wy + ny * jawOpen + fy * jawLen
+          )
+          ctx.moveTo(wx - nx * jawOpen, wy - ny * jawOpen)
+          ctx.lineTo(
+            wx - nx * jawOpen + fx * jawLen,
+            wy - ny * jawOpen + fy * jawLen
+          )
+          ctx.stroke()
+
+          // Revolute joint circles
+          ;[
+            [sx, sy, colorA],
+            [ex, ey, colorA],
+            [wx, wy, colorB],
+          ].forEach(([jx, jy, col]) => {
+            ctx.fillStyle = rgba(col, Math.min(1, alpha + 0.25))
+            ctx.beginPath()
+            ctx.arc(jx, jy, uPx * 0.13, 0, Math.PI * 2)
+            ctx.fill()
+          })
+        } else if (mod.kind === 'globe') {
+          // 3. 3D Wireframe World Sphere (World Models)
+          const rG = 0.88 * uPx
+          ctx.lineWidth = 1.25
           ctx.fillStyle = rgba(colorA, (0.06 + 0.16 * mod.flash) * e)
           ctx.strokeStyle = rgba(colorA, alpha)
           ctx.beginPath()
@@ -494,27 +632,26 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           ctx.fill()
           ctx.stroke()
 
-          // Rotating 3D meridians + equator
           const SEG = 22
           const rot = t * 0.55
           ;[0, Math.PI / 2].forEach((mOff, idx) => {
             ctx.lineWidth = 1.0
-            ctx.strokeStyle = rgba(idx === 1 ? colorB : colorA, alpha * 0.82)
+            ctx.strokeStyle = rgba(idx === 1 ? colorB : colorA, alpha * 0.85)
             ctx.beginPath()
             for (let s = 0; s <= SEG; s++) {
               const th = (s / SEG) * Math.PI * 2
-              const xL = Math.sin(th) * Math.cos(rot + mOff) * 0.88
-              const yL = Math.cos(th) * 0.88
-              const zL = Math.sin(th) * Math.sin(rot + mOff) * 0.88
-              const pt = lp(xL, yL, zL)
+              const pt = lp(
+                Math.sin(th) * Math.cos(rot + mOff) * 0.88,
+                Math.cos(th) * 0.88,
+                Math.sin(th) * Math.sin(rot + mOff) * 0.88
+              )
               if (s === 0) ctx.moveTo(pt.x, pt.y)
               else ctx.lineTo(pt.x, pt.y)
             }
             ctx.stroke()
           })
-          // Equator
           ctx.lineWidth = 1.05
-          ctx.strokeStyle = rgba(colorB, alpha * 0.9)
+          ctx.strokeStyle = rgba(colorB, alpha * 0.92)
           ctx.beginPath()
           for (let s = 0; s <= SEG; s++) {
             const th = (s / SEG) * Math.PI * 2
@@ -524,7 +661,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           }
           ctx.stroke()
         } else if (mod.kind === 'helix') {
-          // 2. 3D Rotating DNA Double Helix (Genomics & Multi-omic Health)
+          // 4. 3D Rotating DNA Double Helix (Multi-omics & Biology)
           const N = 12
           const sA = []
           const sB = []
@@ -549,7 +686,6 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
             ctx.lineTo(sB[i].x, sB[i].y)
           }
           ctx.stroke()
-
           ;[
             [sA, colorA],
             [sB, colorB],
@@ -563,12 +699,12 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
             ctx.stroke()
           })
         } else if (mod.kind === 'vital') {
-          // 3. Rounded Biomarker / ECG Pulse Capsule (Longitudinal Physiology)
-          const pw = 1.25 * sc * center.s
-          const ph = 0.68 * sc * center.s
+          // 5. Rounded ECG / Lab Biosignal Capsule (Longitudinal Health)
+          const pw = 1.24 * uPx
+          const ph = 0.66 * uPx
           ctx.lineWidth = 1.15
           ctx.fillStyle = rgba(colorA, (0.06 + 0.16 * mod.flash) * e)
-          ctx.strokeStyle = rgba(colorA, alpha * 0.75)
+          ctx.strokeStyle = rgba(colorA, alpha * 0.76)
           ctx.beginPath()
           if (ctx.roundRect) {
             ctx.roundRect(center.x - pw, center.y - ph, pw * 2, ph * 2, ph)
@@ -584,7 +720,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
             [-0.34, -0.22],
             [-0.2, 0],
             [-0.08, 0.22],
-            [0.05, -0.72],
+            [0.05, -0.74],
             [0.19, 0.45],
             [0.32, 0],
             [0.52, -0.25],
@@ -619,117 +755,53 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
             Math.PI * 2
           )
           ctx.fill()
-        } else if (mod.kind === 'molecule') {
-          // 4. 3D Molecular / Biomarker Ring with Atom Nodes
-          const rot = t * 0.5
-          const atoms = []
-          for (let i = 0; i < 6; i++) {
-            const th = (i / 6) * Math.PI * 2 + rot
-            const u = Math.cos(th) * 0.85
-            const v = Math.sin(th) * 0.85 * Math.cos(0.45)
-            const wCoord = Math.sin(th) * 0.85 * Math.sin(0.45)
-            atoms.push(lp(u, v, wCoord))
-          }
-          // Side chain atom
-          const sideAtom = lp(
-            Math.cos(rot) * 1.32,
-            Math.sin(rot) * 1.32 * Math.cos(0.45),
-            Math.sin(rot) * 1.32 * Math.sin(0.45)
-          )
-
-          ctx.lineWidth = 1.2
-          ctx.strokeStyle = rgba(colorA, alpha * 0.9)
-          ctx.beginPath()
-          atoms.forEach((pt, idx) =>
-            idx === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y)
-          )
-          ctx.closePath()
-          ctx.moveTo(atoms[0].x, atoms[0].y)
-          ctx.lineTo(sideAtom.x, sideAtom.y)
-          ctx.stroke()
-
-          atoms.forEach((pt, idx) => {
-            ctx.fillStyle = rgba(idx % 2 === 0 ? colorA : colorB, Math.min(1, alpha + 0.18))
-            ctx.beginPath()
-            ctx.arc(pt.x, pt.y, 2.2 * center.s, 0, Math.PI * 2)
-            ctx.fill()
-          })
-          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.25))
-          ctx.beginPath()
-          ctx.arc(sideAtom.x, sideAtom.y, 2.6 * center.s, 0, Math.PI * 2)
-          ctx.fill()
-        } else if (mod.kind === 'attractor') {
-          // 5. 3D Phase-Space Infinity / Lorenz Attractor (Latent State Dynamics)
-          const SEG = 32
-          const pts = []
-          const rot = t * 0.45
-          for (let s = 0; s <= SEG; s++) {
-            const th = (s / SEG) * Math.PI * 2
-            const denom = 1 + Math.sin(th) * Math.sin(th)
-            const u = (1.18 * Math.cos(th)) / denom
-            const v = (1.05 * Math.sin(th) * Math.cos(th)) / denom
-            const wCoord = 0.42 * Math.sin(th * 2 + rot)
-            pts.push(lp(u, v, wCoord))
-          }
-          ctx.lineWidth = 1.4
-          ctx.strokeStyle = rgba(colorA, alpha)
-          ctx.beginPath()
-          pts.forEach((pt, idx) =>
-            idx === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y)
-          )
-          ctx.stroke()
-
-          // Orbiting state particle along the phase attractor
-          const idx = Math.floor(((t * 0.55) % 1) * SEG)
-          const statePt = pts[idx]
-          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.3))
-          ctx.beginPath()
-          ctx.arc(statePt.x, statePt.y, 2.5 + mod.flash, 0, Math.PI * 2)
-          ctx.fill()
         } else {
-          // 6. Biological Cell Bilayer + Nucleus + Surface Receptors
-          const rOuter = 0.88 * sc * center.s
-          const rNucleus = 0.36 * sc * center.s
-
-          ctx.lineWidth = 1.25
-          ctx.fillStyle = rgba(colorB, (0.07 + 0.16 * mod.flash) * e)
+          // 6. Rotating 3D Cube / Tensor Lattice (3D Vision & JEPA Latents)
+          const rot = t * 0.55
+          const cr = Math.cos(rot)
+          const sr = Math.sin(rot)
+          const sz = 0.64
+          const rawVerts = [
+            [-sz, -sz, -sz],
+            [sz, -sz, -sz],
+            [sz, sz, -sz],
+            [-sz, sz, -sz],
+            [-sz, -sz, sz],
+            [sz, -sz, sz],
+            [sz, sz, sz],
+            [-sz, sz, sz],
+          ]
+          const verts = rawVerts.map(([vx, vy, vz]) =>
+            lp(vx * cr - vz * sr, vy, vx * sr + vz * cr)
+          )
+          const edges = [
+            [0, 1],
+            [1, 2],
+            [2, 3],
+            [3, 0],
+            [4, 5],
+            [5, 6],
+            [6, 7],
+            [7, 4],
+            [0, 4],
+            [1, 5],
+            [2, 6],
+            [3, 7],
+          ]
+          ctx.lineWidth = 1.15
           ctx.strokeStyle = rgba(colorA, alpha * 0.92)
           ctx.beginPath()
-          ctx.arc(center.x, center.y, rOuter, 0, Math.PI * 2)
-          ctx.fill()
+          edges.forEach(([a, b]) => {
+            ctx.moveTo(verts[a].x, verts[a].y)
+            ctx.lineTo(verts[b].x, verts[b].y)
+          })
           ctx.stroke()
 
-          ctx.save()
-          ctx.setLineDash([2.5, 2.5])
-          ctx.lineWidth = 0.95
-          ctx.strokeStyle = rgba(colorB, alpha * 0.78)
+          // Inner latent core node
+          ctx.fillStyle = rgba(colorBlue, Math.min(1, alpha + 0.25))
           ctx.beginPath()
-          ctx.arc(center.x, center.y, rOuter * 0.72, 0, Math.PI * 2)
-          ctx.stroke()
-          ctx.restore()
-
-          // Nucleus
-          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.22))
-          ctx.beginPath()
-          ctx.arc(
-            center.x + Math.cos(t * 0.9) * rOuter * 0.1,
-            center.y + Math.sin(t * 0.9) * rOuter * 0.1,
-            rNucleus,
-            0,
-            Math.PI * 2
-          )
+          ctx.arc(center.x, center.y, 2.4 + mod.flash, 0, Math.PI * 2)
           ctx.fill()
-
-          // 3 membrane receptor nodes
-          for (let m = 0; m < 3; m++) {
-            const th = (m / 3) * Math.PI * 2 + t * 0.4
-            const rx = center.x + Math.cos(th) * (rOuter + 2.5)
-            const ry = center.y + Math.sin(th) * (rOuter + 2.5)
-            ctx.fillStyle = rgba(colorA, Math.min(1, alpha + 0.2))
-            ctx.beginPath()
-            ctx.arc(rx, ry, 1.8, 0, Math.PI * 2)
-            ctx.fill()
-          }
         }
 
         ctx.restore()
@@ -816,7 +888,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
             if (prevOpt) {
               const ctxOpt = (pOpt.z + prevOpt.z) / 2 > 0 ? fctx : bctx
               ctxOpt.lineWidth = 1.65
-              ctxOpt.strokeStyle = rgba(colorB, 0.82 * fade)
+              ctxOpt.strokeStyle = rgba(colorB, 0.84 * fade)
               ctxOpt.beginPath()
               ctxOpt.moveTo(prevOpt.x, prevOpt.y)
               ctxOpt.lineTo(pOpt.x, pOpt.y)

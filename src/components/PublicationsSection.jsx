@@ -15,6 +15,7 @@ import {
   OrbitCubeIcon,
   QuoteIcon,
   SparklesStarIcon,
+  TOPIC_GLYPH_META,
   XMarkIcon,
 } from '@/components/Icons'
 
@@ -84,6 +85,29 @@ function AuthorList({ authors = [] }) {
         +{hiddenCount}
       </button>
     </p>
+  )
+}
+
+function TopicGlyphs({ topics = [] }) {
+  if (!topics.length) return null
+  return (
+    <div className="pub-topic-glyphs" aria-label="Research topics">
+      {topics.map((key) => {
+        const entry = TOPIC_GLYPH_META[key]
+        if (!entry) return null
+        const Icon = entry.Icon
+        return (
+          <span
+            key={key}
+            className="topic-glyph"
+            data-tip={entry.label}
+            title={entry.label}
+          >
+            <Icon className="h-[14px] w-[14px]" />
+          </span>
+        )
+      })}
+    </div>
   )
 }
 
@@ -192,6 +216,7 @@ function PublicationItem({ pub, onOpenBibtex }) {
               <span>{pub.badgeNote}</span>
             </span>
           )}
+          <TopicGlyphs topics={pub.topics} />
         </div>
 
         <h3 className="pub-title">
@@ -284,7 +309,7 @@ function PublicationItem({ pub, onOpenBibtex }) {
               rel="noopener noreferrer"
             >
               <OrbitCubeIcon className="h-3.5 w-3.5" />
-              <span>Live Demo</span>
+              <span>Live demo</span>
             </a>
           )}
           {pub.bibtex && (
@@ -380,7 +405,7 @@ export function PublicationsSection({ articles }) {
               aria-pressed={filter === 'first'}
               onClick={() => setFilter('first')}
             >
-              <span>First / co-first author</span>
+              <span>First author</span>
               <span className="filter-count">{firstAuthorCount}</span>
             </button>
           </div>

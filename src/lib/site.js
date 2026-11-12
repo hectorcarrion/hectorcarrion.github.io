@@ -10,4 +10,4 @@ export const GITHUB_URL = 'https://github.com/hectorcarrion'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/hectorcarrion/'
 export const HUGGINGFACE_URL = 'https://huggingface.co/hcarrion'
 export const SITE_DESCRIPTION =
-  'Dr. Héctor Carrión is World Model Team Lead at Function Health, building multimodal world models that learn how physical and biological systems evolve across space, time, and interventions.'
+  'Dr. Héctor Carrión leads the World Model team at Function, building JEPA and autoregressive multimodal models across longitudinal health, 3D vision, and autonomy.'

@@ -10,6 +10,7 @@ import {
   ArrowRightIcon,
   CalendarIcon,
   ChevronDownSmallIcon,
+  DiffusionGlyph,
   DownloadFileIcon,
   ExternalArrowIcon,
   FileLinesIcon,
@@ -17,13 +18,16 @@ import {
   GitHubBrandIcon,
   GraduationCapIcon,
   HuggingFaceIcon,
+  JepaGlyph,
   LinkedInBrandIcon,
-  LocationPinIcon,
   MailOutlineIcon,
+  MedAIGlyph,
   OrbitCubeIcon,
   RocketOutlineIcon,
   SparklesStarIcon,
+  ThreeDVisionGlyph,
   TrophyOutlineIcon,
+  WorldModelGlyph,
 } from '@/components/Icons'
 import { RESUME_URL } from '@/lib/resume'
 import {
@@ -49,6 +53,14 @@ import logoCountie from '@/images/logos/countie.svg'
 import logoBreedie from '@/images/logos/breedie.svg'
 import logoVesta from '@/images/logos/vesta.svg'
 
+const HERO_DOMAIN_CHIPS = [
+  { label: 'World Models', Icon: WorldModelGlyph, cls: 'chip-1' },
+  { label: '3D Vision', Icon: ThreeDVisionGlyph, cls: 'chip-2' },
+  { label: 'Med AI', Icon: MedAIGlyph, cls: 'chip-3' },
+  { label: 'JEPA', Icon: JepaGlyph, cls: 'chip-4' },
+  { label: 'Diffusion', Icon: DiffusionGlyph, cls: 'chip-5' },
+]
+
 const NEWS_ITEMS = [
   {
     date: 'Sep 2026',
@@ -63,7 +75,7 @@ const NEWS_ITEMS = [
           target="_blank"
           rel="noopener noreferrer"
         >
-          Function Health
+          Function
         </a>{' '}
         as <strong>World Model Team Lead</strong>, directing research on JEPA
         and autoregressive longitudinal health models.
@@ -77,10 +89,10 @@ const NEWS_ITEMS = [
     icon: TrophyOutlineIcon,
     content: (
       <>
-        Two first-author papers &mdash;{' '}
-        <a href="#dermdepth">DermDepth</a> (metric 3D dermatology) and{' '}
-        <a href="#cgddi">cgDDI</a> (controllable generative fairness) &mdash;
-        presented at <strong>MICCAI 2026</strong>, with open weights,{' '}
+        Two first-author papers &mdash; <a href="#dermdepth">DermDepth</a>{' '}
+        (metric 3D dermatology) and <a href="#cgddi">cgDDI</a> (controllable
+        generative fairness) &mdash; presented at <strong>MICCAI 2026</strong>,
+        with open weights,{' '}
         <a
           href="https://huggingface.co/datasets/hcarrion/D-Synth"
           target="_blank"
@@ -131,7 +143,7 @@ const NEWS_ITEMS = [
         >
           Dr. Narges Norouzi
         </a>{' '}
-        at UC Berkeley!
+        at UC Berkeley.
       </>
     ),
   },
@@ -142,15 +154,15 @@ const NEWS_ITEMS = [
     icon: FileLinesIcon,
     content: (
       <>
-        Our collaborative study on{' '}
+        Published our study on{' '}
         <a
           href="https://www.nature.com/articles/s42003-025-08423-y"
           target="_blank"
           rel="noopener noreferrer"
         >
-          portable fluorescent biomarker mapping in healing tissue
+          portable fluorescent imaging in healing tissue
         </a>{' '}
-        was published in <strong>Nature Communications Biology</strong>.
+        in <strong>Nature Communications Biology</strong>.
       </>
     ),
   },
@@ -170,7 +182,7 @@ const NEWS_ITEMS = [
           TARDIS STRIDE
         </a>
         , our 1B-parameter spatio-temporal world model and street-view autonomy
-        dataset at Tera AI, along with{' '}
+        dataset at Tera AI, with{' '}
         <a
           href="https://github.com/tera-ai/tardis"
           target="_blank"
@@ -184,7 +196,7 @@ const NEWS_ITEMS = [
           target="_blank"
           rel="noopener noreferrer"
         >
-          dataset weights
+          open dataset
         </a>
         .
       </>
@@ -205,8 +217,7 @@ const NEWS_ITEMS = [
         >
           Remote-Controlled Wireless Bioelectronics for Fluoxetine Therapy
         </a>{' '}
-        in <strong>Advanced Materials Technologies</strong>, demonstrating
-        closed-loop sensing and actuation in a porcine model.
+        in <strong>Advanced Materials Technologies</strong>.
       </>
     ),
   },
@@ -244,8 +255,8 @@ const NEWS_ITEMS = [
         >
           Tera AI
         </a>{' '}
-        as <strong>Founding Lead Research Scientist</strong> to build
-        foundation world models for spatial reasoning and embodied autonomy.
+        as <strong>Founding Lead Research Scientist</strong> to build world
+        models for spatial reasoning and autonomy.
       </>
     ),
   },
@@ -257,7 +268,7 @@ const NEWS_ITEMS = [
     content: (
       <>
         Presented our first-author paper <a href="#fedd">FEDD</a> on diffusion
-        representation learning for label-efficient dermatology at{' '}
+        feature learning for label-efficient dermatology at{' '}
         <strong>MICCAI 2023</strong>.
       </>
     ),
@@ -280,11 +291,11 @@ const EXPERIENCE_WORK = [
   {
     date: 'Sep 2026 – now',
     role: 'World Model Team Lead',
-    org: 'Function Health',
+    org: 'Function',
     href: 'https://www.functionhealth.com/',
     logo: logoFunction,
     current: true,
-    desc: 'Directing the World Model team and research roadmap on JEPA and autoregressive multimodal representations to forecast longitudinal human health trajectories and personalize interventions.',
+    desc: 'Directing the World Model team on JEPA and autoregressive multimodal models over longitudinal lab tests, imaging, and member health history to monitor early indicators and surface actionable insights.',
   },
   {
     date: '2024 – 2026',
@@ -292,7 +303,7 @@ const EXPERIENCE_WORK = [
     org: 'Tera AI',
     href: 'https://www.tera-ai.com/',
     logo: logoTera,
-    desc: 'Designed and executed the founding research agenda in spatial reasoning and embodied world models; co-led TARDIS & STRIDE, a unified 1B-parameter spatio-temporal transformer for autonomy.',
+    desc: 'Set and executed the founding research agenda in spatial reasoning and embodied world models; led TARDIS & STRIDE, a 1B-parameter spatio-temporal transformer for autonomy.',
   },
   {
     date: 'Summer 2023',
@@ -300,7 +311,7 @@ const EXPERIENCE_WORK = [
     org: 'Google Research',
     href: 'https://research.google/',
     logo: logoGoogle,
-    desc: 'Established foundation-model recipes for unified multimodal video and image pre-training, unlocking >25% higher downstream performance over single-modality encoders.',
+    desc: 'Trained unified multimodal video-and-image foundation encoders, improving downstream transfer by >25% over single-modality encoders.',
   },
   {
     date: '2021 – 2022',
@@ -308,7 +319,7 @@ const EXPERIENCE_WORK = [
     org: 'X, The Moonshot Factory (Google [X])',
     href: 'https://x.company/',
     logo: logoX,
-    desc: 'Built simulation, edge-perception, and aerial/ground vision models under novel physical problem domains, exceeding target benchmarks and earning granted Google patents.',
+    desc: 'Built simulation, edge-perception, and aerial/ground vision models for autonomous platforms, exceeding target benchmarks and earning granted Google patents.',
   },
   {
     date: '2020 – 2026',
@@ -316,7 +327,7 @@ const EXPERIENCE_WORK = [
     org: 'UC Santa Cruz & UC Berkeley',
     href: 'https://www.ucsc.edu/',
     logo: logoUCSC,
-    desc: 'Developed metric 3D reconstruction (DermDepth), controllable diffusion priors (cgDDI, FEDD), and self-supervised temporal stage discovery (HealNet) for label-constrained biological systems.',
+    desc: 'Developed metric 3D reconstruction (DermDepth), controllable diffusion priors (cgDDI, FEDD), and self-supervised temporal stage discovery (HealNet) for label-constrained medical data.',
   },
 ]
 
@@ -326,7 +337,7 @@ const EXPERIENCE_EDU = [
     role: 'Ph.D. in Computer Science',
     org: 'University of California, Santa Cruz',
     logo: logoUCSC,
-    desc: 'Advised by Dr. Narges Norouzi (UC Berkeley). 3.92 GPA. Focus on self-supervised temporal dynamics, metric 3D vision, generative priors, and fair medical AI.',
+    desc: 'Advised by Dr. Narges Norouzi (UC Berkeley). 3.92 GPA. Focus on self-supervised temporal dynamics, metric 3D vision, diffusion, and medical AI.',
   },
   {
     date: '2017 – 2021',
@@ -340,18 +351,18 @@ const EXPERIENCE_EDU = [
     role: 'Software Engineering & Design',
     org: 'Apple Developer Academy, Univ. of Naples Federico II',
     logo: logoApple,
-    desc: 'Full-stack native iOS engineering, human-centered product design, and on-device CoreML systems.',
+    desc: 'Full-stack native iOS engineering, interface design, and on-device CoreML apps.',
   },
 ]
 
 const PROJECTS = [
   {
-    name: 'Function Health World Models',
-    tag: 'Health Forecasting',
+    name: 'Function · World Models',
+    tag: 'Longitudinal Health',
     logo: logoFunction,
     href: 'https://www.functionhealth.com/',
     linkLabel: 'functionhealth.com',
-    desc: 'Longitudinal JEPA and autoregressive representations over multimodal labs, wearables, and clinical history to forecast health trajectories and guide preventive action.',
+    desc: 'JEPA and autoregressive models over longitudinal lab tests, imaging, and health history to monitor early indicators and surface member insights.',
   },
   {
     name: 'Tera AI · TARDIS & STRIDE',
@@ -359,7 +370,7 @@ const PROJECTS = [
     logo: logoTera,
     href: 'https://github.com/tera-ai/tardis',
     linkLabel: 'github.com/tera-ai/tardis',
-    desc: 'Open-source 1B-parameter spatio-temporal transformer and 360° road-network graph uniting controllable view synthesis, georeferencing, and action prediction.',
+    desc: 'Open-source 1B-parameter spatio-temporal transformer and 360° road-network graph uniting view synthesis, georeferencing, and action prediction.',
   },
   {
     name: 'Visia AI',
@@ -367,7 +378,7 @@ const PROJECTS = [
     logo: logoVisia,
     href: 'https://www.visia.ai/',
     linkLabel: 'visia.ai',
-    desc: 'Advising on industrial computer vision for inbound material visibility, automated hazard detection, and circular-economy recyclability.',
+    desc: 'Advising on computer vision for inbound material visibility, hazard monitoring, and recyclability.',
   },
   {
     name: 'DermDepth & D-Synth',
@@ -375,7 +386,7 @@ const PROJECTS = [
     logo: logoUCSC,
     href: 'https://huggingface.co/spaces/hcarrion/DermDepth',
     linkLabel: 'Hugging Face Space',
-    desc: 'Browser-ready monocular metric 3D skin reconstruction model and synthetic 3D dataset recovering millimeter lesion geometry from a single photo.',
+    desc: 'Monocular metric 3D skin reconstruction model and synthetic 3D dataset estimating millimeter geometry from a single photograph.',
   },
   {
     name: 'Breedie',
@@ -383,7 +394,7 @@ const PROJECTS = [
     logo: logoBreedie,
     href: 'https://apps.apple.com/th/app/breedie/id1492837097',
     linkLabel: 'App Store',
-    desc: 'Privacy-first on-device CoreML dog breed-mix identification app built to support shelter adoption with love4satos.org.',
+    desc: 'Privacy-first on-device CoreML dog breed-mix app built to support shelter adoption with love4satos.org.',
   },
   {
     name: 'Countie & Vesta',
@@ -392,7 +403,7 @@ const PROJECTS = [
     secondLogo: logoVesta,
     href: 'https://github.com/hectorcarrion/Countie',
     linkLabel: 'github.com/hectorcarrion',
-    desc: 'Minimalist iOS Lock Screen countdown widgets (Countie) and open-source automated chest X-ray screening pipelines (Vesta).',
+    desc: 'Minimalist iOS Lock Screen countdown widgets (Countie) and open-source chest X-ray research code (Vesta).',
   },
 ]
 
@@ -422,7 +433,7 @@ export default function Home({ articles }) {
           <div className="hero-text">
             <a className="status-badge" href="#experience">
               <span className="status-dot" aria-hidden="true" />
-              <span>World Model Team Lead @ Function Health</span>
+              <span>World Model Team Lead @ Function</span>
               <ArrowRightIcon className="h-3.5 w-3.5" />
             </a>
 
@@ -442,7 +453,7 @@ export default function Home({ articles }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Function Health
+                Function
               </a>{' '}
               &middot; CS Ph.D. (
               <a
@@ -479,10 +490,10 @@ export default function Home({ articles }) {
             </p>
 
             <p className="hero-lede" ref={ledeRef}>
-              I build <em>multimodal world models</em> that learn how physical
-              and biological systems evolve across space, time, and
-              interventions &mdash; from embodied 3D environments to
-              longitudinal human health.
+              I build <strong>multimodal world models</strong> that learn how
+              physical and biological systems change across space, time, and
+              interventions &mdash; from 3D autonomy to longitudinal human
+              health.
             </p>
 
             <div className="hero-cta">
@@ -509,7 +520,7 @@ export default function Home({ articles }) {
                 rel="noopener noreferrer"
               >
                 <CalendarIcon className="h-[18px] w-[18px]" />
-                <span>Book a 1:1</span>
+                <span>Schedule a 1:1</span>
               </a>
             </div>
 
@@ -570,14 +581,22 @@ export default function Home({ articles }) {
               />
               <span className="portrait-glare" aria-hidden="true" />
             </div>
-            <span className="portrait-chip chip-top">
-              <OrbitCubeIcon className="h-3.5 w-3.5" />
-              <span>World modeling</span>
-            </span>
-            <span className="portrait-chip chip-bottom">
-              <LocationPinIcon className="h-3.5 w-3.5" />
-              <span>US-based</span>
-            </span>
+
+            {HERO_DOMAIN_CHIPS.map(({ label, Icon, cls }) => (
+              <span key={label} className={clsx('portrait-chip', cls)}>
+                <Icon className="h-3.5 w-3.5" />
+                <span>{label}</span>
+              </span>
+            ))}
+
+            <ul className="portrait-chips-mobile" aria-label="Research areas">
+              {HERO_DOMAIN_CHIPS.map(({ label, Icon }) => (
+                <li key={label}>
+                  <Icon className="h-3.5 w-3.5" />
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -593,30 +612,25 @@ export default function Home({ articles }) {
           <div className="about-grid">
             <div className="about-text">
               <p>
-                I am <strong>World Model Team Lead</strong> at{' '}
+                I lead the <strong>World Model</strong> team at{' '}
                 <a
                   href="https://www.functionhealth.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Function Health
+                  Function
                 </a>
-                , where I direct research on{' '}
-                <em>JEPA and autoregressive world models</em> over longitudinal,
-                multimodal member health data &mdash; learning structured
-                representations of human physiology to forecast health
-                trajectories and recommend actionable interventions.
+                , building <strong>JEPA and autoregressive models</strong> over
+                longitudinal lab tests, imaging, and member health history to
+                monitor for early indicators and give members a clearer picture
+                of how their biology changes over time.
               </p>
 
               <p>
-                Across my career, a single scientific question has connected my
-                work in embodied autonomy and biomedicine:{' '}
-                <em>
-                  how can models learn latent state dynamics across space, time,
-                  and interventions when dense labels are scarce?
-                </em>{' '}
-                Before Function Health, I was{' '}
-                <strong>Founding Lead Research Scientist</strong> at{' '}
+                My work across autonomy and medical AI focuses on one core
+                problem: learning structured state representations across space,
+                time, and actions when labeled data is scarce. Before Function,
+                I was <strong>Founding Lead Research Scientist</strong> at{' '}
                 <a
                   href="https://www.tera-ai.com/"
                   target="_blank"
@@ -624,11 +638,11 @@ export default function Home({ articles }) {
                 >
                   Tera AI
                 </a>
-                , co-leading <a href="#tardis-stride">TARDIS &amp; STRIDE</a>{' '}
-                (with Pietro Perona and Jitendra Malik) &mdash; a billion-parameter
-                spatio-temporal world model unifying panoramic observation
-                synthesis, georeferencing, and action prediction &mdash; and
-                trained multimodal video-image and simulation systems at{' '}
+                , where I led <a href="#tardis-stride">TARDIS &amp; STRIDE</a>{' '}
+                (with Pietro Perona and Jitendra Malik) &mdash; a 1B-parameter
+                spatio-temporal world model for street-view synthesis,
+                georeferencing, and action prediction &mdash; and built
+                multimodal video-image encoders and simulation systems at{' '}
                 <a
                   href="https://research.google/"
                   target="_blank"
@@ -648,7 +662,7 @@ export default function Home({ articles }) {
               </p>
 
               <p>
-                I completed my Computer Science Ph.D. at{' '}
+                I earned my Computer Science Ph.D. at{' '}
                 <a
                   href="https://www.ucsc.edu/"
                   target="_blank"
@@ -664,44 +678,42 @@ export default function Home({ articles }) {
                 >
                   Dr. Narges Norouzi
                 </a>{' '}
-                at UC Berkeley. My doctoral work developed core building blocks
-                for biological and clinical world modeling: recovering metric 3D
-                geometry from single 2D observations (
-                <a href="#dermdepth">DermDepth</a>), learning self-supervised
-                temporal state progression without manual stage labels (
-                <a href="#healnet">HealNet</a>), synthesizing diverse generative
-                state priors (<a href="#cgddi">cgDDI</a>,{' '}
-                <a href="#fedd">FEDD</a>), and partnering on closed-loop
-                bioelectronic actuators that steer tissue repair in vivo.
+                at UC Berkeley. My doctoral research developed single-view
+                metric 3D reconstruction (<a href="#dermdepth">DermDepth</a>),
+                self-supervised temporal stage discovery (
+                <a href="#healnet">HealNet</a>), controllable diffusion priors
+                for underrepresented populations (<a href="#cgddi">cgDDI</a>,{' '}
+                <a href="#fedd">FEDD</a>), and closed-loop bioelectronic
+                imaging pipelines.
               </p>
 
               <p>
-                Growing up in Puerto Rico, one of my earliest memories with
-                technology was helping my dad run a thin beige DSL cable across
-                his small startup office so he could work remotely &mdash; and
-                spend that reclaimed time with family. That conviction that
-                rigorous engineering should measurably improve people&rsquo;s
-                lives still guides my research, alongside advising{' '}
+                Growing up in Puerto Rico, one of my first memories with
+                technology was helping my dad wire a thin beige DSL cable across
+                his small office so he could work remotely and spend more time
+                at home. That practical view &mdash; building systems that hold
+                up in the real world and directly help people &mdash; still
+                shapes how I lead teams, advise{' '}
                 <a
                   href="https://www.visia.ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Visia AI
-                </a>{' '}
-                and mentoring up-and-coming researchers.
+                </a>
+                , and open-source models and datasets.
               </p>
 
               <div className="side-card mt-7">
                 <h3 className="side-title">Research focus</h3>
                 <ul className="chips">
-                  <li>World models (JEPA &amp; autoregressive)</li>
-                  <li>Spatio-temporal dynamics</li>
-                  <li>Self-supervised learning</li>
-                  <li>Multimodal foundation models</li>
-                  <li>Metric 3D &amp; generative priors</li>
-                  <li>Longitudinal health forecasting</li>
-                  <li>Algorithmic fairness</li>
+                  <li>World Models</li>
+                  <li>JEPA &amp; Autoregressive Dynamics</li>
+                  <li>3D Vision</li>
+                  <li>Diffusion Models</li>
+                  <li>Medical AI</li>
+                  <li>Self-Supervised Learning</li>
+                  <li>Embodied Autonomy</li>
                 </ul>
               </div>
             </div>
@@ -713,16 +725,12 @@ export default function Home({ articles }) {
                 <h3 className="side-title">At a glance</h3>
                 <dl className="facts">
                   <div>
-                    <dt>Current</dt>
-                    <dd>World Model Team Lead &middot; Function Health</dd>
+                    <dt>Role</dt>
+                    <dd>World Model Team Lead &middot; Function</dd>
                   </div>
                   <div>
                     <dt>Ph.D.</dt>
                     <dd>UC Santa Cruz &middot; Adv. N. Norouzi (Berkeley)</dd>
-                  </div>
-                  <div>
-                    <dt>Base</dt>
-                    <dd>US-based</dd>
                   </div>
                   <div>
                     <dt>Advisory</dt>
@@ -931,7 +939,7 @@ export default function Home({ articles }) {
 
                 <p className="exp-desc mt-2 flex-1">{project.desc}</p>
 
-                <div className="mt-5 pt-3 border-t border-[var(--border)]">
+                <div className="mt-5 border-t border-[var(--border)] pt-3">
                   <a
                     href={project.href}
                     target="_blank"
@@ -1021,7 +1029,7 @@ export default function Home({ articles }) {
                     >
                       ControllableGenDDI
                     </a>{' '}
-                    &mdash; 266,136 skin-tone-balanced synthetic clinical images
+                    &mdash; 266,136 skin-tone-balanced synthetic images
                   </span>
                 </li>
                 <li>
@@ -1049,7 +1057,7 @@ export default function Home({ articles }) {
                     >
                       FEDD DDI Masks
                     </a>{' '}
-                    &mdash; expert-reviewed lesion segmentation masks
+                    &mdash; annotated lesion segmentation masks
                   </span>
                 </li>
               </ul>
@@ -1069,7 +1077,7 @@ export default function Home({ articles }) {
                 </li>
                 <li>
                   <span className="info-year">UCSC</span>
-                  <span>Machine Learning Tutor &amp; Research Mentor (2020&ndash;2022)</span>
+                  <span>Machine Learning Tutor &amp; Mentor (2020&ndash;2022)</span>
                 </li>
                 <li>
                   <span className="info-year">Langs</span>

@@ -1,10 +1,18 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Dual-layer 3D world-model & multi-view orbit canvas:
- * The back half of the latent/sensor orbit renders behind the portrait and
- * the front half renders in front of it, while forward state-transition &
- * triangulation rays periodically fire across neighboring observers.
+ * Dual-layer 3D Multimodal World-Modeling Canvas:
+ * - Back half of the orbit renders behind the portrait; front half renders in front.
+ * - Six unmistakable 3D scientific objects orbit the outer ring (zero camera frustums):
+ *     1. 3D Wireframe World Globe (world models & spatial state)
+ *     2. 3D Rotating DNA Double Helix (genomics & multi-omic health)
+ *     3. Rounded Biomarker / ECG Pulse Capsule (longitudinal physiology)
+ *     4. 3D Molecular Bond Ring with Atom Nodes (blood biomarkers & therapeutics)
+ *     5. 3D Lorenz / Phase-Space Infinity Attractor (latent dynamics over time)
+ *     6. Concentric Biological Cell & Nucleus (cellular & tissue repair dynamics)
+ * - Periodically, modalities encode observations into a latent state z_t on the
+ *   inner ring and trigger a branched forward horizon rollout (dashed baseline
+ *   vs. botanical-green optimal intervention trajectory with future waypoints).
  */
 export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
   const backRef = useRef(null)
@@ -25,8 +33,8 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
     const FOCAL = 900
     const TILT = 0.54
     const ROLL = -0.1
-    const SPIN = 0.088
-    const CAM_R = 1.3
+    const SPIN = 0.078
+    const MOD_R = 1.34
     const SPREAD = 520
     const cosT = Math.cos(TILT)
     const sinT = Math.sin(TILT)
@@ -41,9 +49,10 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
     let fcx = 0
     let fcy = 0
     let fieldScale = 1
-    let colorA = [43, 80, 230]
-    let colorB = [122, 62, 232]
-    let strength = 0.9
+    let colorA = [176, 90, 54] // Function terracotta
+    let colorB = [76, 154, 98] // Function botanical green
+    let colorM = [110, 106, 99] // Warm muted neutral
+    let strength = 0.94
     let tiltX = 0
     let tiltY = 0
     let targetX = 0
@@ -60,7 +69,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
     let t0 = performance.now()
     let lastT = t0
     let spin = 0
-    let nextEvent = 2.2
+    let nextEvent = 1.8
     const events = []
 
     const rand = (a, b) => a + Math.random() * (b - a)
@@ -76,59 +85,70 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       return d > Math.PI ? Math.PI * 2 - d : d
     }
 
+    // Inner latent state manifold particles
     const ring = []
-    const RING_N = small ? 120 : 200
+    const RING_N = small ? 120 : 196
     for (let i = 0; i < RING_N; i++) {
       const startAngle = rand(0, Math.PI * 2)
-      const startRadius = rand(1.5, 2.8)
+      const startRadius = rand(1.5, 2.7)
       const a = (i / RING_N) * Math.PI * 2 + rand(-0.015, 0.015)
       ring.push({
         a,
-        r: 1 + rand(-0.05, 0.05) + (Math.random() < 0.18 ? rand(-0.14, 0.14) : 0),
-        y: rand(-0.04, 0.04),
+        r:
+          1 +
+          rand(-0.045, 0.045) +
+          (Math.random() < 0.16 ? rand(-0.12, 0.12) : 0),
+        y: rand(-0.038, 0.038),
         size: rand(0.95, 2.15),
-        tone: 0.5 + 0.5 * Math.sin(a + 0.8),
+        tone: 0.35 + 0.45 * Math.sin(a * 2 + 0.6),
         phase: rand(0, Math.PI * 2),
         delay: rand(0, 0.75),
         sx: Math.cos(startAngle) * startRadius,
-        sy: rand(-0.9, 0.9),
+        sy: rand(-0.85, 0.85),
         sz: Math.sin(startAngle) * startRadius,
         glow: 0,
-        color: [43, 80, 230],
+        color: [176, 90, 54],
         proj: null,
       })
     }
 
-    const cams = []
-    const CAM_N = small ? 5 : 7
-    for (let k = 0; k < CAM_N; k++) {
-      cams.push({
-        a: (k / CAM_N) * Math.PI * 2 + 0.3,
-        appear: 0.9 + k * 0.12,
-        flash: 0,
-        apex: null,
-      })
-    }
+    const MODALITY_TYPES = [
+      'globe',    // 3D wireframe world sphere
+      'helix',    // 3D rotating DNA double helix
+      'vital',    // Rounded ECG / biomarker pulse capsule
+      'molecule', // 3D chemical / biomarker bond ring with atom nodes
+      'attractor',// 3D phase-space figure-8 dynamical trajectory
+      'cell',     // Biological cell bilayer + nucleus + receptors
+    ]
+    const modalities = MODALITY_TYPES.map((kind, k) => ({
+      kind,
+      a: (k / MODALITY_TYPES.length) * Math.PI * 2 + 0.25,
+      appear: 0.8 + k * 0.12,
+      flash: 0,
+      center: null,
+    }))
 
+    // Sparse background latent state cloud
     const field = []
-    const FIELD_N = small ? 26 : 48
+    const FIELD_N = small ? 24 : 42
     for (let j = 0; j < FIELD_N; j++) {
       field.push({
         x: rand(-SPREAD, SPREAD),
         y: rand(-SPREAD * 0.55, SPREAD * 0.55),
         z: rand(-SPREAD * 0.5, SPREAD * 0.5),
-        vx: rand(-0.14, 0.14),
-        vy: rand(-0.09, 0.09),
-        vz: rand(-0.07, 0.07),
-        r: rand(1, 2.2),
+        vx: rand(-0.13, 0.13),
+        vy: rand(-0.08, 0.08),
+        vz: rand(-0.06, 0.06),
+        r: rand(1, 2.1),
         phase: rand(0, Math.PI * 2),
       })
     }
 
-    const axes3D = [
-      { x: -SPREAD * 0.7, y: -SPREAD * 0.35, z: SPREAD * 0.2 },
-      { x: SPREAD * 0.75, y: SPREAD * 0.3, z: -SPREAD * 0.15 },
-      { x: SPREAD * 0.2, y: -SPREAD * 0.4, z: -SPREAD * 0.3 },
+    // Background counterfactual branching curves (smooth Bézier forks, zero sharp triads)
+    const rolloutMotifs = [
+      { x: -SPREAD * 0.66, y: -SPREAD * 0.32, z: SPREAD * 0.18, s: 1 },
+      { x: SPREAD * 0.72, y: SPREAD * 0.28, z: -SPREAD * 0.14, s: -1 },
+      { x: SPREAD * 0.18, y: -SPREAD * 0.38, z: -SPREAD * 0.28, s: 1 },
     ]
 
     function parseRgb(value, fallback) {
@@ -144,12 +164,13 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       const style = getComputedStyle(document.documentElement)
       colorA = parseRgb(style.getPropertyValue('--canvas-rgb'), colorA)
       colorB = parseRgb(style.getPropertyValue('--canvas-rgb-2'), colorB)
+      colorM = parseRgb(style.getPropertyValue('--canvas-muted-rgb'), colorM)
       const isDark =
         document.documentElement.getAttribute('data-theme') === 'dark' ||
         document.documentElement.classList.contains('dark')
-      strength = isDark ? 1 : 0.9
+      strength = isDark ? 1 : 0.94
       ring.forEach((p) => {
-        p.color = mix(p.tone)
+        p.color = mix(clamp01(p.tone))
       })
     }
 
@@ -187,8 +208,8 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           const lp = offsetIn(lede, hero)
           const textEdge = lp.x + lede.offsetWidth
           R = Math.max(
-            radius * 1.14,
-            Math.min(R, (ox - textEdge - 12) / (CAM_R * 1.04))
+            radius * 1.15,
+            Math.min(R, (ox - textEdge - 14) / (MOD_R * 1.08))
           )
           hero.style.setProperty('--text-edge', `${Math.round(textEdge)}px`)
         } else {
@@ -245,9 +266,9 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           s: pr.s,
           r: p.r * pr.s * 0.8 * Math.max(0.75, fieldScale),
           a:
-            0.3 *
+            0.26 *
             Math.max(0.15, Math.min(1, pr.s / 1.2)) *
-            (0.7 + 0.3 * Math.sin(t * 1.2 + p.phase)),
+            (0.7 + 0.3 * Math.sin(t * 1.1 + p.phase)),
           x3: p.x,
           y3: p.y,
           z3: p.z,
@@ -261,10 +282,10 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
           const dy = pts[a].y3 - pts[b].y3
           const dz = pts[a].z3 - pts[b].z3
           const d = Math.sqrt(dx * dx + dy * dy + dz * dz)
-          if (d < 190) {
+          if (d < 180) {
             bctx.strokeStyle = rgba(
               colorA,
-              (1 - d / 190) * 0.14 * Math.min(1, (pts[a].s + pts[b].s) / 2)
+              (1 - d / 180) * 0.12 * Math.min(1, (pts[a].s + pts[b].s) / 2)
             )
             bctx.beginPath()
             bctx.moveTo(pts[a].x, pts[a].y)
@@ -282,34 +303,67 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
         bctx.fill()
       }
 
-      const dirs = [
-        [24, 0, 0, '#ef4444'],
-        [0, -24, 0, '#22c55e'],
-        [0, 0, 24, '#3b82f6'],
-      ]
-      bctx.globalAlpha = (0.18 + 0.06 * Math.sin(t * 0.5)) * strength
-      for (let k = 0; k < axes3D.length; k++) {
-        const o = axes3D[k]
-        const po = projectField(o.x, o.y, o.z)
-        bctx.lineWidth = Math.max(1, 1.4 * Math.min(1, po.s))
-        for (let m = 0; m < dirs.length; m++) {
-          const pe = projectField(
-            o.x + dirs[m][0],
-            o.y + dirs[m][1],
-            o.z + dirs[m][2]
-          )
-          bctx.strokeStyle = dirs[m][3]
+      // Smooth curved horizon-forecast forks in background
+      const motifAlpha = 0.22 + 0.05 * Math.sin(t * 0.6)
+      for (let k = 0; k < rolloutMotifs.length; k++) {
+        const m = rolloutMotifs[k]
+        const p0 = projectField(m.x - 28 * m.s, m.y + 3, m.z)
+        const p1 = projectField(m.x, m.y, m.z)
+        const pOpt = projectField(m.x + 30 * m.s, m.y - 14, m.z + 8)
+        const pBase = projectField(m.x + 28 * m.s, m.y + 13, m.z - 6)
+
+        bctx.lineWidth = 1.15
+        bctx.strokeStyle = rgba(colorA, motifAlpha)
+        bctx.beginPath()
+        bctx.moveTo(p0.x, p0.y)
+        bctx.quadraticCurveTo(
+          (p0.x + p1.x) / 2,
+          p1.y,
+          p1.x,
+          p1.y
+        )
+        bctx.stroke()
+
+        bctx.strokeStyle = rgba(colorB, motifAlpha * 1.2)
+        bctx.beginPath()
+        bctx.moveTo(p1.x, p1.y)
+        bctx.quadraticCurveTo(
+          p1.x + (pOpt.x - p1.x) * 0.45,
+          p1.y,
+          pOpt.x,
+          pOpt.y
+        )
+        bctx.stroke()
+
+        bctx.save()
+        bctx.setLineDash([2.5, 3])
+        bctx.strokeStyle = rgba(colorM, motifAlpha * 0.9)
+        bctx.beginPath()
+        bctx.moveTo(p1.x, p1.y)
+        bctx.quadraticCurveTo(
+          p1.x + (pBase.x - p1.x) * 0.45,
+          p1.y,
+          pBase.x,
+          pBase.y
+        )
+        bctx.stroke()
+        bctx.restore()
+
+        ;[
+          [p0, colorA],
+          [p1, colorA],
+          [pOpt, colorB],
+        ].forEach(([pt, col]) => {
+          bctx.fillStyle = rgba(col, motifAlpha * 1.35)
           bctx.beginPath()
-          bctx.moveTo(po.x, po.y)
-          bctx.lineTo(pe.x, pe.y)
-          bctx.stroke()
-        }
+          bctx.arc(pt.x, pt.y, 1.9, 0, Math.PI * 2)
+          bctx.fill()
+        })
       }
-      bctx.globalAlpha = 1
     }
 
     function drawTracks(t) {
-      const q = easeOut(clamp01((t - 0.5) / 1.1))
+      const q = easeOut(clamp01((t - 0.45) / 1.1))
       if (q <= 0) return
       const steps = 144
       let prev = null
@@ -327,22 +381,22 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
 
         if (i % 2 === 0) {
           const cp = project(
-            Math.cos(ang) * R * CAM_R,
+            Math.cos(ang) * R * MOD_R,
             0,
-            Math.sin(ang) * R * CAM_R
+            Math.sin(ang) * R * MOD_R
           )
           const cctx = cp.z > 0 ? fctx : bctx
-          cctx.fillStyle = rgba(colorA, 0.22 * q)
+          cctx.fillStyle = rgba(colorA, 0.21 * q)
           cctx.beginPath()
           cctx.arc(cp.x, cp.y, 0.75, 0, Math.PI * 2)
           cctx.fill()
         }
       }
       bctx.lineWidth = 1
-      bctx.strokeStyle = rgba(colorA, 0.12 * q)
+      bctx.strokeStyle = rgba(colorA, 0.13 * q)
       bctx.stroke(backPath)
       fctx.lineWidth = 1
-      fctx.strokeStyle = rgba(colorA, 0.2 * q)
+      fctx.strokeStyle = rgba(colorA, 0.22 * q)
       fctx.stroke(frontPath)
     }
 
@@ -368,8 +422,8 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
         p.proj = pr
 
         const depth = clamp01(0.5 + pr.z / (2.4 * R))
-        const twinkle = 0.75 + 0.25 * Math.sin(t * 1.6 + p.phase)
-        const alpha = (0.28 + 0.62 * depth) * twinkle * q
+        const twinkle = 0.75 + 0.25 * Math.sin(t * 1.5 + p.phase)
+        const alpha = (0.26 + 0.62 * depth) * twinkle * q
         const size = p.size * pr.s * (0.75 + 0.5 * depth)
         const ctx = pr.z > 0 ? fctx : bctx
 
@@ -379,92 +433,334 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
         ctx.fill()
 
         if (p.glow > 0) {
-          const gr = 4 + 18 * p.glow
+          const gr = 4 + 17 * p.glow
           const g = ctx.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, gr)
-          g.addColorStop(0, rgba(p.color, 0.6 * p.glow))
-          g.addColorStop(1, rgba(p.color, 0))
+          g.addColorStop(0, rgba(colorB, 0.65 * p.glow))
+          g.addColorStop(1, rgba(colorB, 0))
           ctx.fillStyle = g
           ctx.beginPath()
           ctx.arc(pr.x, pr.y, gr, 0, Math.PI * 2)
           ctx.fill()
-          if (!frozen) p.glow = Math.max(0, p.glow - dt * 0.9)
+          if (!frozen) p.glow = Math.max(0, p.glow - dt * 0.85)
         }
       }
     }
 
-    function drawCameras(t, dt) {
-      for (let k = 0; k < cams.length; k++) {
-        const cam = cams[k]
-        const e = easeOut(clamp01((t - cam.appear) / 0.8))
+    function makeLocalProjector(cx, cz, ca, sa, scale) {
+      return (uTan, vUp, wRad) =>
+        project(
+          cx + (-sa * uTan + ca * wRad) * scale,
+          vUp * scale,
+          cz + (ca * uTan + sa * wRad) * scale
+        )
+    }
+
+    function drawModalities(t, dt) {
+      for (let k = 0; k < modalities.length; k++) {
+        const mod = modalities[k]
+        const e = easeOut(clamp01((t - mod.appear) / 0.85))
         if (e <= 0) {
-          cam.apex = null
+          mod.center = null
           continue
         }
-        cam.flash = Math.max(0, cam.flash - dt * 1.2)
+        mod.flash = Math.max(0, mod.flash - dt * 1.1)
 
-        const ang = cam.a + spin
+        const ang = mod.a + spin
         const ca = Math.cos(ang)
         const sa = Math.sin(ang)
-        const cx = ca * CAM_R * R
-        const cz = sa * CAM_R * R
-        const d = 0.17 * R * e
-        const hw = 0.08 * R * e
-        const hh = 0.055 * R * e
-        const bx = cx - ca * d
-        const bz = cz - sa * d
-        const apex = project(cx, 0, cz)
-        const c1 = project(bx + sa * hw, -hh, bz - ca * hw)
-        const c2 = project(bx - sa * hw, -hh, bz + ca * hw)
-        const c3 = project(bx - sa * hw, hh, bz + ca * hw)
-        const c4 = project(bx + sa * hw, hh, bz - ca * hw)
-        cam.apex = apex
+        const cx = ca * MOD_R * R
+        const cz = sa * MOD_R * R
+        const center = project(cx, 0, cz)
+        mod.center = center
 
-        const depth = clamp01(0.5 + apex.z / (2.4 * R * CAM_R))
-        const alpha = (0.25 + 0.45 * depth + 0.4 * cam.flash) * e
-        const ctx = apex.z > 0 ? fctx : bctx
+        const depth = clamp01(0.5 + center.z / (2.4 * R * MOD_R))
+        const alpha = (0.34 + 0.48 * depth + 0.36 * mod.flash) * e
+        const ctx = center.z > 0 ? fctx : bctx
+        const sc = 0.132 * R * e
+        const lp = makeLocalProjector(cx, cz, ca, sa, sc)
 
-        ctx.lineWidth = 1
-        ctx.beginPath()
-        ctx.moveTo(c1.x, c1.y)
-        ctx.lineTo(c2.x, c2.y)
-        ctx.lineTo(c3.x, c3.y)
-        ctx.lineTo(c4.x, c4.y)
-        ctx.closePath()
-        ctx.fillStyle = rgba(colorA, (0.06 + 0.25 * cam.flash) * e)
-        ctx.fill()
-        ;[c1, c2, c3, c4].forEach((c) => {
-          ctx.moveTo(apex.x, apex.y)
-          ctx.lineTo(c.x, c.y)
-        })
-        ctx.strokeStyle = rgba(colorA, alpha)
-        ctx.stroke()
+        ctx.save()
+        ctx.lineCap = 'round'
+        ctx.lineJoin = 'round'
 
-        ctx.fillStyle = rgba(colorA, Math.min(1, alpha + 0.2))
-        ctx.beginPath()
-        ctx.arc(apex.x, apex.y, 1.6 + 1.6 * cam.flash, 0, Math.PI * 2)
-        ctx.fill()
+        if (mod.kind === 'globe') {
+          // 1. 3D Wireframe World Sphere (World Modeling & Spatial State)
+          const rG = 0.88 * center.s * sc
+          ctx.lineWidth = 1.2
+          ctx.fillStyle = rgba(colorA, (0.06 + 0.16 * mod.flash) * e)
+          ctx.strokeStyle = rgba(colorA, alpha)
+          ctx.beginPath()
+          ctx.arc(center.x, center.y, rG, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.stroke()
+
+          // Rotating 3D meridians + equator
+          const SEG = 22
+          const rot = t * 0.55
+          ;[0, Math.PI / 2].forEach((mOff, idx) => {
+            ctx.lineWidth = 1.0
+            ctx.strokeStyle = rgba(idx === 1 ? colorB : colorA, alpha * 0.82)
+            ctx.beginPath()
+            for (let s = 0; s <= SEG; s++) {
+              const th = (s / SEG) * Math.PI * 2
+              const xL = Math.sin(th) * Math.cos(rot + mOff) * 0.88
+              const yL = Math.cos(th) * 0.88
+              const zL = Math.sin(th) * Math.sin(rot + mOff) * 0.88
+              const pt = lp(xL, yL, zL)
+              if (s === 0) ctx.moveTo(pt.x, pt.y)
+              else ctx.lineTo(pt.x, pt.y)
+            }
+            ctx.stroke()
+          })
+          // Equator
+          ctx.lineWidth = 1.05
+          ctx.strokeStyle = rgba(colorB, alpha * 0.9)
+          ctx.beginPath()
+          for (let s = 0; s <= SEG; s++) {
+            const th = (s / SEG) * Math.PI * 2
+            const pt = lp(Math.cos(th) * 0.88, 0, Math.sin(th) * 0.88)
+            if (s === 0) ctx.moveTo(pt.x, pt.y)
+            else ctx.lineTo(pt.x, pt.y)
+          }
+          ctx.stroke()
+        } else if (mod.kind === 'helix') {
+          // 2. 3D Rotating DNA Double Helix (Genomics & Multi-omic Health)
+          const N = 12
+          const sA = []
+          const sB = []
+          for (let i = 0; i <= N; i++) {
+            const f = (i / N) * 2 - 1
+            const phi = f * 2.8 + t * 1.35
+            const rH = 0.58
+            sA.push(lp(Math.cos(phi) * rH, f * 1.18, Math.sin(phi) * rH))
+            sB.push(
+              lp(
+                Math.cos(phi + Math.PI) * rH,
+                f * 1.18,
+                Math.sin(phi + Math.PI) * rH
+              )
+            )
+          }
+          ctx.lineWidth = 1.0
+          ctx.strokeStyle = rgba(colorB, alpha * 0.78)
+          ctx.beginPath()
+          for (let i = 1; i < N; i += 2) {
+            ctx.moveTo(sA[i].x, sA[i].y)
+            ctx.lineTo(sB[i].x, sB[i].y)
+          }
+          ctx.stroke()
+
+          ;[
+            [sA, colorA],
+            [sB, colorB],
+          ].forEach(([pts, col]) => {
+            ctx.lineWidth = 1.4
+            ctx.strokeStyle = rgba(col, alpha)
+            ctx.beginPath()
+            pts.forEach((pt, idx) =>
+              idx === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y)
+            )
+            ctx.stroke()
+          })
+        } else if (mod.kind === 'vital') {
+          // 3. Rounded Biomarker / ECG Pulse Capsule (Longitudinal Physiology)
+          const pw = 1.25 * sc * center.s
+          const ph = 0.68 * sc * center.s
+          ctx.lineWidth = 1.15
+          ctx.fillStyle = rgba(colorA, (0.06 + 0.16 * mod.flash) * e)
+          ctx.strokeStyle = rgba(colorA, alpha * 0.75)
+          ctx.beginPath()
+          if (ctx.roundRect) {
+            ctx.roundRect(center.x - pw, center.y - ph, pw * 2, ph * 2, ph)
+          } else {
+            ctx.arc(center.x, center.y, pw * 0.85, 0, Math.PI * 2)
+          }
+          ctx.fill()
+          ctx.stroke()
+
+          const wave = [
+            [-0.86, 0],
+            [-0.48, 0],
+            [-0.34, -0.22],
+            [-0.2, 0],
+            [-0.08, 0.22],
+            [0.05, -0.72],
+            [0.19, 0.45],
+            [0.32, 0],
+            [0.52, -0.25],
+            [0.68, 0],
+            [0.86, 0],
+          ]
+          ctx.lineWidth = 1.5
+          ctx.strokeStyle = rgba(colorB, Math.min(1, alpha * 1.18))
+          ctx.beginPath()
+          wave.forEach(([u, v], idx) => {
+            const xw = center.x + u * pw
+            const yw = center.y + v * ph
+            if (idx === 0) ctx.moveTo(xw, yw)
+            else ctx.lineTo(xw, yw)
+          })
+          ctx.stroke()
+
+          const prog = (t * 0.65) % 1
+          const segF = prog * (wave.length - 1)
+          const idx0 = Math.floor(segF)
+          const idx1 = Math.min(wave.length - 1, idx0 + 1)
+          const frac = segF - idx0
+          const pu = wave[idx0][0] + (wave[idx1][0] - wave[idx0][0]) * frac
+          const pv = wave[idx0][1] + (wave[idx1][1] - wave[idx0][1]) * frac
+          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.3))
+          ctx.beginPath()
+          ctx.arc(
+            center.x + pu * pw,
+            center.y + pv * ph,
+            2.2 + mod.flash,
+            0,
+            Math.PI * 2
+          )
+          ctx.fill()
+        } else if (mod.kind === 'molecule') {
+          // 4. 3D Molecular / Biomarker Ring with Atom Nodes
+          const rot = t * 0.5
+          const atoms = []
+          for (let i = 0; i < 6; i++) {
+            const th = (i / 6) * Math.PI * 2 + rot
+            const u = Math.cos(th) * 0.85
+            const v = Math.sin(th) * 0.85 * Math.cos(0.45)
+            const wCoord = Math.sin(th) * 0.85 * Math.sin(0.45)
+            atoms.push(lp(u, v, wCoord))
+          }
+          // Side chain atom
+          const sideAtom = lp(
+            Math.cos(rot) * 1.32,
+            Math.sin(rot) * 1.32 * Math.cos(0.45),
+            Math.sin(rot) * 1.32 * Math.sin(0.45)
+          )
+
+          ctx.lineWidth = 1.2
+          ctx.strokeStyle = rgba(colorA, alpha * 0.9)
+          ctx.beginPath()
+          atoms.forEach((pt, idx) =>
+            idx === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y)
+          )
+          ctx.closePath()
+          ctx.moveTo(atoms[0].x, atoms[0].y)
+          ctx.lineTo(sideAtom.x, sideAtom.y)
+          ctx.stroke()
+
+          atoms.forEach((pt, idx) => {
+            ctx.fillStyle = rgba(idx % 2 === 0 ? colorA : colorB, Math.min(1, alpha + 0.18))
+            ctx.beginPath()
+            ctx.arc(pt.x, pt.y, 2.2 * center.s, 0, Math.PI * 2)
+            ctx.fill()
+          })
+          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.25))
+          ctx.beginPath()
+          ctx.arc(sideAtom.x, sideAtom.y, 2.6 * center.s, 0, Math.PI * 2)
+          ctx.fill()
+        } else if (mod.kind === 'attractor') {
+          // 5. 3D Phase-Space Infinity / Lorenz Attractor (Latent State Dynamics)
+          const SEG = 32
+          const pts = []
+          const rot = t * 0.45
+          for (let s = 0; s <= SEG; s++) {
+            const th = (s / SEG) * Math.PI * 2
+            const denom = 1 + Math.sin(th) * Math.sin(th)
+            const u = (1.18 * Math.cos(th)) / denom
+            const v = (1.05 * Math.sin(th) * Math.cos(th)) / denom
+            const wCoord = 0.42 * Math.sin(th * 2 + rot)
+            pts.push(lp(u, v, wCoord))
+          }
+          ctx.lineWidth = 1.4
+          ctx.strokeStyle = rgba(colorA, alpha)
+          ctx.beginPath()
+          pts.forEach((pt, idx) =>
+            idx === 0 ? ctx.moveTo(pt.x, pt.y) : ctx.lineTo(pt.x, pt.y)
+          )
+          ctx.stroke()
+
+          // Orbiting state particle along the phase attractor
+          const idx = Math.floor(((t * 0.55) % 1) * SEG)
+          const statePt = pts[idx]
+          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.3))
+          ctx.beginPath()
+          ctx.arc(statePt.x, statePt.y, 2.5 + mod.flash, 0, Math.PI * 2)
+          ctx.fill()
+        } else {
+          // 6. Biological Cell Bilayer + Nucleus + Surface Receptors
+          const rOuter = 0.88 * sc * center.s
+          const rNucleus = 0.36 * sc * center.s
+
+          ctx.lineWidth = 1.25
+          ctx.fillStyle = rgba(colorB, (0.07 + 0.16 * mod.flash) * e)
+          ctx.strokeStyle = rgba(colorA, alpha * 0.92)
+          ctx.beginPath()
+          ctx.arc(center.x, center.y, rOuter, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.stroke()
+
+          ctx.save()
+          ctx.setLineDash([2.5, 2.5])
+          ctx.lineWidth = 0.95
+          ctx.strokeStyle = rgba(colorB, alpha * 0.78)
+          ctx.beginPath()
+          ctx.arc(center.x, center.y, rOuter * 0.72, 0, Math.PI * 2)
+          ctx.stroke()
+          ctx.restore()
+
+          // Nucleus
+          ctx.fillStyle = rgba(colorB, Math.min(1, alpha + 0.22))
+          ctx.beginPath()
+          ctx.arc(
+            center.x + Math.cos(t * 0.9) * rOuter * 0.1,
+            center.y + Math.sin(t * 0.9) * rOuter * 0.1,
+            rNucleus,
+            0,
+            Math.PI * 2
+          )
+          ctx.fill()
+
+          // 3 membrane receptor nodes
+          for (let m = 0; m < 3; m++) {
+            const th = (m / 3) * Math.PI * 2 + t * 0.4
+            const rx = center.x + Math.cos(th) * (rOuter + 2.5)
+            const ry = center.y + Math.sin(th) * (rOuter + 2.5)
+            ctx.fillStyle = rgba(colorA, Math.min(1, alpha + 0.2))
+            ctx.beginPath()
+            ctx.arc(rx, ry, 1.8, 0, Math.PI * 2)
+            ctx.fill()
+          }
+        }
+
+        ctx.restore()
       }
     }
 
     function updateEvents(t, dt) {
       if (t > nextEvent) {
-        nextEvent = t + rand(1.2, 2)
+        nextEvent = t + rand(1.5, 2.35)
         const p = ring[(Math.random() * ring.length) | 0]
-        const nearest = cams
+        const nearest = modalities
           .slice()
-          .sort((c1, c2) => angleBetween(c1.a, p.a) - angleBetween(c2.a, p.a))
-        events.push({ p, cams: [nearest[0], nearest[1]], t: 0, hit: false })
+          .sort((m1, m2) => angleBetween(m1.a, p.a) - angleBetween(m2.a, p.a))
+        events.push({
+          p,
+          mods: [nearest[0], nearest[1]],
+          t: 0,
+          hit: false,
+          horizon: rand(0.48, 0.68),
+        })
         nearest[0].flash = 1
         nearest[1].flash = 1
       }
       for (let i = events.length - 1; i >= 0; i--) {
         const ev = events[i]
         ev.t += dt
-        if (!ev.hit && ev.t > 0.45) {
+        if (!ev.hit && ev.t > 0.4) {
           ev.hit = true
           ev.p.glow = 1
         }
-        if (ev.t > 1.7) events.splice(i, 1)
+        if (ev.t > 2.3) events.splice(i, 1)
       }
     }
 
@@ -472,40 +768,83 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       events.forEach((ev) => {
         const pt = ev.p.proj
         if (!pt) return
-        const grow = easeOut(clamp01(ev.t / 0.45))
-        const fade = ev.t < 0.6 ? 1 : clamp01(1 - (ev.t - 0.6) / 1.1)
-        const apexes = ev.cams.map((cam) => cam.apex).filter(Boolean)
+        const encGrow = easeOut(clamp01(ev.t / 0.4))
+        const fade = ev.t < 1.2 ? 1 : clamp01(1 - (ev.t - 1.2) / 1.1)
+        const centers = ev.mods.map((m) => m.center).filter(Boolean)
 
-        if (apexes.length === 2) {
-          const lineCtx = apexes[0].z > 0 || apexes[1].z > 0 ? fctx : bctx
-          lineCtx.save()
-          lineCtx.setLineDash([3, 4])
-          lineCtx.lineWidth = 1
-          lineCtx.strokeStyle = rgba(colorA, 0.3 * fade)
-          lineCtx.beginPath()
-          lineCtx.moveTo(apexes[0].x, apexes[0].y)
-          lineCtx.lineTo(apexes[1].x, apexes[1].y)
-          lineCtx.stroke()
-          lineCtx.restore()
-        }
-
-        apexes.forEach((a) => {
-          const ex = a.x + (pt.x - a.x) * grow
-          const ey = a.y + (pt.y - a.y) * grow
-          const ctx = a.z > 0 || pt.z > 0 ? fctx : bctx
-          ctx.lineWidth = 1
-          ctx.strokeStyle = rgba(colorB, 0.6 * fade)
+        centers.forEach((c) => {
+          const ex = c.x + (pt.x - c.x) * encGrow
+          const ey = c.y + (pt.y - c.y) * encGrow
+          const ctx = c.z > 0 || pt.z > 0 ? fctx : bctx
+          ctx.lineWidth = 1.05
+          ctx.strokeStyle = rgba(colorA, 0.5 * fade)
           ctx.beginPath()
-          ctx.moveTo(a.x, a.y)
+          ctx.moveTo(c.x, c.y)
           ctx.lineTo(ex, ey)
           ctx.stroke()
-          if (grow < 1) {
-            ctx.fillStyle = rgba(colorB, 0.95)
+
+          if (encGrow < 1) {
+            ctx.fillStyle = rgba(colorA, 0.95)
             ctx.beginPath()
-            ctx.arc(ex, ey, 2, 0, Math.PI * 2)
+            ctx.arc(ex, ey, 2.1, 0, Math.PI * 2)
             ctx.fill()
           }
         })
+
+        if (ev.t > 0.38) {
+          const rollGrow = easeOut(clamp01((ev.t - 0.38) / 0.8))
+          const baseAng = ev.p.a + spin
+          const baseR = ev.p.r * R
+          const baseY = ev.p.y * R
+          const STEPS = 18
+          const activeSteps = Math.max(2, Math.round(STEPS * rollGrow))
+
+          let prevOpt = null
+          let prevBase = null
+          for (let s = 0; s <= activeSteps; s++) {
+            const frac = s / STEPS
+            const ang = baseAng + frac * ev.horizon
+
+            const optR = baseR + Math.sin(frac * Math.PI) * (0.075 * R)
+            const optY = baseY - frac * (0.095 * R)
+            const pOpt = project(Math.cos(ang) * optR, optY, Math.sin(ang) * optR)
+
+            const cfR = baseR + frac * frac * (0.17 * R)
+            const cfY = baseY + frac * (0.11 * R)
+            const pBase = project(Math.cos(ang) * cfR, cfY, Math.sin(ang) * cfR)
+
+            if (prevOpt) {
+              const ctxOpt = (pOpt.z + prevOpt.z) / 2 > 0 ? fctx : bctx
+              ctxOpt.lineWidth = 1.65
+              ctxOpt.strokeStyle = rgba(colorB, 0.82 * fade)
+              ctxOpt.beginPath()
+              ctxOpt.moveTo(prevOpt.x, prevOpt.y)
+              ctxOpt.lineTo(pOpt.x, pOpt.y)
+              ctxOpt.stroke()
+            }
+
+            if (prevBase && s % 2 === 1) {
+              const ctxBase = (pBase.z + prevBase.z) / 2 > 0 ? fctx : bctx
+              ctxBase.lineWidth = 1.05
+              ctxBase.strokeStyle = rgba(colorM, 0.44 * fade)
+              ctxBase.beginPath()
+              ctxBase.moveTo(prevBase.x, prevBase.y)
+              ctxBase.lineTo(pBase.x, pBase.y)
+              ctxBase.stroke()
+            }
+
+            if (s > 0 && s % 6 === 0) {
+              const wctx = pOpt.z > 0 ? fctx : bctx
+              wctx.fillStyle = rgba(colorB, 0.94 * fade)
+              wctx.beginPath()
+              wctx.arc(pOpt.x, pOpt.y, 2.3, 0, Math.PI * 2)
+              wctx.fill()
+            }
+
+            prevOpt = pOpt
+            prevBase = pBase
+          }
+        }
       })
     }
 
@@ -535,7 +874,7 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       drawField(t, frozen)
       drawTracks(t)
       drawRing(t, dt, frozen)
-      drawCameras(t, frozen ? 0 : dt)
+      drawModalities(t, frozen ? 0 : dt)
       if (!frozen && !reducedMotion.matches) updateEvents(t, dt)
       drawEvents()
     }
@@ -562,7 +901,6 @@ export function HeroCanvas({ heroRef, portraitRef, ledeRef }) {
       cancelAnimationFrame(rafId)
     }
 
-    // Pointer tilt, spotlight, and parallax
     let ptrFrame = 0
     let px = 0
     let py = 0

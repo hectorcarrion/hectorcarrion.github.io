@@ -167,6 +167,8 @@ function PublicationItem({ pub, onOpenBibtex }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={pub.thumbnail}
+            width="920"
+            height="480"
             alt=""
             loading="lazy"
             decoding="async"

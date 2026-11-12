@@ -30,12 +30,12 @@ export default function Document() {
       <Head>
         <meta
           name="theme-color"
-          content="#f7f6f2"
+          content="#fef9ef"
           media="(prefers-color-scheme: light)"
         />
         <meta
           name="theme-color"
-          content="#0b0c10"
+          content="#16171a"
           media="(prefers-color-scheme: dark)"
         />
         <link rel="icon" href="/favicon.ico?v=2026-10-round" sizes="any" />

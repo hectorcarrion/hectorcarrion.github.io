@@ -230,7 +230,7 @@ export function Header() {
               }
             >
               {isDark ? (
-                <SunIcon className="h-[18px] w-[18px] text-amber-400" />
+                <SunIcon className="h-[18px] w-[18px] text-[var(--accent)]" />
               ) : (
                 <MoonIcon className="h-[18px] w-[18px]" />
               )}

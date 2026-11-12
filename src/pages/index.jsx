@@ -36,7 +36,7 @@ import {
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 
-import portraitImage from '@/images/portrait.webp'
+import profileImage from '@/images/profile.webp'
 import logoFunction from '@/images/logos/function.svg'
 import logoTera from '@/images/logos/tera.png'
 import logoUCSC from '@/images/logos/ucsc.svg'
@@ -65,8 +65,8 @@ const NEWS_ITEMS = [
         >
           Function Health
         </a>{' '}
-        in San Francisco as <strong>World Model Team Lead</strong>, directing
-        research on JEPA and autoregressive longitudinal health models.
+        as <strong>World Model Team Lead</strong>, directing research on JEPA
+        and autoregressive longitudinal health models.
       </>
     ),
   },
@@ -269,9 +269,8 @@ const NEWS_ITEMS = [
     icon: FlaskIcon,
     content: (
       <>
-        Joined <strong>Google Research</strong> in Mountain View as a Ph.D.
-        Student Researcher working on unified video and image foundation
-        encoders.
+        Joined <strong>Google Research</strong> as a Ph.D. Student Researcher
+        working on unified video and image foundation encoders.
       </>
     ),
   },
@@ -283,7 +282,6 @@ const EXPERIENCE_WORK = [
     role: 'World Model Team Lead',
     org: 'Function Health',
     href: 'https://www.functionhealth.com/',
-    location: 'San Francisco, CA',
     logo: logoFunction,
     current: true,
     desc: 'Directing the World Model team and research roadmap on JEPA and autoregressive multimodal representations to forecast longitudinal human health trajectories and personalize interventions.',
@@ -293,7 +291,6 @@ const EXPERIENCE_WORK = [
     role: 'Founding Lead Research Scientist',
     org: 'Tera AI',
     href: 'https://www.tera-ai.com/',
-    location: 'San Francisco, CA',
     logo: logoTera,
     desc: 'Designed and executed the founding research agenda in spatial reasoning and embodied world models; co-led TARDIS & STRIDE, a unified 1B-parameter spatio-temporal transformer for autonomy.',
   },
@@ -302,7 +299,6 @@ const EXPERIENCE_WORK = [
     role: 'Student Researcher (Ph.D.)',
     org: 'Google Research',
     href: 'https://research.google/',
-    location: 'Mountain View, CA',
     logo: logoGoogle,
     desc: 'Established foundation-model recipes for unified multimodal video and image pre-training, unlocking >25% higher downstream performance over single-modality encoders.',
   },
@@ -311,7 +307,6 @@ const EXPERIENCE_WORK = [
     role: 'AI Resident (Ph.D.)',
     org: 'X, The Moonshot Factory (Google [X])',
     href: 'https://x.company/',
-    location: 'Mountain View, CA',
     logo: logoX,
     desc: 'Built simulation, edge-perception, and aerial/ground vision models under novel physical problem domains, exceeding target benchmarks and earning granted Google patents.',
   },
@@ -320,7 +315,6 @@ const EXPERIENCE_WORK = [
     role: 'Graduate Student Researcher',
     org: 'UC Santa Cruz & UC Berkeley',
     href: 'https://www.ucsc.edu/',
-    location: 'Santa Cruz, CA',
     logo: logoUCSC,
     desc: 'Developed metric 3D reconstruction (DermDepth), controllable diffusion priors (cgDDI, FEDD), and self-supervised temporal stage discovery (HealNet) for label-constrained biological systems.',
   },
@@ -331,7 +325,6 @@ const EXPERIENCE_EDU = [
     date: '2020 – 2026',
     role: 'Ph.D. in Computer Science',
     org: 'University of California, Santa Cruz',
-    location: 'Santa Cruz & Berkeley, CA',
     logo: logoUCSC,
     desc: 'Advised by Dr. Narges Norouzi (UC Berkeley). 3.92 GPA. Focus on self-supervised temporal dynamics, metric 3D vision, generative priors, and fair medical AI.',
   },
@@ -339,7 +332,6 @@ const EXPERIENCE_EDU = [
     date: '2017 – 2021',
     role: 'B.Sc. in Computer Science',
     org: 'University of Puerto Rico, Río Piedras',
-    location: 'San Juan, PR',
     logo: logoUpr,
     desc: 'Undergraduate Research Assistant with Dr. Rémi Mégret on self-supervised multi-day video re-identification. 3.75 GPA.',
   },
@@ -347,7 +339,6 @@ const EXPERIENCE_EDU = [
     date: '2018 – 2019',
     role: 'Software Engineering & Design',
     org: 'Apple Developer Academy, Univ. of Naples Federico II',
-    location: 'Naples, Italy',
     logo: logoApple,
     desc: 'Full-stack native iOS engineering, human-centered product design, and on-device CoreML systems.',
   },
@@ -571,10 +562,10 @@ export default function Home({ articles }) {
           <div className="hero-portrait">
             <div className="portrait-ring" ref={portraitRef}>
               <Image
-                src={portraitImage}
+                src={profileImage}
                 width={640}
                 height={640}
-                alt="Portrait of Dr. Héctor Carrión with the Golden Gate Bridge in the background"
+                alt="Portrait of Dr. Héctor Carrión"
                 priority
               />
               <span className="portrait-glare" aria-hidden="true" />
@@ -585,7 +576,7 @@ export default function Home({ articles }) {
             </span>
             <span className="portrait-chip chip-bottom">
               <LocationPinIcon className="h-3.5 w-3.5" />
-              <span>San Francisco, CA</span>
+              <span>US-based</span>
             </span>
           </div>
         </div>
@@ -730,6 +721,10 @@ export default function Home({ articles }) {
                     <dd>UC Santa Cruz &middot; Adv. N. Norouzi (Berkeley)</dd>
                   </div>
                   <div>
+                    <dt>Base</dt>
+                    <dd>US-based</dd>
+                  </div>
+                  <div>
                     <dt>Advisory</dt>
                     <dd>
                       <a
@@ -850,8 +845,7 @@ export default function Home({ articles }) {
                           rel="noopener noreferrer"
                         >
                           {item.org}
-                        </a>{' '}
-                        &middot; {item.location}
+                        </a>
                       </p>
                       <p className="exp-desc">{item.desc}</p>
                     </div>
@@ -879,9 +873,7 @@ export default function Home({ articles }) {
                     <div>
                       <span className="exp-date">{item.date}</span>
                       <h4 className="exp-role">{item.role}</h4>
-                      <p className="exp-org">
-                        {item.org} &middot; {item.location}
-                      </p>
+                      <p className="exp-org">{item.org}</p>
                       <p className="exp-desc">{item.desc}</p>
                     </div>
                   </li>

@@ -4,36 +4,48 @@
 @import 'tailwindcss/utilities';
 
 /* =====================================================================
-   Dr. Héctor Carrión — Design Tokens & Editorial Layout System
-   Inspired by Thibaut Loiseau's aesthetic + Hector's signature widgets
+   Dr. Héctor Carrión — Function Health Editorial Design System
+   Official Function tokens:
+     --beige: #FEF9EF | --cream: #F5EEE1 | --dark-cream: #D1C9BF
+     --midnight: #2A2B2F | --gray: #515151 | --light-gray: #737373
+     --orange: #B05A36 | --orange-10p: #F6E9DC
+     --light-green: #79BD8B | --medium-green: #4C9A62
+     --dark-green: #13411F | --green-10p: #F1F3E5
    ===================================================================== */
 
 :root {
   color-scheme: light;
 
-  --bg: #f7f6f2;
+  --bg: #fef9ef;
   --surface: #ffffff;
-  --surface-2: #f1efea;
-  --surface-3: #e9e6df;
-  --text: #15161a;
-  --text-2: #43464f;
-  --muted: #6b6f7b;
-  --border: #e4e1d9;
-  --border-strong: #d4d0c6;
+  --surface-2: #f5eee1;
+  --surface-3: #ebe2d2;
+  --text: #2a2b2f;
+  --text-2: #515151;
+  --muted: #6e6a63;
+  --border: #e6dfd2;
+  --border-strong: #d1c9bf;
 
-  --accent: #2b50e6;
-  --accent-2: #7a3ee8;
-  --accent-ink: #2242c4;
-  --accent-soft: rgba(43, 80, 230, 0.08);
-  --gold: #a86a0c;
-  --gold-soft: rgba(245, 158, 11, 0.14);
+  --accent: #b05a36;
+  --accent-2: #8e4122;
+  --accent-ink: #934424;
+  --accent-soft: #f6e9dc;
+
+  --bio-green: #4c9a62;
+  --bio-green-ink: #13411f;
+  --bio-green-soft: #f1f3e5;
+
+  --gold: #1e5b32;
+  --gold-soft: #f1f3e5;
+
   --figure-bg: #ffffff;
-  --canvas-rgb: 43, 80, 230;
-  --canvas-rgb-2: 122, 62, 232;
+  --canvas-rgb: 176, 90, 54;
+  --canvas-rgb-2: 76, 154, 98;
+  --canvas-muted-rgb: 110, 106, 99;
 
-  --shadow-sm: 0 1px 2px rgba(20, 20, 30, 0.04), 0 1px 1px rgba(20, 20, 30, 0.03);
-  --shadow-md: 0 10px 28px -14px rgba(20, 22, 40, 0.22);
-  --shadow-lg: 0 28px 56px -26px rgba(20, 22, 50, 0.3);
+  --shadow-sm: 0 1px 2px rgba(42, 43, 47, 0.05), 0 1px 1px rgba(42, 43, 47, 0.03);
+  --shadow-md: 0 10px 28px -14px rgba(42, 43, 47, 0.2);
+  --shadow-lg: 0 28px 56px -26px rgba(42, 43, 47, 0.28);
 
   --radius-sm: 10px;
   --radius: 16px;
@@ -51,29 +63,36 @@
 :root.dark {
   color-scheme: dark;
 
-  --bg: #0b0c10;
-  --surface: #121419;
-  --surface-2: #181b21;
-  --surface-3: #1f232b;
-  --text: #ecedf1;
-  --text-2: #b8bcc7;
-  --muted: #8a8f9e;
-  --border: #23262e;
-  --border-strong: #31353f;
+  --bg: #16171a;
+  --surface: #202126;
+  --surface-2: #2a2b2f;
+  --surface-3: #34363c;
+  --text: #fef9ef;
+  --text-2: #d1c9bf;
+  --muted: #9a948b;
+  --border: #2e3036;
+  --border-strong: #3f4149;
 
-  --accent: #7f9bff;
-  --accent-2: #b597ff;
-  --accent-ink: #a9bbff;
-  --accent-soft: rgba(127, 155, 255, 0.12);
-  --gold: #f2c25b;
-  --gold-soft: rgba(242, 194, 91, 0.12);
-  --figure-bg: #f4f4f1;
-  --canvas-rgb: 150, 172, 255;
-  --canvas-rgb-2: 190, 160, 255;
+  --accent: #de835c;
+  --accent-2: #efb091;
+  --accent-ink: #f4b79a;
+  --accent-soft: rgba(222, 131, 92, 0.16);
+
+  --bio-green: #79bd8b;
+  --bio-green-ink: #a3dcb2;
+  --bio-green-soft: rgba(121, 189, 139, 0.15);
+
+  --gold: #95d5a6;
+  --gold-soft: rgba(121, 189, 139, 0.15);
+
+  --figure-bg: #faf6ee;
+  --canvas-rgb: 222, 131, 92;
+  --canvas-rgb-2: 121, 189, 139;
+  --canvas-muted-rgb: 168, 162, 152;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
   --shadow-md: 0 12px 30px -14px rgba(0, 0, 0, 0.7);
-  --shadow-lg: 0 30px 60px -26px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 30px 60px -26px rgba(0, 0, 0, 0.82);
 }
 
 @property --ring-angle {
@@ -106,7 +125,7 @@ body.modal-open {
 }
 
 ::selection {
-  background: rgba(43, 80, 230, 0.22);
+  background: rgba(var(--canvas-rgb), 0.22);
   color: var(--text);
 }
 
@@ -163,7 +182,7 @@ body.modal-open {
   height: 2px;
   transform: scaleX(0);
   transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  background: linear-gradient(90deg, var(--accent), var(--bio-green));
   pointer-events: none;
 }
 
@@ -178,7 +197,7 @@ body.modal-open {
 
 .site-nav.is-scrolled,
 .site-nav.menu-open {
-  background: rgba(247, 246, 242, 0.82);
+  background: rgba(254, 249, 239, 0.85);
   -webkit-backdrop-filter: saturate(180%) blur(16px);
   backdrop-filter: saturate(180%) blur(16px);
   box-shadow: 0 1px 0 var(--border);
@@ -188,7 +207,7 @@ body.modal-open {
 :root[data-theme='dark'] .site-nav.menu-open,
 :root.dark .site-nav.is-scrolled,
 :root.dark .site-nav.menu-open {
-  background: rgba(11, 12, 16, 0.82);
+  background: rgba(22, 23, 26, 0.85);
 }
 
 .site-nav-inner {
@@ -223,9 +242,15 @@ body.modal-open {
   font-family: var(--font-serif);
   font-size: 1.15rem;
   letter-spacing: 0.02em;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 8px 18px -8px rgba(43, 80, 230, 0.65);
+  color: #fef9ef;
+  background: linear-gradient(135deg, #b05a36, #8e4122);
+  box-shadow: 0 8px 18px -8px rgba(176, 90, 54, 0.65);
+}
+
+:root[data-theme='dark'] .brand-mark,
+:root.dark .brand-mark {
+  color: #16171a;
+  background: linear-gradient(135deg, #de835c, #efb091);
 }
 
 .brand-name {
@@ -363,8 +388,8 @@ body.modal-open {
   width: 72%;
   height: 115%;
   pointer-events: none;
-  background: radial-gradient(closest-side at 62% 42%, rgba(var(--canvas-rgb), 0.16), transparent 72%),
-    radial-gradient(closest-side at 80% 72%, rgba(var(--canvas-rgb-2), 0.12), transparent 72%);
+  background: radial-gradient(closest-side at 62% 42%, rgba(var(--canvas-rgb), 0.14), transparent 72%),
+    radial-gradient(closest-side at 80% 72%, rgba(var(--canvas-rgb-2), 0.11), transparent 72%);
   animation: glow-drift 18s ease-in-out infinite alternate;
 }
 
@@ -446,7 +471,7 @@ body.modal-open {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--bio-green);
   flex: none;
 }
 
@@ -455,7 +480,7 @@ body.modal-open {
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  background: #22c55e;
+  background: var(--bio-green);
   opacity: 0.35;
   animation: ping 2.2s var(--ease) infinite;
 }
@@ -528,7 +553,7 @@ body.modal-open {
   color: var(--text);
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: rgba(var(--canvas-rgb), 0.38);
+  text-decoration-color: rgba(var(--canvas-rgb), 0.42);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
@@ -573,22 +598,23 @@ body.modal-open {
   height: 46px;
   padding: 0 22px;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
   font-size: 0.94rem;
   font-weight: 550;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.2s ease,
-    background-color 0.2s ease, color 0.2s ease;
+    background-color 0.25s ease, color 0.25s ease;
 }
 
+/* Function Health signature primary CTA: burnt terracotta (#B05A36) -> midnight (#2A2B2F) */
 .btn-pill-primary {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  color: #fff;
-  background: var(--text);
-  box-shadow: 0 12px 24px -14px rgba(0, 0, 0, 0.55);
+  color: #fef9ef;
+  background: #b05a36;
+  box-shadow: 0 12px 24px -14px rgba(176, 90, 54, 0.55);
 }
 
 .btn-pill-primary::after {
@@ -596,7 +622,7 @@ body.modal-open {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.28) 50%, transparent 65%);
+  background: linear-gradient(115deg, transparent 35%, rgba(254, 249, 239, 0.24) 50%, transparent 65%);
   transform: translateX(-120%);
   transition: transform 0.9s var(--ease);
   pointer-events: none;
@@ -607,17 +633,23 @@ body.modal-open {
 }
 
 .btn-pill-primary:hover {
-  color: #fff;
+  color: #fef9ef;
+  background: #2a2b2f;
   transform: translateY(-2px);
-  box-shadow: 0 18px 32px -16px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 18px 32px -16px rgba(42, 43, 47, 0.55);
 }
 
 :root[data-theme='dark'] .btn-pill-primary,
+:root.dark .btn-pill-primary {
+  color: #16171a;
+  background: #de835c;
+  box-shadow: 0 12px 24px -14px rgba(0, 0, 0, 0.65);
+}
+
 :root[data-theme='dark'] .btn-pill-primary:hover,
-:root.dark .btn-pill-primary,
 :root.dark .btn-pill-primary:hover {
-  color: #0b0c10;
-  background: #eef0f6;
+  color: #16171a;
+  background: #fef9ef;
 }
 
 .btn-pill-ghost {
@@ -627,8 +659,8 @@ body.modal-open {
 }
 
 .btn-pill-ghost:hover {
-  color: var(--text);
-  border-color: var(--text-2);
+  color: var(--accent);
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
@@ -663,7 +695,7 @@ body.modal-open {
 
 .hero-social a:hover {
   color: var(--accent);
-  border-color: rgba(var(--canvas-rgb), 0.45);
+  border-color: rgba(var(--canvas-rgb), 0.48);
   transform: translateY(-2px);
 }
 
@@ -704,13 +736,13 @@ body.modal-open {
   background: conic-gradient(
     from var(--ring-angle),
     var(--accent),
-    var(--accent-2),
-    rgba(var(--canvas-rgb-2), 0.12) 45%,
-    rgba(var(--canvas-rgb), 0.12) 70%,
+    var(--bio-green),
+    rgba(var(--canvas-rgb-2), 0.14) 45%,
+    rgba(var(--canvas-rgb), 0.14) 70%,
     var(--accent)
   );
   box-shadow: var(--shadow-lg);
-  animation: ring-spin 12s linear infinite;
+  animation: ring-spin 14s linear infinite;
   transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transition: transform 0.7s var(--ease);
 }
@@ -815,10 +847,11 @@ body.modal-open {
 .section-index {
   padding: 5px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(var(--canvas-rgb), 0.34);
+  border: 1px solid rgba(var(--canvas-rgb), 0.36);
+  background: var(--accent-soft);
   font: 500 0.75rem/1 var(--font-mono);
   letter-spacing: 0.06em;
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 .section-title {
@@ -989,7 +1022,7 @@ body.modal-open {
   justify-content: center;
   border-radius: 999px;
   background: #ffffff;
-  box-shadow: 0 2px 6px rgba(20, 22, 40, 0.06);
+  box-shadow: 0 2px 6px rgba(42, 43, 47, 0.06);
   border: 1px solid var(--border);
   overflow: hidden;
 }
@@ -1073,9 +1106,9 @@ a.resume-company:hover {
 }
 
 .news-item.is-highlight .news-icon {
-  color: var(--gold);
-  background: var(--gold-soft);
-  border-color: rgba(245, 158, 11, 0.28);
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border-color: rgba(var(--canvas-rgb), 0.28);
 }
 
 .news-item p {
@@ -1198,7 +1231,7 @@ a.resume-company:hover {
 
 .pub-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(var(--canvas-rgb), 0.32);
+  border-color: rgba(var(--canvas-rgb), 0.36);
   box-shadow: var(--shadow-lg);
 }
 
@@ -1220,7 +1253,7 @@ a.resume-company:hover {
   overflow: hidden;
   border-radius: 12px;
   background: var(--figure-bg);
-  box-shadow: 0 1px 3px rgba(20, 20, 30, 0.08), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(42, 43, 47, 0.08), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .pub-figure img {
@@ -1306,7 +1339,7 @@ a.resume-company:hover {
   font-weight: 600;
   color: var(--text);
   text-decoration: underline;
-  text-decoration-color: rgba(var(--canvas-rgb), 0.55);
+  text-decoration-color: rgba(var(--canvas-rgb), 0.6);
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
 }
@@ -1405,7 +1438,7 @@ a.resume-company:hover {
   display: grid;
   place-items: center;
   padding: 20px;
-  background: rgba(10, 12, 18, 0.55);
+  background: rgba(22, 23, 26, 0.58);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   animation: fade-in 0.2s ease;
@@ -1527,7 +1560,7 @@ a.resume-company:hover {
   border-radius: 999px;
   background: #ffffff;
   border: 1.5px solid var(--border-strong);
-  box-shadow: 0 2px 6px rgba(20, 22, 40, 0.06);
+  box-shadow: 0 2px 6px rgba(42, 43, 47, 0.06);
 }
 
 :root[data-theme='dark'] .exp-logo,
@@ -1594,7 +1627,7 @@ a.resume-company:hover {
 }
 
 .info-card:hover {
-  border-color: rgba(var(--canvas-rgb), 0.28);
+  border-color: rgba(var(--canvas-rgb), 0.34);
   box-shadow: var(--shadow-md);
 }
 
@@ -1614,7 +1647,7 @@ a.resume-company:hover {
   display: grid;
   place-items: center;
   border-radius: 11px;
-  color: var(--accent);
+  color: var(--accent-ink);
   background: var(--accent-soft);
 }
 
@@ -1685,7 +1718,7 @@ a.resume-company:hover {
 
   .chip-bottom {
     left: auto;
-    right: -56%;
+    right: -42%;
     bottom: 18%;
   }
 
@@ -1825,7 +1858,7 @@ a.resume-company:hover {
   }
 
   .chip-bottom {
-    right: -90%;
+    right: -68%;
     bottom: 20%;
   }
 

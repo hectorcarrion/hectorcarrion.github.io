@@ -97,10 +97,12 @@ export function ArticleLayout({ children, meta, isRssFeed = false }) {
             </header>
 
             {meta.thumbnail && (
-              <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-white p-4 shadow-sm">
+              <div className="mt-8 overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--figure-bg)] p-4 shadow-sm">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={meta.thumbnail}
+                  width="920"
+                  height="480"
                   alt=""
                   className="mx-auto max-h-[380px] w-auto object-contain"
                 />
